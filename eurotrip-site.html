@@ -1,0 +1,2264 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#12151d">
+<title>Eurotrip · Dez 2026 – Jan 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<style>
+:root{
+  --paper:#12151d; --raised:#1a1e28; --raised2:#222634;
+  --ink:#f0ece2; --ink-soft:#a7a99f; --ink-faint:#6d7180;
+  --line:#2b2f3c; --line-soft:#232734;
+  --gold:#e0a94e; --gold-deep:#c8892f; --teal:#63b1a8; --berry:#d46a80;
+  --glow:rgba(224,169,78,.14);
+  --shadow:0 8px 30px rgba(0,0,0,.35);
+}
+:root[data-theme="light"]{
+  --paper:#f4efe6; --raised:#fffdf8; --raised2:#f9f4ea;
+  --ink:#20242e; --ink-soft:#585d67; --ink-faint:#8b8f99;
+  --line:#e3dccb; --line-soft:#ece5d6;
+  --gold:#b0741f; --gold-deep:#93610f; --teal:#2f6d67; --berry:#a83e57;
+  --glow:rgba(176,116,31,.10);
+  --shadow:0 6px 24px rgba(60,50,30,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Instrument Sans",system-ui,sans-serif;line-height:1.55;
+  -webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%}
+h2,h3,h4{font-family:"Fraunces",Georgia,serif;font-weight:600;text-wrap:balance;margin:0}
+
+/* ---- Masthead ---- */
+.mast{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.mast-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  max-width:1180px;margin:0 auto;padding:.7rem 1.3rem;}
+.brand{display:flex;align-items:baseline;gap:.6rem;min-width:0}
+.brand .logo{font-family:"Fraunces",serif;font-weight:700;font-size:1.15rem;letter-spacing:-.01em}
+.brand .logo b{color:var(--gold)}
+.brand .tag{font-size:.72rem;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.theme-btn{flex:none;border:1px solid var(--line);background:var(--raised);color:var(--ink);
+  width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:.95rem;display:grid;place-items:center;transition:.15s}
+.theme-btn:hover{border-color:var(--gold)}
+.tabs{display:flex;gap:.4rem;overflow-x:auto;max-width:1180px;margin:0 auto;padding:0 1.3rem .55rem;
+  scrollbar-width:thin;}
+.tabs::-webkit-scrollbar{height:5px}
+.tabs::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+.tab{flex:none;display:flex;flex-direction:column;gap:1px;align-items:flex-start;
+  border:1px solid var(--line-soft);background:var(--raised);border-radius:11px;
+  padding:.42rem .8rem;cursor:pointer;color:var(--ink-soft);transition:.15s;font-family:inherit}
+.tab:hover{border-color:var(--gold);color:var(--ink)}
+.tab-name{font-size:.86rem;font-weight:600;white-space:nowrap}
+.tab-date{font-size:.68rem;color:var(--ink-faint);white-space:nowrap}
+.tab.active{background:linear-gradient(160deg,var(--raised2),var(--raised));
+  border-color:var(--gold);color:var(--ink);box-shadow:0 0 0 1px var(--gold) inset,0 4px 14px var(--glow)}
+.tab.active .tab-date{color:var(--gold)}
+.tab:focus-visible,.gcard:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* ---- Layout ---- */
+.wrap{max-width:1180px;margin:0 auto;padding:0 1.3rem}
+.city{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.city{animation:none}}
+
+/* ---- Hero ---- */
+.hero{position:relative;max-width:1180px;margin:1.3rem auto 0;height:min(46vh,380px);
+  border-radius:20px;overflow:hidden;background:var(--raised2)}
+.hero-img{width:100%;height:100%;object-fit:cover;filter:saturate(1.02)}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,10,15,.92) 4%,rgba(8,10,15,.45) 42%,rgba(8,10,15,.08) 78%)}
+.hero-text{position:absolute;left:0;right:0;bottom:0;padding:1.6rem 1.8rem;color:#fff}
+.hero-eyebrow{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#f0d9ad}
+.hero-text h2{font-size:clamp(2.4rem,6vw,4rem);line-height:.98;margin:.15rem 0 .7rem;color:#fff;letter-spacing:-.02em}
+.hero-chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{background:rgba(255,255,255,.13);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);
+  border-radius:99px;padding:.28rem .7rem;font-size:.8rem;color:#fff}
+.chip-k{color:#f0d9ad;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;margin-right:.35rem}
+.overview .hero{display:none}
+
+/* ---- City body ---- */
+.citybody{max-width:1180px;margin:0 auto;padding:1.6rem 1.3rem 4rem}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.4rem}
+.fact{background:var(--raised);border:1px solid var(--line);border-radius:12px;padding:.7rem .9rem}
+.fk{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);font-weight:600}
+.fv{font-size:.94rem;font-weight:500}
+.intro{font-size:1.06rem;color:var(--ink-soft);max-width:70ch;margin:0 0 2rem;line-height:1.6}
+
+.sec{font-size:1.5rem;margin:2.4rem 0 1.1rem;display:flex;align-items:baseline;gap:.6rem;
+  padding-bottom:.5rem;border-bottom:1px solid var(--line)}
+.sec-sub{font-family:"Instrument Sans",sans-serif;font-size:.74rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--ink-faint)}
+
+/* ---- Day cards ---- */
+.days{display:grid;gap:1rem}
+@media(min-width:780px){.days{grid-template-columns:1fr 1fr}}
+.day{background:var(--raised);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.day-head{display:flex;align-items:baseline;justify-content:space-between;gap:.8rem;flex-wrap:wrap;
+  padding:.9rem 1.1rem;border-bottom:1px solid var(--line-soft)}
+.day-name{font-family:"Fraunces",serif;font-size:1.2rem;font-weight:600}
+.day-tag{font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--teal);font-weight:600;
+  border:1px solid var(--line);border-radius:99px;padding:.1rem .5rem}
+.day-date{font-size:.76rem;font-weight:600;color:var(--gold);white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
+.sched{width:100%;border-collapse:collapse}
+.sched td{padding:.55rem 1.1rem;border-top:1px solid var(--line-soft);vertical-align:top}
+.sched tr:first-child td{border-top:none}
+.time{width:92px;font-size:.82rem;font-weight:600;color:var(--gold-deep);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+:root[data-theme="dark"] .time{color:var(--gold)}
+.what b{font-weight:600;font-size:.95rem}
+.what .note{display:block;color:var(--ink-soft);font-size:.86rem;margin-top:.1rem;line-height:1.45}
+.day-foot{display:flex;justify-content:space-between;align-items:center;gap:.8rem;flex-wrap:wrap;
+  padding:.6rem 1.1rem;background:var(--raised2)}
+.day-foot .warn{font-size:.76rem;color:var(--berry);font-weight:600}
+.day-foot .cost{font-size:.8rem;color:var(--teal);font-weight:700;font-variant-numeric:tabular-nums}
+
+/* ---- Gallery ---- */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem}
+.gcard{margin:0;background:var(--raised);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  cursor:pointer;transition:.18s;box-shadow:var(--shadow)}
+.gcard:hover{transform:translateY(-3px);border-color:var(--gold)}
+.gcard-img{aspect-ratio:4/3;overflow:hidden;background:var(--raised2)}
+.gcard-img img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.gcard:hover .gcard-img img{transform:scale(1.06)}
+.gcard figcaption{padding:.7rem .85rem}
+.gname{display:block;font-family:"Fraunces",serif;font-weight:600;font-size:1rem}
+.gcap{display:block;font-size:.82rem;color:var(--ink-soft);margin-top:.15rem;line-height:1.4}
+
+/* ---- Info boxes ---- */
+.iboxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+.ibox{background:var(--raised);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem}
+.ibox h4{font-size:1.05rem;color:var(--teal);margin-bottom:.6rem}
+.ibox ul{margin:0;padding-left:1.05rem}
+.ibox li{font-size:.9rem;color:var(--ink-soft);margin-bottom:.45rem;line-height:1.5}
+
+/* ---- Overview ---- */
+.ov-head{max-width:1180px;margin:1.6rem auto 0;padding:1.4rem 1.3rem 0}
+.ov-head h2{font-size:clamp(2.2rem,5vw,3.4rem);margin:.2rem 0 .6rem;letter-spacing:-.02em}
+.stats{max-width:1180px;margin:1.4rem auto 0;padding:0 1.3rem;display:grid;
+  grid-template-columns:repeat(3,1fr);gap:.8rem}
+@media(min-width:680px){.stats{grid-template-columns:repeat(6,1fr)}}
+.stat{background:var(--raised);border:1px solid var(--line);border-radius:14px;padding:1rem;text-align:center}
+.stat-n{display:block;font-family:"Fraunces",serif;font-size:2rem;font-weight:700;color:var(--gold);line-height:1}
+.stat-l{display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);margin-top:.3rem}
+.ov-grid{max-width:1180px;margin:0 auto;padding:1rem 1.3rem 4rem;display:grid;gap:2rem}
+@media(min-width:900px){.ov-grid{grid-template-columns:1.5fr 1fr;align-items:start}}
+.timeline{width:100%;border-collapse:collapse}
+.timeline td{padding:.6rem .5rem;border-top:1px solid var(--line-soft);vertical-align:top}
+.timeline tr:first-child td{border-top:none}
+.tl-icon span{display:grid;place-items:center;width:30px;height:30px;border-radius:9px;
+  background:var(--raised2);border:1px solid var(--line);font-size:.85rem}
+.tl-city .tl-icon span{color:var(--gold);border-color:var(--gold)}
+.tl-date{font-size:.8rem;color:var(--ink-soft);white-space:nowrap;font-weight:600;font-variant-numeric:tabular-nums;width:96px}
+.tl-main b{font-size:.96rem;font-weight:600}
+.tl-main span{display:block;font-size:.82rem;color:var(--ink-soft)}
+.tl-city .tl-main b{color:var(--gold)}
+.todos{margin:0;padding:0;list-style:none}
+.todos li{display:flex;align-items:flex-start;gap:.3rem;font-size:.9rem;color:var(--ink-soft);
+  margin-bottom:.45rem;background:var(--raised);border:1px solid var(--line-soft);border-radius:10px;padding:.5rem .55rem .5rem .7rem}
+.todos label{display:flex;gap:.6rem;align-items:flex-start;cursor:pointer;flex:1;min-width:0}
+.todos input{accent-color:var(--gold);width:17px;height:17px;margin:.12rem 0 0;flex:none;cursor:pointer}
+.todos .tx{line-height:1.45;overflow-wrap:anywhere}
+.todos li.done{opacity:.65}
+.todos li.done .tx{text-decoration:line-through;color:var(--ink-faint)}
+.tdel{background:none;border:none;color:var(--berry);opacity:.35;cursor:pointer;font-size:1.05rem;
+  padding:0 .3rem;flex:none;line-height:1.3}
+.tdel:hover{opacity:1}
+.todo-prog{margin-left:auto;font-family:"Instrument Sans",sans-serif;font-size:.74rem;font-weight:700;
+  color:var(--teal);white-space:nowrap}
+.todo-add{display:flex;gap:.5rem;margin-top:.9rem}
+.todo-add input{flex:1;min-width:0;background:var(--raised);border:1px solid var(--line);border-radius:10px;
+  padding:.5rem .75rem;color:var(--ink);font-family:inherit;font-size:.88rem}
+.todo-add input:focus{outline:2px solid var(--gold);outline-offset:1px}
+.todo-add button{border:1px solid var(--line);background:var(--raised2);color:var(--teal);font-weight:700;
+  border-radius:10px;padding:.5rem .8rem;cursor:pointer;font-family:inherit;font-size:.82rem;white-space:nowrap}
+.todo-add button:hover{border-color:var(--teal)}
+
+/* ---- Edit mode ---- */
+.mast-actions{display:flex;gap:.45rem;flex:none;align-items:center}
+.edit-btn{border:1px solid var(--line);background:var(--raised);color:var(--ink);height:34px;
+  border-radius:9px;cursor:pointer;font-size:.78rem;font-weight:600;padding:0 .75rem;font-family:inherit;transition:.15s;white-space:nowrap}
+.edit-btn:hover{border-color:var(--gold)}
+.edit-btn.on{background:var(--gold);color:#1a1206;border-color:var(--gold)}
+body.editing [contenteditable="true"]{outline:1px dashed color-mix(in srgb,var(--gold) 60%,transparent);
+  outline-offset:2px;border-radius:4px;min-width:1.5em}
+body.editing [contenteditable="true"]:focus{outline:2px solid var(--gold);background:color-mix(in srgb,var(--gold) 8%,transparent)}
+.rowdel{color:var(--berry);cursor:pointer;font-weight:700;margin-left:.4rem;user-select:none;font-size:1rem}
+.addrow{display:block;margin:.55rem 1.1rem .8rem;border:1px dashed var(--line);background:none;color:var(--teal);
+  border-radius:9px;padding:.35rem .8rem;cursor:pointer;font-family:inherit;font-size:.8rem;font-weight:600}
+.addrow:hover{border-color:var(--teal)}
+.reset-link{color:var(--ink-faint);text-decoration:none;border-bottom:1px dotted var(--ink-faint)}
+.reset-link:hover{color:var(--berry);border-color:var(--berry)}
+
+/* ---- Mobile ---- */
+@media(max-width:600px){
+  .brand .tag{display:none}
+  .mast-top{padding:.55rem .9rem}
+  .tabs{padding:0 .9rem .5rem}
+  .tab{padding:.38rem .65rem}
+  .hero{margin:.85rem .7rem 0;height:min(38vh,300px);border-radius:16px}
+  .hero-text{padding:1.1rem 1rem}
+  .hero-chips{gap:.4rem}
+  .chip{font-size:.74rem;padding:.24rem .6rem}
+  .citybody{padding:1.3rem 1rem 3rem}
+  .facts{grid-template-columns:1fr}
+  .intro{font-size:1rem}
+  .sec{font-size:1.3rem;flex-wrap:wrap}
+  .sched td{padding:.5rem .8rem}
+  .time{width:76px;font-size:.78rem}
+  .day-head{padding:.8rem .9rem}
+  .day-foot{padding:.55rem .9rem}
+  .gallery{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem}
+  .gcard figcaption{padding:.55rem .65rem}
+  .gname{font-size:.9rem}
+  .gcap{font-size:.76rem}
+  .ov-head,.map-head{padding:1rem 1rem 0}
+  .stats{padding:0 1rem;gap:.55rem}
+  .stat{padding:.7rem .4rem}
+  .stat-n{font-size:1.55rem}
+  .ov-grid{padding:1rem 1rem 3rem;gap:1.6rem}
+  .map-toolbar{padding:0 1rem}
+  #leafmap{margin:1rem .7rem;border-radius:14px;height:60vh}
+  .map-note{padding:0 1rem 0}
+  .lb{padding:1rem}
+  .lb-close{top:.7rem;right:.8rem}
+  footer{padding:1.3rem 1rem 2rem}
+}
+
+/* ---- Map ---- */
+.mapsec .hero{display:none}
+.map-head{max-width:1180px;margin:1.6rem auto 0;padding:1.4rem 1.3rem 0}
+.map-head h2{font-size:clamp(2.2rem,5vw,3.4rem);margin:.2rem 0 .6rem;letter-spacing:-.02em}
+.map-toolbar{max-width:1180px;margin:1rem auto 0;padding:0 1.3rem;display:flex;flex-wrap:wrap;gap:.45rem}
+.mbtn{border:1px solid var(--line);background:var(--raised);color:var(--ink-soft);border-radius:99px;
+  padding:.34rem .8rem;font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s;white-space:nowrap}
+.mbtn:hover{border-color:var(--gold);color:var(--ink)}
+.mbtn.active{background:var(--gold);color:#1a1206;border-color:var(--gold)}
+#leafmap{max-width:1180px;margin:1.1rem auto;height:min(70vh,600px);border-radius:18px;
+  border:1px solid var(--line);box-shadow:var(--shadow);z-index:1;background:var(--raised2)}
+.map-note{max-width:1180px;margin:0 auto 3.5rem;padding:0 1.3rem;font-size:.8rem;color:var(--ink-faint)}
+.citypin{background:none;border:none}
+.citypin span{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;
+  background:var(--gold);color:#1a1206;font-weight:700;font-family:"Fraunces",serif;font-size:.98rem;
+  border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.45)}
+.leaflet-popup-content{margin:.7rem .8rem;font-family:"Instrument Sans",sans-serif}
+.leaflet-popup-content b{font-family:"Fraunces",serif;font-size:1.02rem}
+.poi-pop{width:190px}
+.poi-pop img{width:100%;height:96px;object-fit:cover;border-radius:7px;margin-bottom:.45rem}
+.poi-pop span{font-size:.82rem;color:#555;display:block;margin-top:.15rem;line-height:1.4}
+.city-pop a{color:var(--gold-deep);font-weight:600;text-decoration:none}
+
+/* ---- Lightbox ---- */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(6,8,12,.92);display:none;
+  align-items:center;justify-content:center;padding:2rem;backdrop-filter:blur(4px)}
+.lb.open{display:flex}
+.lb-inner{max-width:1000px;max-height:90vh;text-align:center}
+.lb img{max-width:100%;max-height:78vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6);margin:0 auto}
+.lb-cap{color:#fff;margin-top:.9rem}
+.lb-cap b{font-family:"Fraunces",serif;font-size:1.3rem;display:block}
+.lb-cap span{color:#c9cbd2;font-size:.9rem}
+.lb-close{position:absolute;top:1.1rem;right:1.3rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+  color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.3rem;cursor:pointer}
+
+footer{border-top:1px solid var(--line);padding:1.6rem 1.3rem;text-align:center;
+  font-size:.8rem;color:var(--ink-faint);max-width:1180px;margin:0 auto}
+footer b{color:var(--ink-soft)}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="mast-top">
+    <div class="brand">
+      <span class="logo"><b>◆</b> Eurotrip</span>
+      <span class="tag">14 dez 2026 — 8 jan 2027 · 10 viajantes · saindo do Rio (GIG)</span>
+    </div>
+    <div class="mast-actions">
+      <button class="edit-btn" id="editBtn" title="Editar roteiros — as mudanças ficam salvas neste navegador">✎ Editar</button>
+      <button class="theme-btn" id="themeBtn" aria-label="Alternar tema">◐</button>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="Cidades">
+    <button class="tab" id="tab-visao" role="tab" aria-controls="city-visao" data-city="visao"><span class="tab-name">Visão geral</span><span class="tab-date">14 dez – 8 jan</span></button>
+    <button class="tab" id="tab-mapa" role="tab" aria-controls="city-mapa" data-city="mapa"><span class="tab-name">🗺 Mapa</span><span class="tab-date">rota completa</span></button>
+    <button class="tab active" id="tab-londres" role="tab" aria-controls="city-londres" data-city="londres" aria-selected="true"><span class="tab-name">🇬🇧 Londres</span><span class="tab-date">15–18 dez</span></button>
+    <button class="tab" id="tab-amsterda" role="tab" aria-controls="city-amsterda" data-city="amsterda" ><span class="tab-name">🇳🇱 Amsterdã</span><span class="tab-date">18–21 dez</span></button>
+    <button class="tab" id="tab-praga" role="tab" aria-controls="city-praga" data-city="praga" ><span class="tab-name">🇨🇿 Praga</span><span class="tab-date">21–22 dez</span></button>
+    <button class="tab" id="tab-bratislava" role="tab" aria-controls="city-bratislava" data-city="bratislava" ><span class="tab-name">🇸🇰 Bratislava &amp; Orava</span><span class="tab-date">23–26 dez</span></button>
+    <button class="tab" id="tab-viena" role="tab" aria-controls="city-viena" data-city="viena" ><span class="tab-name">🇦🇹 Viena</span><span class="tab-date">26–29 dez</span></button>
+    <button class="tab" id="tab-budapeste" role="tab" aria-controls="city-budapeste" data-city="budapeste" ><span class="tab-name">🇭🇺 Budapeste</span><span class="tab-date">29 dez – 1/2 jan</span></button>
+    <button class="tab" id="tab-paris" role="tab" aria-controls="city-paris" data-city="paris" ><span class="tab-name">🇫🇷 Paris</span><span class="tab-date">2–6 jan</span></button>
+    <button class="tab" id="tab-barcelona" role="tab" aria-controls="city-barcelona" data-city="barcelona" ><span class="tab-name">🇪🇸 Barcelona</span><span class="tab-date">6–8 jan</span></button>
+    <button class="tab" id="tab-madri" role="tab" aria-controls="city-madri" data-city="madri" ><span class="tab-name">🇪🇸 Madri</span><span class="tab-date">8 jan</span></button>
+  </nav>
+</header>
+
+<main>
+  
+  <section class="city" id="city-londres" role="tabpanel" aria-labelledby="tab-londres" >
+    <div class="hero">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600&amp;q=80&amp;fm=jpg" alt="Londres" fetchpriority="low">
+      <div class="hero-grad"></div>
+      <div class="hero-text">
+        <span class="hero-eyebrow">🇬🇧 Reino Unido · 15–18 dez</span>
+        <h2>Londres</h2>
+        <div class="hero-chips">
+          <span class="chip"><span class="chip-k">Estadia</span> 3 noites</span>
+          <span class="chip"><span class="chip-k">Base</span> Generator London</span>
+          <span class="chip"><span class="chip-k">Custo</span> ≈ £180–230 pp</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="citybody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">15/12 · 08h35 (LHR)</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Eurostar → Amsterdã (18/12, 06h16)</span></div>
+      </div>
+
+      <p class="intro">Três dias intensos cobrindo o coração histórico, os grandes museus e o obrigatório dos Estúdios Harry Potter. Ritmo puxado — comece cedo, use o metrô e reserve os ingressos com hora marcada com antecedência.</p>
+
+      <h3 class="sec">Roteiro <span class="sec-sub">dia a dia</span></h3>
+      <div class="days">
+    <article class="day" data-eid="londres-d0">
+      <div class="day-head">
+        <div><span class="day-name">Chegada + centro histórico</span> <span class="day-tag">chegada</span></div>
+        <span class="day-date">Ter 15/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">08h35</td>
+          <td class="what"><b>Chegada em Heathrow</b><span class="note">Trem Elizabeth Line até o centro (~35 min). Ative o contactless/Oyster.</span></td>
+        </tr>
+        <tr>
+          <td class="time">12h00</td>
+          <td class="what"><b>Check-in no Generator London</b><span class="note">Deixe as malas e saia leve.</span></td>
+        </tr>
+        <tr>
+          <td class="time">13h00</td>
+          <td class="what"><b>Almoço no ICCO Pizza</b><span class="note">Greek Street 23–24 — fatia gigante por ~£4.</span></td>
+        </tr>
+        <tr>
+          <td class="time">14h30</td>
+          <td class="what"><b>British Museum ou Natural History Museum</b><span class="note">Entrada gratuita, mas reserve horário (ago/set). Pedra de Roseta e múmias no British.</span></td>
+        </tr>
+        <tr>
+          <td class="time">16h30</td>
+          <td class="what"><b>Neal's Yard → Covent Garden → Piccadilly Circus</b><span class="note">Ben's Cookies (~£2,50) no caminho. Pátios coloridos e artistas de rua.</span></td>
+        </tr>
+        <tr>
+          <td class="time">18h00</td>
+          <td class="what"><b>Oxford, Regent e Carnaby Street</b><span class="note">Luzes de Natal e vitrines — a Carnaby costuma ter a decoração mais bonita.</span></td>
+        </tr>
+        <tr>
+          <td class="time">19h00</td>
+          <td class="what"><b>Chinatown London</b><span class="note">Jantar barato e bem localizado. Peça um pub próximo para fechar a noite.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Reservar museu (ago/set)</span>
+        <span class="cost">≈ £35 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="londres-d1">
+      <div class="day-head">
+        <div><span class="day-name">Postais de Londres</span> <span class="day-tag">dia cheio</span></div>
+        <span class="day-date">Qua 16/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">06h30</td>
+          <td class="what"><b>Acordar + café</b><span class="note">Dia longo pela frente.</span></td>
+        </tr>
+        <tr>
+          <td class="time">08h30</td>
+          <td class="what"><b>London Eye</b><span class="note">Chegue cedo para pegar a fila menor; reserve online.</span></td>
+        </tr>
+        <tr>
+          <td class="time">10h00</td>
+          <td class="what"><b>Big Ben → Westminster → Buckingham</b><span class="note">Troca da guarda (confirme os dias/horário no site oficial).</span></td>
+        </tr>
+        <tr>
+          <td class="time">10h30</td>
+          <td class="what"><b>St James's Park</b><span class="note">Atravesse o parque a pé até o palácio.</span></td>
+        </tr>
+        <tr>
+          <td class="time">13h30</td>
+          <td class="what"><b>Almoço no Borough Market</b><span class="note">Sanduíche do The Black Pig (£12), doces e queijos.</span></td>
+        </tr>
+        <tr>
+          <td class="time">14h00</td>
+          <td class="what"><b>London Bridge → St Paul's → Leadenhall → Tower of London</b><span class="note">Tower of London £33 — joias da coroa. Leadenhall inspirou o Beco Diagonal.</span></td>
+        </tr>
+        <tr>
+          <td class="time">16h30</td>
+          <td class="what"><b>Tower Bridge</b><span class="note">Fotos no fim de tarde.</span></td>
+        </tr>
+        <tr>
+          <td class="time">18h00</td>
+          <td class="what"><b>Sky Garden</b><span class="note">Entrada gratuita, mas reserve (abre reservas ~1 mês antes). Vista 360° com drink.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Reservar London Eye + Sky Garden</span>
+        <span class="cost">≈ £55 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="londres-d2">
+      <div class="day-head">
+        <div><span class="day-name">Harry Potter + King's Cross</span> <span class="day-tag">estúdios</span></div>
+        <span class="day-date">Qui 17/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">06h00</td>
+          <td class="what"><b>Acordar + café</b></td>
+        </tr>
+        <tr>
+          <td class="time">07h00</td>
+          <td class="what"><b>Sair rumo a Leavesden</b><span class="note">Trem de Euston até Watford Junction + ônibus dos estúdios.</span></td>
+        </tr>
+        <tr>
+          <td class="time">09h00</td>
+          <td class="what"><b>Warner Bros. Studio — The Making of Harry Potter</b><span class="note">£58, já pago. Reserve o horário de entrada; reserve 3–4h dentro.</span></td>
+        </tr>
+        <tr>
+          <td class="time">14h00</td>
+          <td class="what"><b>King's Cross — Plataforma 9¾ + British Library</b><span class="note">Foto no carrinho; manuscritos raros na biblioteca ao lado.</span></td>
+        </tr>
+        <tr>
+          <td class="time">15h00</td>
+          <td class="what"><b>Camden Town</b><span class="note">Mercados alternativos, street food do Camden Lock e vida noturna.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Estúdio já pago</span>
+        <span class="cost">≈ £15 pp (extra)</span>
+      </div>
+    </article></div>
+
+      <h3 class="sec">Pontos imperdíveis <span class="sec-sub">12 lugares</span></h3>
+      <div class="gallery">
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Elizabeth_Tower%2C_June_2022.jpg/1280px-Elizabeth_Tower%2C_June_2022.jpg" data-cap="O relógio mais famoso do mundo, ao lado do Parlamento." data-title="Big Ben">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Elizabeth_Tower%2C_June_2022.jpg/1280px-Elizabeth_Tower%2C_June_2022.jpg" alt="Big Ben"></div>
+        <figcaption><span class="gname">Big Ben</span><span class="gcap">O relógio mais famoso do mundo, ao lado do Parlamento.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/London-Eye-2009.JPG/1280px-London-Eye-2009.JPG" data-cap="Roda-gigante às margens do Tâmisa, vista de toda a cidade." data-title="London Eye">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/London-Eye-2009.JPG/1280px-London-Eye-2009.JPG" alt="London Eye"></div>
+        <figcaption><span class="gname">London Eye</span><span class="gcap">Roda-gigante às margens do Tâmisa, vista de toda a cidade.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Tower_Bridge_at_Dawn.jpg/1280px-Tower_Bridge_at_Dawn.jpg" data-cap="A ponte levadiça vitoriana, cartão-postal de Londres." data-title="Tower Bridge">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Tower_Bridge_at_Dawn.jpg/1280px-Tower_Bridge_at_Dawn.jpg" alt="Tower Bridge"></div>
+        <figcaption><span class="gname">Tower Bridge</span><span class="gcap">A ponte levadiça vitoriana, cartão-postal de Londres.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Tower_of_London_from_the_Shard_%288515883950%29.jpg/1280px-Tower_of_London_from_the_Shard_%288515883950%29.jpg" data-cap="Fortaleza milenar que guarda as joias da coroa." data-title="Tower of London">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Tower_of_London_from_the_Shard_%288515883950%29.jpg/1280px-Tower_of_London_from_the_Shard_%288515883950%29.jpg" alt="Tower of London"></div>
+        <figcaption><span class="gname">Tower of London</span><span class="gcap">Fortaleza milenar que guarda as joias da coroa.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/British_Museum_%28aerial%29.jpg/1280px-British_Museum_%28aerial%29.jpg" data-cap="Acervo colossal e gratuito — da Pedra de Roseta às múmias." data-title="British Museum">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/British_Museum_%28aerial%29.jpg/1280px-British_Museum_%28aerial%29.jpg" alt="British Museum"></div>
+        <figcaption><span class="gname">British Museum</span><span class="gcap">Acervo colossal e gratuito — da Pedra de Roseta às múmias.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Buckingham_Palace_London_Morning_2020_01_%28cropped%29.jpg/1280px-Buckingham_Palace_London_Morning_2020_01_%28cropped%29.jpg" data-cap="Residência real e a clássica troca da guarda." data-title="Buckingham Palace">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Buckingham_Palace_London_Morning_2020_01_%28cropped%29.jpg/1280px-Buckingham_Palace_London_Morning_2020_01_%28cropped%29.jpg" alt="Buckingham Palace"></div>
+        <figcaption><span class="gname">Buckingham Palace</span><span class="gcap">Residência real e a clássica troca da guarda.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/St_Pauls_aerial_%28cropped%29.jpg/1280px-St_Pauls_aerial_%28cropped%29.jpg" data-cap="A cúpula barroca que domina a City." data-title="St Paul's Cathedral">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/St_Pauls_aerial_%28cropped%29.jpg/1280px-St_Pauls_aerial_%28cropped%29.jpg" alt="St Paul's Cathedral"></div>
+        <figcaption><span class="gname">St Paul's Cathedral</span><span class="gcap">A cúpula barroca que domina a City.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Covent_Garden_Interior_May_2006_crop.jpg/1280px-Covent_Garden_Interior_May_2006_crop.jpg" data-cap="Mercado coberto com artistas de rua e cafés." data-title="Covent Garden">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Covent_Garden_Interior_May_2006_crop.jpg/1280px-Covent_Garden_Interior_May_2006_crop.jpg" alt="Covent Garden"></div>
+        <figcaption><span class="gname">Covent Garden</span><span class="gcap">Mercado coberto com artistas de rua e cafés.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/London_2018_March_IMG_0663.jpg/1280px-London_2018_March_IMG_0663.jpg" data-cap="O melhor mercado gastronômico da cidade." data-title="Borough Market">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/London_2018_March_IMG_0663.jpg/1280px-London_2018_March_IMG_0663.jpg" alt="Borough Market"></div>
+        <figcaption><span class="gname">Borough Market</span><span class="gcap">O melhor mercado gastronômico da cidade.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://cdn-imgix.headout.com/media/images/7293c27a7d36116240336326429daac7-27495-london-from-london--harry-potter-warner-bros.-studio-semi-private-experience-with-champagne-03.jpg?auto=compress,format&amp;w=695.0400000000001&amp;h=434.4&amp;q=96&amp;crop=faces&amp;fit=crop" data-cap="Os sets reais dos filmes de Harry Potter." data-title="Warner Bros. Studio Tour London">
+        <div class="gcard-img"><img loading="lazy" src="https://cdn-imgix.headout.com/media/images/7293c27a7d36116240336326429daac7-27495-london-from-london--harry-potter-warner-bros.-studio-semi-private-experience-with-champagne-03.jpg?auto=compress,format&amp;w=695.0400000000001&amp;h=434.4&amp;q=96&amp;crop=faces&amp;fit=crop" alt="Warner Bros. Studio Tour London"></div>
+        <figcaption><span class="gname">Warner Bros. Studio Tour London</span><span class="gcap">Os sets reais dos filmes de Harry Potter.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Open_Happiness_Piccadilly_Circus_Blue-Pink_Hour_120917-1126-jikatu.jpg/1280px-Open_Happiness_Piccadilly_Circus_Blue-Pink_Hour_120917-1126-jikatu.jpg" data-cap="O cruzamento elétrico com os letreiros luminosos." data-title="Piccadilly Circus">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Open_Happiness_Piccadilly_Circus_Blue-Pink_Hour_120917-1126-jikatu.jpg/1280px-Open_Happiness_Piccadilly_Circus_Blue-Pink_Hour_120917-1126-jikatu.jpg" alt="Piccadilly Circus"></div>
+        <figcaption><span class="gname">Piccadilly Circus</span><span class="gcap">O cruzamento elétrico com os letreiros luminosos.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/6/6c/Camden_Town_9.jpg" data-cap="Bairro boêmio de mercados e música." data-title="Camden Town">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Camden_Town_9.jpg" alt="Camden Town"></div>
+        <figcaption><span class="gname">Camden Town</span><span class="gcap">Bairro boêmio de mercados e música.</span></figcaption>
+      </figure></div>
+
+      <h3 class="sec">Prático <span class="sec-sub">antes de ir</span></h3>
+      <div class="iboxes">
+      <div class="ibox">
+        <h4>Transporte</h4>
+        <ul><li>Contactless/Oyster com teto diário — não precisa comprar bilhete avulso.</li><li>Elizabeth Line liga Heathrow ao centro em ~35 min.</li><li>Ande a pé no centro: as distâncias entre os postais são curtas.</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Reservas</h4>
+        <ul><li>ETA do Reino Unido (~£16/pessoa) — obrigatório antes de embarcar.</li><li>Museus gratuitos, mas com horário marcado (ago/set).</li><li>Sky Garden e London Eye: reservar online.</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Dicas</h4>
+        <ul><li>Anoitece ~15h50 em dezembro — priorize fotos externas de manhã/início da tarde.</li><li>Leve guarda-chuva compacto.</li><li>Mercados (Borough, Camden) são ótimos para almoçar barato.</li></ul>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="city" id="city-amsterda" role="tabpanel" aria-labelledby="tab-amsterda" hidden>
+    <div class="hero">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1459679749680-18eb1eb37418?w=1600&amp;q=80&amp;fm=jpg" alt="Amsterdã" fetchpriority="low">
+      <div class="hero-grad"></div>
+      <div class="hero-text">
+        <span class="hero-eyebrow">🇳🇱 Holanda · 18–21 dez</span>
+        <h2>Amsterdã</h2>
+        <div class="hero-chips">
+          <span class="chip"><span class="chip-k">Estadia</span> 3 noites</span>
+          <span class="chip"><span class="chip-k">Base</span> Stayokay Vondelpark</span>
+          <span class="chip"><span class="chip-k">Custo</span> ≈ €160–210 pp</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="citybody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">18/12 · 11h20 (Eurostar)</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Voo → Praga (21/12, 06h55)</span></div>
+      </div>
+
+      <p class="intro">Canais, museus de mundo, coffeeshops lendários e o Red Light District. Base no Vondelpark, a poucos minutos do Museumplein. Reserve Anne Frank e Van Gogh com semanas de antecedência — esgotam rápido.</p>
+
+      <h3 class="sec">Roteiro <span class="sec-sub">dia a dia</span></h3>
+      <div class="days">
+    <article class="day" data-eid="amsterda-d0">
+      <div class="day-head">
+        <div><span class="day-name">Chegada + Museumplein</span> <span class="day-tag">chegada</span></div>
+        <span class="day-date">Sex 18/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">11h20</td>
+          <td class="what"><b>Chegada de Eurostar (Amsterdam Centraal)</b><span class="note">Tram ou bike até o Vondelpark.</span></td>
+        </tr>
+        <tr>
+          <td class="time">12h30</td>
+          <td class="what"><b>Check-in no Stayokay Vondelpark</b><span class="note">Largue as malas.</span></td>
+        </tr>
+        <tr>
+          <td class="time">13h30</td>
+          <td class="what"><b>Passeio pelo Vondelpark + Museumplein</b><span class="note">Letreiro 'I amsterdam' e o clima do parque.</span></td>
+        </tr>
+        <tr>
+          <td class="time">14h30</td>
+          <td class="what"><b>Rijksmuseum</b><span class="note">Reserve horário — Vermeer, Rembrandt e a Ronda Noturna.</span></td>
+        </tr>
+        <tr>
+          <td class="time">16h30</td>
+          <td class="what"><b>Van Gogh Museum</b><span class="note">Reserve com antecedência (pendência). Anoitece cedo; ótimo programa indoor.</span></td>
+        </tr>
+        <tr>
+          <td class="time">18h30</td>
+          <td class="what"><b>The Bulldog Palace (Leidseplein)</b><span class="note">Primeiro coffeeshop da viagem — o mais famoso da cidade, num antigo prédio da polícia.</span></td>
+        </tr>
+        <tr>
+          <td class="time">20h00</td>
+          <td class="what"><b>Jantar em Leidseplein</b><span class="note">Volta a pé pelos canais iluminados.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Reservar Rijks + Van Gogh</span>
+        <span class="cost">≈ €50 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="amsterda-d1">
+      <div class="day-head">
+        <div><span class="day-name">Anne Frank, canais + Red Light</span> <span class="day-tag">dia cheio</span></div>
+        <span class="day-date">Sáb 19/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">09h00</td>
+          <td class="what"><b>Casa de Anne Frank</b><span class="note">Ingressos só online, liberados ~6 semanas antes (pendência). Chegue no horário exato.</span></td>
+        </tr>
+        <tr>
+          <td class="time">11h00</td>
+          <td class="what"><b>Bairro Jordaan + De 9 Straatjes</b><span class="note">Ruelas charmosas, brechós e cafés. Compras nas 'Nove Ruazinhas'.</span></td>
+        </tr>
+        <tr>
+          <td class="time">13h00</td>
+          <td class="what"><b>Almoço + stroopwafel fresco</b><span class="note">Prove um na hora, com calda quente.</span></td>
+        </tr>
+        <tr>
+          <td class="time">14h30</td>
+          <td class="what"><b>Dam Square + Palácio Real</b><span class="note">Praça central e o pátio silencioso do Begijnhof ao lado.</span></td>
+        </tr>
+        <tr>
+          <td class="time">15h30</td>
+          <td class="what"><b>Bloemenmarkt</b><span class="note">O mercado de flores flutuante — bulbos de tulipa de lembrança.</span></td>
+        </tr>
+        <tr>
+          <td class="time">16h30</td>
+          <td class="what"><b>Dampkring</b><span class="note">O coffeeshop de 'Ocean's Twelve' — interior psicodélico, um dos mais premiados.</span></td>
+        </tr>
+        <tr>
+          <td class="time">18h30</td>
+          <td class="what"><b>Cruzeiro pelos canais</b><span class="note">1h ao anoitecer (pendência de reserva). Cidade vista da água.</span></td>
+        </tr>
+        <tr>
+          <td class="time">20h00</td>
+          <td class="what"><b>Jantar + Red Light District (De Wallen)</b><span class="note">Vitrines, néon e a Oude Kerk no meio de tudo. Regra de ouro: nunca fotografe as vitrines.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Reservar Anne Frank + cruzeiro</span>
+        <span class="cost">≈ €60 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="amsterda-d2">
+      <div class="day-head">
+        <div><span class="day-name">Cerveja, vistas + despedida</span> <span class="day-tag">dia cheio</span></div>
+        <span class="day-date">Dom 20/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">10h00</td>
+          <td class="what"><b>Heineken Experience</b><span class="note">Tour interativo com degustação. Reserve online.</span></td>
+        </tr>
+        <tr>
+          <td class="time">12h30</td>
+          <td class="what"><b>Albert Cuyp Market + De Pijp</b><span class="note">Almoço no maior mercado de rua da cidade.</span></td>
+        </tr>
+        <tr>
+          <td class="time">14h30</td>
+          <td class="what"><b>A'DAM Lookout</b><span class="note">Balsa grátis atrás da Centraal. Balanço 'Over the Edge' a 100 m — pôr do sol ~16h30.</span></td>
+        </tr>
+        <tr>
+          <td class="time">17h00</td>
+          <td class="what"><b>Grey Area ou Barney's</b><span class="note">Coffeeshops cult: o minúsculo Grey Area é lendário entre celebridades — vá antes das 20h.</span></td>
+        </tr>
+        <tr>
+          <td class="time">19h00</td>
+          <td class="what"><b>Jantar em brown café aconchegante</b><span class="note">Clima holandês clássico para fechar a cidade.</span></td>
+        </tr>
+        <tr>
+          <td class="time">21h30</td>
+          <td class="what"><b>Recolher cedo</b><span class="note">Voo 06h55 — saída do hostel ~04h30.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Voo cedo amanhã — durma cedo</span>
+        <span class="cost">≈ €55 pp</span>
+      </div>
+    </article></div>
+
+      <h3 class="sec">Pontos imperdíveis <span class="sec-sub">12 lugares</span></h3>
+      <div class="gallery">
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg/1280px-South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg" data-cap="O grande museu nacional holandês — Rembrandt e Vermeer." data-title="Rijksmuseum">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg/1280px-South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg" alt="Rijksmuseum"></div>
+        <figcaption><span class="gname">Rijksmuseum</span><span class="gcap">O grande museu nacional holandês — Rembrandt e Vermeer.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://imgs.search.brave.com/PD5Q6dt7pXPzrxMDjUnId3DOoBgm8zduLAui0ceIUjo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly8yZ2J6/enhwN21rcnFwZ3B6/LnB1YmxpYy5ibG9i/LnZlcmNlbC1zdG9y/YWdlLmNvbS9hbXN0/ZXJkYW0tdmFuLWdv/Z2gvd2lkZV9leHRl/cmlvcl92aWV3XzAw/LndlYnA" data-cap="A maior coleção do mundo do pintor." data-title="Van Gogh Museum">
+        <div class="gcard-img"><img loading="lazy" src="https://imgs.search.brave.com/PD5Q6dt7pXPzrxMDjUnId3DOoBgm8zduLAui0ceIUjo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly8yZ2J6/enhwN21rcnFwZ3B6/LnB1YmxpYy5ibG9i/LnZlcmNlbC1zdG9y/YWdlLmNvbS9hbXN0/ZXJkYW0tdmFuLWdv/Z2gvd2lkZV9leHRl/cmlvcl92aWV3XzAw/LndlYnA" alt="Van Gogh Museum"></div>
+        <figcaption><span class="gname">Van Gogh Museum</span><span class="gcap">A maior coleção do mundo do pintor.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Amsterdam_%28NL%29%2C_Anne-Frank-Huis_--_2015_--_7185.jpg/1280px-Amsterdam_%28NL%29%2C_Anne-Frank-Huis_--_2015_--_7185.jpg" data-cap="O anexo secreto onde a família se escondeu." data-title="Anne Frank House">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Amsterdam_%28NL%29%2C_Anne-Frank-Huis_--_2015_--_7185.jpg/1280px-Amsterdam_%28NL%29%2C_Anne-Frank-Huis_--_2015_--_7185.jpg" alt="Anne Frank House"></div>
+        <figcaption><span class="gname">Anne Frank House</span><span class="gcap">O anexo secreto onde a família se escondeu.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Imagen_de_los_canales_conc%C3%A9ntricos_en_%C3%81msterdam.png/1280px-Imagen_de_los_canales_conc%C3%A9ntricos_en_%C3%81msterdam.png" data-cap="Anéis de canais do séc. XVII, Patrimônio da Humanidade." data-title="Canals of Amsterdam">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Imagen_de_los_canales_conc%C3%A9ntricos_en_%C3%81msterdam.png/1280px-Imagen_de_los_canales_conc%C3%A9ntricos_en_%C3%81msterdam.png" alt="Canals of Amsterdam"></div>
+        <figcaption><span class="gname">Canals of Amsterdam</span><span class="gcap">Anéis de canais do séc. XVII, Patrimônio da Humanidade.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Amsterdam%2C_Vondelpark%2C_at_the_pond-2.jpg/1280px-Amsterdam%2C_Vondelpark%2C_at_the_pond-2.jpg" data-cap="O parque mais querido da cidade, ao lado do hostel." data-title="Vondelpark">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Amsterdam%2C_Vondelpark%2C_at_the_pond-2.jpg/1280px-Amsterdam%2C_Vondelpark%2C_at_the_pond-2.jpg" alt="Vondelpark"></div>
+        <figcaption><span class="gname">Vondelpark</span><span class="gcap">O parque mais querido da cidade, ao lado do hostel.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Dam_Square_2024.jpg/1280px-Dam_Square_2024.jpg" data-cap="Praça central com o Palácio Real." data-title="Dam Square">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Dam_Square_2024.jpg/1280px-Dam_Square_2024.jpg" alt="Dam Square"></div>
+        <figcaption><span class="gname">Dam Square</span><span class="gcap">Praça central com o Palácio Real.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Eerste_Leliedwarsstraat.jpg/1280px-Eerste_Leliedwarsstraat.jpg" data-cap="Bairro charmoso de ruelas, brechós e cafés." data-title="Jordaan">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Eerste_Leliedwarsstraat.jpg/1280px-Eerste_Leliedwarsstraat.jpg" alt="Jordaan"></div>
+        <figcaption><span class="gname">Jordaan</span><span class="gcap">Bairro charmoso de ruelas, brechós e cafés.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/SingelBloemenmarkt.jpg/1280px-SingelBloemenmarkt.jpg" data-cap="O mercado de flores flutuante." data-title="Bloemenmarkt">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/SingelBloemenmarkt.jpg/1280px-SingelBloemenmarkt.jpg" alt="Bloemenmarkt"></div>
+        <figcaption><span class="gname">Bloemenmarkt</span><span class="gcap">O mercado de flores flutuante.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Former_Heineken_Brewery_in_Amsterdam.jpg/1280px-Former_Heineken_Brewery_in_Amsterdam.jpg" data-cap="A antiga cervejaria transformada em tour." data-title="Heineken Experience">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Former_Heineken_Brewery_in_Amsterdam.jpg/1280px-Former_Heineken_Brewery_in_Amsterdam.jpg" alt="Heineken Experience"></div>
+        <figcaption><span class="gname">Heineken Experience</span><span class="gcap">A antiga cervejaria transformada em tour.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://vonortzuort.reisen/wp-content/uploads/2019/03/lookout-foto-eingang.jpg" data-cap="Mirante com balanço sobre a cidade." data-title="A'DAM Lookout">
+        <div class="gcard-img"><img loading="lazy" src="https://vonortzuort.reisen/wp-content/uploads/2019/03/lookout-foto-eingang.jpg" alt="A'DAM Lookout"></div>
+        <figcaption><span class="gname">A'DAM Lookout</span><span class="gcap">Mirante com balanço sobre a cidade.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Oudezijds_Achterburgwal.jpg/1280px-Oudezijds_Achterburgwal.jpg" data-cap="O famoso Red Light District — vielas medievais e néon." data-title="De Wallen">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Oudezijds_Achterburgwal.jpg/1280px-Oudezijds_Achterburgwal.jpg" alt="De Wallen"></div>
+        <figcaption><span class="gname">De Wallen</span><span class="gcap">O famoso Red Light District — vielas medievais e néon.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://imgs.search.brave.com/_1hHRR6NcQSTBAhoEoFHi_zqn30Fgl5evOV7yCQB-jQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5jbnRyYXZlbGVy/LmNvbS9waG90b3Mv/NTVlMGE3YjJjZGQx/NzYxMzQ4YmRhYjk2/LzE2Ojkvd18yNTYw/LGNfbGltaXQvZGUt/ZGFtcGtyaW5nLWFt/c3RlcmRhbS1jci1h/bGFteS5qcGc" data-cap="Coffeeshop lendário, cenário de 'Ocean's Twelve'." data-title="Dampkring">
+        <div class="gcard-img"><img loading="lazy" src="https://imgs.search.brave.com/_1hHRR6NcQSTBAhoEoFHi_zqn30Fgl5evOV7yCQB-jQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5jbnRyYXZlbGVy/LmNvbS9waG90b3Mv/NTVlMGE3YjJjZGQx/NzYxMzQ4YmRhYjk2/LzE2Ojkvd18yNTYw/LGNfbGltaXQvZGUt/ZGFtcGtyaW5nLWFt/c3RlcmRhbS1jci1h/bGFteS5qcGc" alt="Dampkring"></div>
+        <figcaption><span class="gname">Dampkring</span><span class="gcap">Coffeeshop lendário, cenário de 'Ocean's Twelve'.</span></figcaption>
+      </figure></div>
+
+      <h3 class="sec">Prático <span class="sec-sub">antes de ir</span></h3>
+      <div class="iboxes">
+      <div class="ibox">
+        <h4>Transporte</h4>
+        <ul><li>Bike é rei — alugue para um dia e circule como local.</li><li>OV-chipkaart/contactless nos trams e metrô.</li><li>Balsas atrás da Centraal são gratuitas (para o A'DAM).</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Reservas</h4>
+        <ul><li>Anne Frank: ingressos só online, ~6 semanas antes.</li><li>Van Gogh e Rijksmuseum: horário marcado.</li><li>Cruzeiro pelos canais: reservar.</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Dicas</h4>
+        <ul><li>Cuidado com as ciclovias ao atravessar a rua.</li><li>Anoitece ~16h30 — museus salvam o fim de tarde.</li><li>Voo para Praga é 06h55: saia do hostel ~04h30.</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Coffeeshops &amp; Red Light</h4>
+        <ul><li>Coffeeshops: só 18+, leve documento; consuma no local e comece leve — space cakes demoram até 2h para bater.</li><li>Clássicos: Bulldog, Dampkring, Grey Area e Barney's — os famosos lotam à noite, vá mais cedo.</li><li>De Wallen: jamais fotografe as vitrines; vielas cheias — atenção com bolsos e celulares.</li><li>Não misture álcool com THC; hidratem-se e mantenham o grupo de 10 junto.</li></ul>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="city" id="city-praga" role="tabpanel" aria-labelledby="tab-praga" hidden>
+    <div class="hero">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=1600&amp;q=80&amp;fm=jpg" alt="Praga" fetchpriority="low">
+      <div class="hero-grad"></div>
+      <div class="hero-text">
+        <span class="hero-eyebrow">🇨🇿 Tchéquia · 21–22 dez</span>
+        <h2>Praga</h2>
+        <div class="hero-chips">
+          <span class="chip"><span class="chip-k">Estadia</span> 1 noite</span>
+          <span class="chip"><span class="chip-k">Base</span> Safestay Charles Bridge</span>
+          <span class="chip"><span class="chip-k">Custo</span> ≈ €50–80 pp</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="citybody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">21/12 · 08h25 (voo)</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Trem noturno → Bratislava (~23h de 22/12)</span></div>
+      </div>
+
+      <p class="intro">Só um dia e meio, então vai concentrado no essencial: a Cidade Velha, a Ponte Carlos e o Castelo. A cidade fica mágica com os mercados de Natal e a neblina do inverno.</p>
+
+      <h3 class="sec">Roteiro <span class="sec-sub">dia a dia</span></h3>
+      <div class="days">
+    <article class="day" data-eid="praga-d0">
+      <div class="day-head">
+        <div><span class="day-name">Cidade Velha + Castelo</span> <span class="day-tag">chegada</span></div>
+        <span class="day-date">Seg 21/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">08h25</td>
+          <td class="what"><b>Chegada + check-in no Safestay</b><span class="note">A poucos passos da Ponte Carlos. Deixe as malas.</span></td>
+        </tr>
+        <tr>
+          <td class="time">10h00</td>
+          <td class="what"><b>Praça da Cidade Velha + Relógio Astronômico</b><span class="note">No topo da hora, o desfile dos apóstolos. Mercado de Natal montado na praça.</span></td>
+        </tr>
+        <tr>
+          <td class="time">11h30</td>
+          <td class="what"><b>Ponte Carlos</b><span class="note">Estátuas barrocas e artistas; atravesse rumo ao castelo.</span></td>
+        </tr>
+        <tr>
+          <td class="time">12h30</td>
+          <td class="what"><b>Almoço tcheco</b><span class="note">Goulash ou svíčková com knedlíky + cerveja Pilsner.</span></td>
+        </tr>
+        <tr>
+          <td class="time">14h00</td>
+          <td class="what"><b>Castelo de Praga + Catedral de São Vito</b><span class="note">Maior complexo de castelo do mundo. Ingresso para o circuito.</span></td>
+        </tr>
+        <tr>
+          <td class="time">15h30</td>
+          <td class="what"><b>Beco Dourado (Golden Lane)</b><span class="note">Casinhas coloridas onde Kafka viveu.</span></td>
+        </tr>
+        <tr>
+          <td class="time">17h30</td>
+          <td class="what"><b>Mercado de Natal + jantar</b><span class="note">Trdelník, vinho quente (svařák) e salsichas na praça.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Anoitece ~16h — castelo antes</span>
+        <span class="cost">≈ €40 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="praga-d1">
+      <div class="day-head">
+        <div><span class="day-name">Miradouros + trem noturno</span> <span class="day-tag">último dia</span></div>
+        <span class="day-date">Ter 22/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">09h00</td>
+          <td class="what"><b>Muro de John Lennon + Kampa</b><span class="note">Grafite colorido e a ilhota tranquila do Vltava.</span></td>
+        </tr>
+        <tr>
+          <td class="time">10h30</td>
+          <td class="what"><b>Colina Petřín</b><span class="note">Funicular até a torre-miniatura da Eiffel; vista de toda Praga.</span></td>
+        </tr>
+        <tr>
+          <td class="time">12h30</td>
+          <td class="what"><b>Praça Venceslau + almoço</b><span class="note">O bulevar histórico da Cidade Nova.</span></td>
+        </tr>
+        <tr>
+          <td class="time">14h00</td>
+          <td class="what"><b>Casa Dançante + Bairro Judeu (Josefov)</b><span class="note">Arquitetura curvilínea e a sinagoga histórica.</span></td>
+        </tr>
+        <tr>
+          <td class="time">16h30</td>
+          <td class="what"><b>Últimos mercados de Natal</b><span class="note">Compre lembranças; jante cedo.</span></td>
+        </tr>
+        <tr>
+          <td class="time">23h00</td>
+          <td class="what"><b>Trem noturno → Bratislava</b><span class="note">Reserve com antecedência (pendência). Chega ~06h.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Comprar trem noturno</span>
+        <span class="cost">≈ €35 pp</span>
+      </div>
+    </article></div>
+
+      <h3 class="sec">Pontos imperdíveis <span class="sec-sub">8 lugares</span></h3>
+      <div class="gallery">
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg/1280px-Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg" data-cap="A ponte gótica de estátuas sobre o Vltava." data-title="Charles Bridge">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg/1280px-Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg" alt="Charles Bridge"></div>
+        <figcaption><span class="gname">Charles Bridge</span><span class="gcap">A ponte gótica de estátuas sobre o Vltava.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Karl%C5%AFv_most_Praha%2C_Star%C3%A9_M%C4%9Bsto_20170810_007.jpg/1280px-Karl%C5%AFv_most_Praha%2C_Star%C3%A9_M%C4%9Bsto_20170810_007.jpg" data-cap="O maior complexo de castelo do mundo." data-title="Prague Castle">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Karl%C5%AFv_most_Praha%2C_Star%C3%A9_M%C4%9Bsto_20170810_007.jpg/1280px-Karl%C5%AFv_most_Praha%2C_Star%C3%A9_M%C4%9Bsto_20170810_007.jpg" alt="Prague Castle"></div>
+        <figcaption><span class="gname">Prague Castle</span><span class="gcap">O maior complexo de castelo do mundo.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Prague_07-2016_View_from_Old_Town_Hall_Tower_img3.jpg/1280px-Prague_07-2016_View_from_Old_Town_Hall_Tower_img3.jpg" data-cap="Coração medieval, palco do mercado de Natal." data-title="Old Town Square (Prague)">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Prague_07-2016_View_from_Old_Town_Hall_Tower_img3.jpg/1280px-Prague_07-2016_View_from_Old_Town_Hall_Tower_img3.jpg" alt="Old Town Square (Prague)"></div>
+        <figcaption><span class="gname">Old Town Square (Prague)</span><span class="gcap">Coração medieval, palco do mercado de Natal.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/3/37/Astronomical_Clock_%288341899828%29.jpg" data-cap="O relógio astronômico de 1410, com o desfile dos apóstolos." data-title="Prague astronomical clock">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/3/37/Astronomical_Clock_%288341899828%29.jpg" alt="Prague astronomical clock"></div>
+        <figcaption><span class="gname">Prague astronomical clock</span><span class="gcap">O relógio astronômico de 1410, com o desfile dos apóstolos.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/PragueCathedral03.jpg/1280px-PragueCathedral03.jpg" data-cap="A catedral gótica dentro do castelo." data-title="St. Vitus Cathedral">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/PragueCathedral03.jpg/1280px-PragueCathedral03.jpg" alt="St. Vitus Cathedral"></div>
+        <figcaption><span class="gname">St. Vitus Cathedral</span><span class="gcap">A catedral gótica dentro do castelo.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Prague_Praha_2014_Holmstad_Vaclavplassen_i_nybyen_Nove_Mesto_flott.jpg/1280px-Prague_Praha_2014_Holmstad_Vaclavplassen_i_nybyen_Nove_Mesto_flott.jpg" data-cap="O grande bulevar da Cidade Nova." data-title="Wenceslas Square">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Prague_Praha_2014_Holmstad_Vaclavplassen_i_nybyen_Nove_Mesto_flott.jpg/1280px-Prague_Praha_2014_Holmstad_Vaclavplassen_i_nybyen_Nove_Mesto_flott.jpg" alt="Wenceslas Square"></div>
+        <figcaption><span class="gname">Wenceslas Square</span><span class="gcap">O grande bulevar da Cidade Nova.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/a/a5/Lennon_Wall%2C_August_2014.jpg" data-cap="Muro de grafites em homenagem à liberdade." data-title="Lennon Wall">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Lennon_Wall%2C_August_2014.jpg" alt="Lennon Wall"></div>
+        <figcaption><span class="gname">Lennon Wall</span><span class="gcap">Muro de grafites em homenagem à liberdade.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Tanzendes_Haus_2023.jpg/1280px-Tanzendes_Haus_2023.jpg" data-cap="O prédio 'dançante' desconstruído à beira-rio." data-title="Dancing House">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Tanzendes_Haus_2023.jpg/1280px-Tanzendes_Haus_2023.jpg" alt="Dancing House"></div>
+        <figcaption><span class="gname">Dancing House</span><span class="gcap">O prédio 'dançante' desconstruído à beira-rio.</span></figcaption>
+      </figure></div>
+
+      <h3 class="sec">Prático <span class="sec-sub">antes de ir</span></h3>
+      <div class="iboxes">
+      <div class="ibox">
+        <h4>Transporte</h4>
+        <ul><li>Centro compacto e caminhável — a maior parte é a pé.</li><li>Trams 22 sobe até o castelo se quiser poupar as pernas.</li><li>Moeda é a coroa tcheca (CZK), não euro.</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Reservas</h4>
+        <ul><li>Trem noturno Praga→Bratislava: comprar (pendência).</li><li>Ingresso do castelo pode ser comprado na hora.</li><li>Guarde bagagem no hostel após o checkout.</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Dicas</h4>
+        <ul><li>Anoitece ~16h — faça castelo e ponte de dia.</li><li>Troque pouco dinheiro e evite casas de câmbio da rua (taxas ruins).</li><li>Trdelník é turístico mas divertido; a comida boa está nas hospody locais.</li></ul>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="city" id="city-bratislava" role="tabpanel" aria-labelledby="tab-bratislava" hidden>
+    <div class="hero">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1579948889900-cebe5135e34a?w=1600&amp;q=80&amp;fm=jpg" alt="Bratislava &amp; Orava" fetchpriority="low">
+      <div class="hero-grad"></div>
+      <div class="hero-text">
+        <span class="hero-eyebrow">🇸🇰 Eslováquia · 23–26 dez</span>
+        <h2>Bratislava &amp; Orava</h2>
+        <div class="hero-chips">
+          <span class="chip"><span class="chip-k">Estadia</span> 3 noites</span>
+          <span class="chip"><span class="chip-k">Base</span> Chalé 'Chata u Džonyho' (Lago Orava) + OldTown Hostel (Bratislava)</span>
+          <span class="chip"><span class="chip-k">Custo</span> ≈ €120–180 pp (+ carro e ski)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="citybody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">23/12 · 06h00 (trem)</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Bratislava → Viena (26/12, fim do dia)</span></div>
+      </div>
+
+      <p class="intro">O trecho mais aventureiro: chega de trem noturno, pega um 4x4 e sobe para um chalé de Natal no Lago Orava, nas montanhas nevadas. Dia de ski no Natal e, na volta, um dia para conhecer a charmosa Bratislava antes de seguir para Viena.</p>
+
+      <h3 class="sec">Roteiro <span class="sec-sub">dia a dia</span></h3>
+      <div class="days">
+    <article class="day" data-eid="bratislava-d0">
+      <div class="day-head">
+        <div><span class="day-name">Chegada + subida ao chalé</span> <span class="day-tag">estrada</span></div>
+        <span class="day-date">Qua 23/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">06h00</td>
+          <td class="what"><b>Chegada em Bratislava (estação central)</b><span class="note">Café da manhã na estação enquanto o dia clareia.</span></td>
+        </tr>
+        <tr>
+          <td class="time">08h30</td>
+          <td class="what"><b>Retirada do carro alugado</b><span class="note">Precisa ser 4x4/AWD (pendência) — terreno de montanha nevado.</span></td>
+        </tr>
+        <tr>
+          <td class="time">09h00</td>
+          <td class="what"><b>Estrada rumo ao Lago Orava</b><span class="note">~3h30 de viagem para o norte. Pare para mercado e suprimentos.</span></td>
+        </tr>
+        <tr>
+          <td class="time">13h00</td>
+          <td class="what"><b>Check-in no chalé 'Chata u Džonyho'</b><span class="note">Slanická Osada, à beira do lago. Acomode-se.</span></td>
+        </tr>
+        <tr>
+          <td class="time">15h00</td>
+          <td class="what"><b>Lago Orava + neve</b><span class="note">Passeio pela margem, fotos e primeira noite aconchegante.</span></td>
+        </tr>
+        <tr>
+          <td class="time">19h00</td>
+          <td class="what"><b>Jantar no chalé</b><span class="note">Cozinhem juntos — clima de véspera de Natal.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Reservar 4x4/AWD</span>
+        <span class="cost">≈ €40 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="bratislava-d1">
+      <div class="day-head">
+        <div><span class="day-name">Véspera de Natal na montanha</span> <span class="day-tag">Natal</span></div>
+        <span class="day-date">Qui 24/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">10h00</td>
+          <td class="what"><b>Castelo de Orava</b><span class="note">Um dos castelos mais espetaculares da Europa, sobre um penhasco (cenário do 'Nosferatu' de 1922).</span></td>
+        </tr>
+        <tr>
+          <td class="time">13h00</td>
+          <td class="what"><b>Almoço + Museu ao ar livre de Zuberec</b><span class="note">Vila tradicional eslovaca (confirme se abre no feriado).</span></td>
+        </tr>
+        <tr>
+          <td class="time">15h30</td>
+          <td class="what"><b>Volta ao chalé + descanso</b><span class="note">Neve, lareira e preparo da ceia.</span></td>
+        </tr>
+        <tr>
+          <td class="time">19h00</td>
+          <td class="what"><b>Ceia de Natal eslovaca</b><span class="note">Na Eslováquia o Natal é celebrado na noite do dia 24 — capriche.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Compras antes (comércio fecha)</span>
+        <span class="cost">≈ €30 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="bratislava-d2">
+      <div class="day-head">
+        <div><span class="day-name">Dia de ski + volta a Bratislava</span> <span class="day-tag">ski</span></div>
+        <span class="day-date">Sex 25/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">08h00</td>
+          <td class="what"><b>Café + estrada até Jasná</b><span class="note">Resort nas Baixas Tatras (~1h do lago). Confirme o local do ski (pendência).</span></td>
+        </tr>
+        <tr>
+          <td class="time">09h30</td>
+          <td class="what"><b>Ski em Jasná (Chopok)</b><span class="note">Maior estação da Eslováquia. Compre o passe (pendência); alugue equipamento.</span></td>
+        </tr>
+        <tr>
+          <td class="time">16h00</td>
+          <td class="what"><b>Fim do ski + estrada para Bratislava</b><span class="note">~3h de descida. Dirija com atenção — estrada de neve.</span></td>
+        </tr>
+        <tr>
+          <td class="time">19h30</td>
+          <td class="what"><b>Devolução do carro + check-in no OldTown Hostel</b><span class="note">No coração da Cidade Velha — bares e restaurantes na porta.</span></td>
+        </tr>
+        <tr>
+          <td class="time">20h30</td>
+          <td class="what"><b>Jantar leve no centro</b><span class="note">Descanso após o dia na montanha.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Passe de ski + equipamento</span>
+        <span class="cost">≈ €60 pp (+ passe/aluguel)</span>
+      </div>
+    </article>
+    <article class="day" data-eid="bratislava-d3">
+      <div class="day-head">
+        <div><span class="day-name">Bratislava + saída para Viena</span> <span class="day-tag">cidade</span></div>
+        <span class="day-date">Sáb 26/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">09h30</td>
+          <td class="what"><b>Cidade Velha + Portão de Michael</b><span class="note">A única torre medieval que restou; ruas de paralelepípedo.</span></td>
+        </tr>
+        <tr>
+          <td class="time">10h30</td>
+          <td class="what"><b>Castelo de Bratislava</b><span class="note">O 'castelo de quatro torres' sobre o Danúbio; vista da cidade e da Áustria.</span></td>
+        </tr>
+        <tr>
+          <td class="time">12h30</td>
+          <td class="what"><b>Almoço + Catedral de São Martinho</b><span class="note">Onde reis húngaros eram coroados.</span></td>
+        </tr>
+        <tr>
+          <td class="time">14h00</td>
+          <td class="what"><b>Ponte UFO (Most SNP)</b><span class="note">Deck de observação no topo do disco voador sobre o rio.</span></td>
+        </tr>
+        <tr>
+          <td class="time">15h30</td>
+          <td class="what"><b>Praça Central + estátuas curiosas</b><span class="note">Procure o 'Čumil', o homem saindo do bueiro.</span></td>
+        </tr>
+        <tr>
+          <td class="time">17h30</td>
+          <td class="what"><b>Transporte para Viena</b><span class="note">Trem ou ônibus (~1h). Chega a Viena no fim do dia (pendência).</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Definir transporte p/ Viena</span>
+        <span class="cost">≈ €30 pp</span>
+      </div>
+    </article></div>
+
+      <h3 class="sec">Pontos imperdíveis <span class="sec-sub">7 lugares</span></h3>
+      <div class="gallery">
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Bratislava_-_Burg_%28b%29.JPG/1280px-Bratislava_-_Burg_%28b%29.JPG" data-cap="O castelo branco de quatro torres sobre o Danúbio." data-title="Bratislava Castle">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Bratislava_-_Burg_%28b%29.JPG/1280px-Bratislava_-_Burg_%28b%29.JPG" alt="Bratislava Castle"></div>
+        <figcaption><span class="gname">Bratislava Castle</span><span class="gcap">O castelo branco de quatro torres sobre o Danúbio.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://www.roadsanddestinations.com/wp-content/uploads/2021/12/Two-sides-of-Bratislava-Old-and-New-Town-Roads-and-Destinations-3.jpg" data-cap="Cidade velha compacta de ruas de pedra e cafés." data-title="Old Town (Bratislava)">
+        <div class="gcard-img"><img loading="lazy" src="https://www.roadsanddestinations.com/wp-content/uploads/2021/12/Two-sides-of-Bratislava-Old-and-New-Town-Roads-and-Destinations-3.jpg" alt="Old Town (Bratislava)"></div>
+        <figcaption><span class="gname">Old Town (Bratislava)</span><span class="gcap">Cidade velha compacta de ruas de pedra e cafés.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Slovakia-03123_-_Inside_of_St._Michael%27s_Gate_%2832286853995%29.jpg/1280px-Slovakia-03123_-_Inside_of_St._Michael%27s_Gate_%2832286853995%29.jpg" data-cap="A última torre-portão medieval da cidade." data-title="Michael's Gate">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Slovakia-03123_-_Inside_of_St._Michael%27s_Gate_%2832286853995%29.jpg/1280px-Slovakia-03123_-_Inside_of_St._Michael%27s_Gate_%2832286853995%29.jpg" alt="Michael's Gate"></div>
+        <figcaption><span class="gname">Michael's Gate</span><span class="gcap">A última torre-portão medieval da cidade.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Oravsk%C3%BD_hrad_%28celkov%C3%BD_pohled%29.jpg/1280px-Oravsk%C3%BD_hrad_%28celkov%C3%BD_pohled%29.jpg" data-cap="Fortaleza dramática sobre um penhasco, perto do chalé." data-title="Orava Castle">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Oravsk%C3%BD_hrad_%28celkov%C3%BD_pohled%29.jpg/1280px-Oravsk%C3%BD_hrad_%28celkov%C3%BD_pohled%29.jpg" alt="Orava Castle"></div>
+        <figcaption><span class="gname">Orava Castle</span><span class="gcap">Fortaleza dramática sobre um penhasco, perto do chalé.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Jasn%C3%A1_Ski_Resort_-_gondola_lift_Kosodrevina_-_Chopok_%284%29.jpg/1280px-Jasn%C3%A1_Ski_Resort_-_gondola_lift_Kosodrevina_-_Chopok_%284%29.jpg" data-cap="A maior estação de ski da Eslováquia, nas Baixas Tatras." data-title="Jasná">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Jasn%C3%A1_Ski_Resort_-_gondola_lift_Kosodrevina_-_Chopok_%284%29.jpg/1280px-Jasn%C3%A1_Ski_Resort_-_gondola_lift_Kosodrevina_-_Chopok_%284%29.jpg" alt="Jasná"></div>
+        <figcaption><span class="gname">Jasná</span><span class="gcap">A maior estação de ski da Eslováquia, nas Baixas Tatras.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Catedral_de_San_Mart%C3%ADn%2C_Bratislava%2C_Eslovaquia%2C_2020-02-01%2C_DD_48.jpg/1280px-Catedral_de_San_Mart%C3%ADn%2C_Bratislava%2C_Eslovaquia%2C_2020-02-01%2C_DD_48.jpg" data-cap="Catedral gótica de coroações reais." data-title="St Martin's Cathedral, Bratislava">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Catedral_de_San_Mart%C3%ADn%2C_Bratislava%2C_Eslovaquia%2C_2020-02-01%2C_DD_48.jpg/1280px-Catedral_de_San_Mart%C3%ADn%2C_Bratislava%2C_Eslovaquia%2C_2020-02-01%2C_DD_48.jpg" alt="St Martin's Cathedral, Bratislava"></div>
+        <figcaption><span class="gname">St Martin's Cathedral, Bratislava</span><span class="gcap">Catedral gótica de coroações reais.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://imgs.search.brave.com/LuCDW7QXYFZIxu9K67pKwaQFrCYnDlwSsiueol9-eNM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9pY29u/aWMtdWZvLWJ1aWxk/aW5nLWxhbmRtYXJr/LWJyYXRpc2xhdmEt/Y2l0eS1jYXBpdGFs/LXNsb3Zha2lhLWV1/cm9wZS0xNjExNjMw/MjQuanBn" data-cap="A ponte com mirante em forma de disco voador." data-title="UFO (bridge)">
+        <div class="gcard-img"><img loading="lazy" src="https://imgs.search.brave.com/LuCDW7QXYFZIxu9K67pKwaQFrCYnDlwSsiueol9-eNM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9pY29u/aWMtdWZvLWJ1aWxk/aW5nLWxhbmRtYXJr/LWJyYXRpc2xhdmEt/Y2l0eS1jYXBpdGFs/LXNsb3Zha2lhLWV1/cm9wZS0xNjExNjMw/MjQuanBn" alt="UFO (bridge)"></div>
+        <figcaption><span class="gname">UFO (bridge)</span><span class="gcap">A ponte com mirante em forma de disco voador.</span></figcaption>
+      </figure></div>
+
+      <h3 class="sec">Prático <span class="sec-sub">antes de ir</span></h3>
+      <div class="iboxes">
+      <div class="ibox">
+        <h4>Transporte</h4>
+        <ul><li>Carro 4x4/AWD é obrigatório — estrada de montanha nevada (pendência).</li><li>Do chalé a Jasná é ~1h; a Bratislava, ~3h30.</li><li>Bratislava→Viena: trem ou ônibus, ~1h, várias saídas por dia.</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Reservas</h4>
+        <ul><li>Aluguel do carro AWD (pendência).</li><li>Passe de ski e aluguel de equipamento em Jasná (pendência).</li><li>OldTown Hostel definido para a noite 25→26 — confirmar reserva para 10 pessoas.</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Dicas</h4>
+        <ul><li>Comércio fecha nos dias 24–25: compre comida antes.</li><li>Leve correntes/experiência de direção na neve.</li><li>Na Eslováquia a ceia é dia 24 à noite — planeje o mercado para o dia 23.</li></ul>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="city" id="city-viena" role="tabpanel" aria-labelledby="tab-viena" hidden>
+    <div class="hero">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1480413258216-ff003d179d65?w=1600&amp;q=80&amp;fm=jpg" alt="Viena" fetchpriority="low">
+      <div class="hero-grad"></div>
+      <div class="hero-text">
+        <span class="hero-eyebrow">🇦🇹 Áustria · 26–29 dez</span>
+        <h2>Viena</h2>
+        <div class="hero-chips">
+          <span class="chip"><span class="chip-k">Estadia</span> 3 noites</span>
+          <span class="chip"><span class="chip-k">Base</span> JO&amp;JOE Vienna (Europaplatz, em frente à Westbahnhof)</span>
+          <span class="chip"><span class="chip-k">Custo</span> ≈ €160–210 pp</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="citybody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">26/12 · fim do dia (de Bratislava)</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Viena → Budapeste (29/12)</span></div>
+      </div>
+
+      <p class="intro">Palácios imperiais, cafés históricos e um bate-volta a Hallstatt. Chegam no fim do dia 26, têm dois dias cheios e a manhã do 29 antes de seguir para o Réveillon em Budapeste. Atenção ao sol curto: põe ~16h.</p>
+
+      <h3 class="sec">Roteiro <span class="sec-sub">dia a dia</span></h3>
+      <div class="days">
+    <article class="day" data-eid="viena-d0">
+      <div class="day-head">
+        <div><span class="day-name">Chegada + primeira noite</span> <span class="day-tag">chegada</span></div>
+        <span class="day-date">Sáb 26/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">fim do dia</td>
+          <td class="what"><b>Chegada de Bratislava + check-in no JO&amp;JOE Vienna</b><span class="note">Em frente à Westbahnhof — U3/U6 no mesmo prédio.</span></td>
+        </tr>
+        <tr>
+          <td class="time">19h00</td>
+          <td class="what"><b>Naschmarkt ou jantar no centro</b><span class="note">Primeiro contato com a cidade; comida no NENI ou Umarfisch.</span></td>
+        </tr>
+        <tr>
+          <td class="time">20h30</td>
+          <td class="what"><b>Volta tranquila</b><span class="note">Descanse — amanhã é dia cheio.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span></span>
+        <span class="cost">≈ €25 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="viena-d1">
+      <div class="day-head">
+        <div><span class="day-name">Clássicos imperiais</span> <span class="day-tag">dia cheio</span></div>
+        <span class="day-date">Dom 27/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">09h00</td>
+          <td class="what"><b>Comprar 24h-Pass + centro</b><span class="note">€10,20 — compensa em 4+ trajetos.</span></td>
+        </tr>
+        <tr>
+          <td class="time">09h30</td>
+          <td class="what"><b>Catedral de Santo Estêvão (Stephansdom)</b><span class="note">Suba à torre sul para a vista dos telhados.</span></td>
+        </tr>
+        <tr>
+          <td class="time">10h45</td>
+          <td class="what"><b>Hofburg + Museu Sisi</b><span class="note">Pátios gratuitos + os aposentos imperiais. Reserve horário.</span></td>
+        </tr>
+        <tr>
+          <td class="time">12h15</td>
+          <td class="what"><b>Café Central</b><span class="note">Sachertorte e melange no café literário histórico.</span></td>
+        </tr>
+        <tr>
+          <td class="time">13h30</td>
+          <td class="what"><b>Belvedere</b><span class="note">Jardins barrocos + 'O Beijo', de Klimt. Reserve horário.</span></td>
+        </tr>
+        <tr>
+          <td class="time">15h30</td>
+          <td class="what"><b>Spittelberg</b><span class="note">Ruelas boêmias com luzes de Natal (aproveite antes de escurecer).</span></td>
+        </tr>
+        <tr>
+          <td class="time">17h30</td>
+          <td class="what"><b>Jantar no Café Sperl</b><span class="note">Ou restaurante tradicional em Margareten.</span></td>
+        </tr>
+        <tr>
+          <td class="time">19h30</td>
+          <td class="what"><b>Bares do Gürtel (opcional)</b><span class="note">Chelsea, Rhiz ou B72 para a Viena alternativa.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Reservar Sisi + Belvedere</span>
+        <span class="cost">≈ €90–120 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="viena-d2">
+      <div class="day-head">
+        <div><span class="day-name">Bate-volta a Hallstatt</span> <span class="day-tag">excursão</span></div>
+        <span class="day-date">Seg 28/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">07h28</td>
+          <td class="what"><b>Trem para Hallstatt</b><span class="note">Reserve o Sparschiene com antecedência (~3 meses = mais barato).</span></td>
+        </tr>
+        <tr>
+          <td class="time">09h30</td>
+          <td class="what"><b>Chegada + balsa até a vila</b><span class="note">A vila alpina mais fotografada do mundo.</span></td>
+        </tr>
+        <tr>
+          <td class="time">10h30</td>
+          <td class="what"><b>Vila + mirantes + lago</b><span class="note">Ruelas, o famoso ângulo do postal e o Skywalk (se aberto).</span></td>
+        </tr>
+        <tr>
+          <td class="time">13h00</td>
+          <td class="what"><b>Almoço à beira do lago</b><span class="note">Kaiserschmarrn (panqueca imperial) e vista.</span></td>
+        </tr>
+        <tr>
+          <td class="time">17h03</td>
+          <td class="what"><b>Último trem de volta</b><span class="note">Sem alternativa depois desse horário — não perca! Chega a Viena ~20h30.</span></td>
+        </tr>
+        <tr>
+          <td class="time">21h00</td>
+          <td class="what"><b>Jantar leve + descanso</b><span class="note">Dia longo; prepare a mala para Budapeste.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Último trem 17h03 — sem margem</span>
+        <span class="cost">≈ €45–95 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="viena-d3">
+      <div class="day-head">
+        <div><span class="day-name">Manhã livre + partida</span> <span class="day-tag">saída</span></div>
+        <span class="day-date">Ter 29/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">09h30</td>
+          <td class="what"><b>Kunsthistorisches Museum ou Haus der Musik</b><span class="note">Ótimo indoor para o dia da bagagem. Reserve horário.</span></td>
+        </tr>
+        <tr>
+          <td class="time">11h15</td>
+          <td class="what"><b>Hundertwasserhaus</b><span class="note">Arquitetura colorida e orgânica, fora do circuito.</span></td>
+        </tr>
+        <tr>
+          <td class="time">12h30</td>
+          <td class="what"><b>Almoço no Karmelitermarkt</b><span class="note">Mercado local descolado.</span></td>
+        </tr>
+        <tr>
+          <td class="time">14h00</td>
+          <td class="what"><b>Prater ou Donaukanal</b><span class="note">Roda-gigante histórica ou os murais do canal (grátis).</span></td>
+        </tr>
+        <tr>
+          <td class="time">16h00</td>
+          <td class="what"><b>Trem para Budapeste</b><span class="note">~2h40 até o Réveillon. Defina o horário (pendência).</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Definir horário do trem</span>
+        <span class="cost">≈ €30 pp</span>
+      </div>
+    </article></div>
+
+      <h3 class="sec">Pontos imperdíveis <span class="sec-sub">10 lugares</span></h3>
+      <div class="gallery">
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Wien_-_Schloss_Sch%C3%B6nbrunn.JPG/1280px-Wien_-_Schloss_Sch%C3%B6nbrunn.JPG" data-cap="O Versalhes austríaco, com jardins imensos." data-title="Schönbrunn Palace">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Wien_-_Schloss_Sch%C3%B6nbrunn.JPG/1280px-Wien_-_Schloss_Sch%C3%B6nbrunn.JPG" alt="Schönbrunn Palace"></div>
+        <figcaption><span class="gname">Schönbrunn Palace</span><span class="gcap">O Versalhes austríaco, com jardins imensos.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Wien_-_Stephansdom_%281%29.JPG/1280px-Wien_-_Stephansdom_%281%29.JPG" data-cap="A catedral gótica de telhado colorido, no coração da cidade." data-title="St. Stephen's Cathedral, Vienna">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Wien_-_Stephansdom_%281%29.JPG/1280px-Wien_-_Stephansdom_%281%29.JPG" alt="St. Stephen's Cathedral, Vienna"></div>
+        <figcaption><span class="gname">St. Stephen's Cathedral, Vienna</span><span class="gcap">A catedral gótica de telhado colorido, no coração da cidade.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Wien_-_Neue_Hofburg.JPG/1280px-Wien_-_Neue_Hofburg.JPG" data-cap="O palácio de inverno dos Habsburgo." data-title="Hofburg">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Wien_-_Neue_Hofburg.JPG/1280px-Wien_-_Neue_Hofburg.JPG" alt="Hofburg"></div>
+        <figcaption><span class="gname">Hofburg</span><span class="gcap">O palácio de inverno dos Habsburgo.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg/1280px-Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg" data-cap="Palácio barroco que guarda 'O Beijo', de Klimt." data-title="Belvedere, Vienna">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg/1280px-Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg" alt="Belvedere, Vienna"></div>
+        <figcaption><span class="gname">Belvedere, Vienna</span><span class="gcap">Palácio barroco que guarda 'O Beijo', de Klimt.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/Kunsthistorisches_Museum_logo.svg/1280px-Kunsthistorisches_Museum_logo.svg.png" data-cap="Um dos maiores museus de arte do mundo." data-title="Kunsthistorisches Museum">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/Kunsthistorisches_Museum_logo.svg/1280px-Kunsthistorisches_Museum_logo.svg.png" alt="Kunsthistorisches Museum"></div>
+        <figcaption><span class="gname">Kunsthistorisches Museum</span><span class="gcap">Um dos maiores museus de arte do mundo.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Hallstatt_-_Zentrum_.JPG/1280px-Hallstatt_-_Zentrum_.JPG" data-cap="A vila alpina de cartão-postal, no bate-volta." data-title="Hallstatt">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Hallstatt_-_Zentrum_.JPG/1280px-Hallstatt_-_Zentrum_.JPG" alt="Hallstatt"></div>
+        <figcaption><span class="gname">Hallstatt</span><span class="gcap">A vila alpina de cartão-postal, no bate-volta.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Wiener_Staatsoper_Front.jpg/1280px-Wiener_Staatsoper_Front.jpg" data-cap="A ópera mais célebre da Europa." data-title="Vienna State Opera">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Wiener_Staatsoper_Front.jpg/1280px-Wiener_Staatsoper_Front.jpg" alt="Vienna State Opera"></div>
+        <figcaption><span class="gname">Vienna State Opera</span><span class="gcap">A ópera mais célebre da Europa.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Wien_-_Naschmarkt.JPG/1280px-Wien_-_Naschmarkt.JPG" data-cap="O mercado gastronômico mais famoso de Viena." data-title="Naschmarkt">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Wien_-_Naschmarkt.JPG/1280px-Wien_-_Naschmarkt.JPG" alt="Naschmarkt"></div>
+        <figcaption><span class="gname">Naschmarkt</span><span class="gcap">O mercado gastronômico mais famoso de Viena.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://imgs.search.brave.com/ZuxzY1jXpfSO-oKuSHU0sJWd1MKp03XvTHQ6_uyyRf4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9odW5k/ZXJ0d2Fzc2VyLWhv/dXNlLXNjdWxwdHVy/ZS1saW9uLWZvcmVn/cm91bmQtdmllbm5h/LWF1c3RyaWEtbWFy/Y2gtaHVuZGVydHdh/c3NlcmhhdXMtZXhw/cmVzc2lvbmlzdC1s/YW5kbWFyay01MzM3/NTkwNS5qcGc" data-cap="Prédio residencial colorido e sem linhas retas." data-title="Hundertwasser House">
+        <div class="gcard-img"><img loading="lazy" src="https://imgs.search.brave.com/ZuxzY1jXpfSO-oKuSHU0sJWd1MKp03XvTHQ6_uyyRf4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9odW5k/ZXJ0d2Fzc2VyLWhv/dXNlLXNjdWxwdHVy/ZS1saW9uLWZvcmVn/cm91bmQtdmllbm5h/LWF1c3RyaWEtbWFy/Y2gtaHVuZGVydHdh/c3NlcmhhdXMtZXhw/cmVzc2lvbmlzdC1s/YW5kbWFyay01MzM3/NTkwNS5qcGc" alt="Hundertwasser House"></div>
+        <figcaption><span class="gname">Hundertwasser House</span><span class="gcap">Prédio residencial colorido e sem linhas retas.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Wien_02_Prater_a.jpg/1280px-Wien_02_Prater_a.jpg" data-cap="O parque com a roda-gigante histórica." data-title="Wiener Prater">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Wien_02_Prater_a.jpg/1280px-Wien_02_Prater_a.jpg" alt="Wiener Prater"></div>
+        <figcaption><span class="gname">Wiener Prater</span><span class="gcap">O parque com a roda-gigante histórica.</span></figcaption>
+      </figure></div>
+
+      <h3 class="sec">Prático <span class="sec-sub">antes de ir</span></h3>
+      <div class="iboxes">
+      <div class="ibox">
+        <h4>Transporte</h4>
+        <ul><li>24h-Pass (€10,20) compensa nos dias cheios.</li><li>O JO&amp;JOE fica em frente à Westbahnhof — U3/U6 na porta.</li><li>Hallstatt: trem via Attnang-Puchheim; último de volta 17h03.</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Reservas</h4>
+        <ul><li>Trem Hallstatt (Sparschiene abre ~3 meses antes).</li><li>Museu Sisi/Hofburg e Belvedere: horário marcado.</li><li>Trem Viena→Budapeste (pendência de horário).</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Dicas</h4>
+        <ul><li>Sol põe ~16h05 — atrações externas até 15h30.</li><li>Se o tempo virar, troque Spittelberg pela Albertina (indoor).</li><li>Cafés históricos: peça um melange e não tenha pressa.</li></ul>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="city" id="city-budapeste" role="tabpanel" aria-labelledby="tab-budapeste" hidden>
+    <div class="hero">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1610752400564-c97cbbb5cfba?w=1600&amp;q=80&amp;fm=jpg" alt="Budapeste" fetchpriority="low">
+      <div class="hero-grad"></div>
+      <div class="hero-text">
+        <span class="hero-eyebrow">🇭🇺 Hungria · 29 dez – 1/2 jan</span>
+        <h2>Budapeste</h2>
+        <div class="hero-chips">
+          <span class="chip"><span class="chip-k">Estadia</span> 3–4 noites</span>
+          <span class="chip"><span class="chip-k">Base</span> Sweet16 Apartment (Party District)</span>
+          <span class="chip"><span class="chip-k">Custo</span> ≈ €180–260 pp</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="citybody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">29/12 (de Viena)</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Budapeste → Paris (1 ou 2 jan)</span></div>
+      </div>
+
+      <p class="intro">O Réveillon da viagem, na cidade das termas e dos ruin bars. Base no Party District, a poucos passos da vida noturna. Buda e Peste divididas pelo Danúbio, com uma virada de ano à beira do rio.</p>
+
+      <h3 class="sec">Roteiro <span class="sec-sub">dia a dia</span></h3>
+      <div class="days">
+    <article class="day" data-eid="budapeste-d0">
+      <div class="day-head">
+        <div><span class="day-name">Chegada + Peste à noite</span> <span class="day-tag">chegada</span></div>
+        <span class="day-date">Ter 29/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">tarde</td>
+          <td class="what"><b>Chegada de Viena + check-in</b><span class="note">Sweet16 Apartment, no coração do Party District.</span></td>
+        </tr>
+        <tr>
+          <td class="time">16h00</td>
+          <td class="what"><b>Basílica de Santo Estêvão</b><span class="note">Suba ao mirador da cúpula para o pôr do sol.</span></td>
+        </tr>
+        <tr>
+          <td class="time">17h30</td>
+          <td class="what"><b>Margem do Danúbio + Sapatos na Beira</b><span class="note">O memorial comovente do Holocausto à beira-rio.</span></td>
+        </tr>
+        <tr>
+          <td class="time">20h00</td>
+          <td class="what"><b>Ruin bars — Szimpla Kert</b><span class="note">O bar-labirinto mais famoso, montado em prédios abandonados.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span></span>
+        <span class="cost">≈ €40 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="budapeste-d1">
+      <div class="day-head">
+        <div><span class="day-name">Lado de Buda</span> <span class="day-tag">dia cheio</span></div>
+        <span class="day-date">Qua 30/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">09h30</td>
+          <td class="what"><b>Bastião dos Pescadores + Igreja Matias</b><span class="note">Torres de conto de fadas e a melhor vista de Peste.</span></td>
+        </tr>
+        <tr>
+          <td class="time">11h00</td>
+          <td class="what"><b>Castelo de Buda</b><span class="note">Suba pelo funicular (Sikló); pátios e a Galeria Nacional.</span></td>
+        </tr>
+        <tr>
+          <td class="time">13h00</td>
+          <td class="what"><b>Almoço + Ponte das Correntes</b><span class="note">A ponte símbolo que liga Buda a Peste.</span></td>
+        </tr>
+        <tr>
+          <td class="time">15h00</td>
+          <td class="what"><b>Colina Gellért + Citadella</b><span class="note">Vista panorâmica do rio e das pontes.</span></td>
+        </tr>
+        <tr>
+          <td class="time">18h30</td>
+          <td class="what"><b>Cruzeiro pelo Danúbio</b><span class="note">Parlamento iluminado da água (pendência de reserva).</span></td>
+        </tr>
+        <tr>
+          <td class="time">20h30</td>
+          <td class="what"><b>Jantar húngaro</b><span class="note">Goulash de verdade + vinho Tokaji.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Reservar cruzeiro</span>
+        <span class="cost">≈ €55 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="budapeste-d2">
+      <div class="day-head">
+        <div><span class="day-name">Termas + Réveillon</span> <span class="day-tag">Réveillon</span></div>
+        <span class="day-date">Qui 31/12</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">10h00</td>
+          <td class="what"><b>Termas Széchenyi</b><span class="note">Banhos termais ao ar livre em piscinas quentes no inverno — leve chinelo e toalha.</span></td>
+        </tr>
+        <tr>
+          <td class="time">13h00</td>
+          <td class="what"><b>Praça dos Heróis + Parque da Cidade</b><span class="note">Monumentos e o castelo Vajdahunyad.</span></td>
+        </tr>
+        <tr>
+          <td class="time">14h30</td>
+          <td class="what"><b>Mercado Central (Nagycsarnok) + almoço</b><span class="note">Lángos e páprica no maior mercado coberto.</span></td>
+        </tr>
+        <tr>
+          <td class="time">16h30</td>
+          <td class="what"><b>Mercado de Natal do Vörösmarty</b><span class="note">Vinho quente e artesanato antes da virada.</span></td>
+        </tr>
+        <tr>
+          <td class="time">22h00</td>
+          <td class="what"><b>Réveillon à beira do Danúbio</b><span class="note">Fogos sobre o rio; a festa toma o Party District e as pontes.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Multidões — combine ponto de encontro</span>
+        <span class="cost">≈ €70 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="budapeste-d3">
+      <div class="day-head">
+        <div><span class="day-name">Ano-novo tranquilo</span> <span class="day-tag">descanso</span></div>
+        <span class="day-date">Sex 1/1</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">11h00</td>
+          <td class="what"><b>Parlamento Húngaro</b><span class="note">O prédio mais icônico da cidade — tour interno se conseguir reservar (fecha cedo no feriado).</span></td>
+        </tr>
+        <tr>
+          <td class="time">13h00</td>
+          <td class="what"><b>Avenida Andrássy + Ópera</b><span class="note">O bulevar Patrimônio da Humanidade.</span></td>
+        </tr>
+        <tr>
+          <td class="time">15h00</td>
+          <td class="what"><b>Ilha Margarida</b><span class="note">Caminhada tranquila para recuperar do Réveillon.</span></td>
+        </tr>
+        <tr>
+          <td class="time">18h00</td>
+          <td class="what"><b>Última noite / preparar saída</b><span class="note">Confirme voo para Paris (1 ou 2 jan — pendência).</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Definir data/voo p/ Paris</span>
+        <span class="cost">≈ €30 pp</span>
+      </div>
+    </article></div>
+
+      <h3 class="sec">Pontos imperdíveis <span class="sec-sub">9 lugares</span></h3>
+      <div class="gallery">
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg/1280px-Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg" data-cap="O parlamento neogótico à beira do Danúbio." data-title="Hungarian Parliament Building">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg/1280px-Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg" alt="Hungarian Parliament Building"></div>
+        <figcaption><span class="gname">Hungarian Parliament Building</span><span class="gcap">O parlamento neogótico à beira do Danúbio.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Hal%C3%A1szb%C3%A1stya_2017.jpg/1280px-Hal%C3%A1szb%C3%A1stya_2017.jpg" data-cap="Terraço de torres brancas com vista de Peste." data-title="Fisherman's Bastion">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Hal%C3%A1szb%C3%A1stya_2017.jpg/1280px-Hal%C3%A1szb%C3%A1stya_2017.jpg" alt="Fisherman's Bastion"></div>
+        <figcaption><span class="gname">Fisherman's Bastion</span><span class="gcap">Terraço de torres brancas com vista de Peste.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Budav%C3%A1ri_Palota%2C_ABCDEF_%C3%A9p%C3%BClet.jpg/1280px-Budav%C3%A1ri_Palota%2C_ABCDEF_%C3%A9p%C3%BClet.jpg" data-cap="O palácio real sobre a colina de Buda." data-title="Buda Castle">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Budav%C3%A1ri_Palota%2C_ABCDEF_%C3%A9p%C3%BClet.jpg/1280px-Budav%C3%A1ri_Palota%2C_ABCDEF_%C3%A9p%C3%BClet.jpg" alt="Buda Castle"></div>
+        <figcaption><span class="gname">Buda Castle</span><span class="gcap">O palácio real sobre a colina de Buda.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Budapest_Sz%C3%A9chenyi_Baths_R02.jpg/1280px-Budapest_Sz%C3%A9chenyi_Baths_R02.jpg" data-cap="As termas ao ar livre em prédio neobarroco." data-title="Széchenyi Medicinal Bath">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Budapest_Sz%C3%A9chenyi_Baths_R02.jpg/1280px-Budapest_Sz%C3%A9chenyi_Baths_R02.jpg" alt="Széchenyi Medicinal Bath"></div>
+        <figcaption><span class="gname">Széchenyi Medicinal Bath</span><span class="gcap">As termas ao ar livre em prédio neobarroco.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Sz%C3%A9chenyi_Chain_Bridge_in_Budapest_at_night.jpg/1280px-Sz%C3%A9chenyi_Chain_Bridge_in_Budapest_at_night.jpg" data-cap="A ponte-símbolo que uniu Buda e Peste." data-title="Széchenyi Chain Bridge">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Sz%C3%A9chenyi_Chain_Bridge_in_Budapest_at_night.jpg/1280px-Sz%C3%A9chenyi_Chain_Bridge_in_Budapest_at_night.jpg" alt="Széchenyi Chain Bridge"></div>
+        <figcaption><span class="gname">Széchenyi Chain Bridge</span><span class="gcap">A ponte-símbolo que uniu Buda e Peste.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Budapest_Szent_Istvan_Bazilika_R01.jpg/1280px-Budapest_Szent_Istvan_Bazilika_R01.jpg" data-cap="A basílica com o mirante da cúpula." data-title="St. Stephen's Basilica">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Budapest_Szent_Istvan_Bazilika_R01.jpg/1280px-Budapest_Szent_Istvan_Bazilika_R01.jpg" alt="St. Stephen's Basilica"></div>
+        <figcaption><span class="gname">St. Stephen's Basilica</span><span class="gcap">A basílica com o mirante da cúpula.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/HUN-2015-Budapest-Heroes%E2%80%99_Square.jpg/1280px-HUN-2015-Budapest-Heroes%E2%80%99_Square.jpg" data-cap="A grande praça monumental." data-title="Heroes' Square, Budapest">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/HUN-2015-Budapest-Heroes%E2%80%99_Square.jpg/1280px-HUN-2015-Budapest-Heroes%E2%80%99_Square.jpg" alt="Heroes' Square, Budapest"></div>
+        <figcaption><span class="gname">Heroes' Square, Budapest</span><span class="gcap">A grande praça monumental.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Szimpla_Kert_Trabant.jpg/1280px-Szimpla_Kert_Trabant.jpg" data-cap="O ruin bar pioneiro do bairro judeu." data-title="Szimpla Kert">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Szimpla_Kert_Trabant.jpg/1280px-Szimpla_Kert_Trabant.jpg" alt="Szimpla Kert"></div>
+        <figcaption><span class="gname">Szimpla Kert</span><span class="gcap">O ruin bar pioneiro do bairro judeu.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/VasarcsarnokFotoThalerTamas.JPG/1280px-VasarcsarnokFotoThalerTamas.JPG" data-cap="O mercado central de lángos e páprica." data-title="Great Market Hall, Budapest">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/VasarcsarnokFotoThalerTamas.JPG/1280px-VasarcsarnokFotoThalerTamas.JPG" alt="Great Market Hall, Budapest"></div>
+        <figcaption><span class="gname">Great Market Hall, Budapest</span><span class="gcap">O mercado central de lángos e páprica.</span></figcaption>
+      </figure></div>
+
+      <h3 class="sec">Prático <span class="sec-sub">antes de ir</span></h3>
+      <div class="iboxes">
+      <div class="ibox">
+        <h4>Transporte</h4>
+        <ul><li>Metrô M1 (o mais antigo da Europa continental) + trams à beira-rio.</li><li>Bilhete único ou 24/72h; valide sempre.</li><li>Buda é ladeira — use o funicular Sikló até o castelo.</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Reservas</h4>
+        <ul><li>Cruzeiro no Danúbio (pendência).</li><li>Parlamento: tour interno esgota; reserve online.</li><li>Voo Budapeste→Paris: sem Ryanair, sem Beauvais (pendência).</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Dicas</h4>
+        <ul><li>Termas no inverno são imperdíveis — leve chinelo, toalha e touca.</li><li>No Réveillon combine ponto de encontro; cuidado com carteiras na multidão.</li><li>Ruin bars ficam no Party District, ao lado do apê.</li></ul>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="city" id="city-paris" role="tabpanel" aria-labelledby="tab-paris" hidden>
+    <div class="hero">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1600&amp;q=80&amp;fm=jpg" alt="Paris" fetchpriority="low">
+      <div class="hero-grad"></div>
+      <div class="hero-text">
+        <span class="hero-eyebrow">🇫🇷 França · 2–6 jan</span>
+        <h2>Paris</h2>
+        <div class="hero-chips">
+          <span class="chip"><span class="chip-k">Estadia</span> 4 noites</span>
+          <span class="chip"><span class="chip-k">Base</span> Hostel a definir</span>
+          <span class="chip"><span class="chip-k">Custo</span> ≈ €220–300 pp</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="citybody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">2/1 (de Budapeste)</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Voo → Barcelona (6/1, 08h20)</span></div>
+      </div>
+
+      <p class="intro">Quatro noites na capital da luz: os grandes monumentos, os museus lendários e um dia inteiro para escolher entre a Disney e Versalhes. A Notre-Dame reabriu em dezembro de 2024 — dá para visitar de novo.</p>
+
+      <h3 class="sec">Roteiro <span class="sec-sub">dia a dia</span></h3>
+      <div class="days">
+    <article class="day" data-eid="paris-d0">
+      <div class="day-head">
+        <div><span class="day-name">Chegada + Torre à noite</span> <span class="day-tag">chegada</span></div>
+        <span class="day-date">Sáb 2/1</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">tarde</td>
+          <td class="what"><b>Chegada de Budapeste + check-in</b><span class="note">Hostel a definir (pendência).</span></td>
+        </tr>
+        <tr>
+          <td class="time">18h00</td>
+          <td class="what"><b>Trocadéro + Torre Eiffel iluminada</b><span class="note">A cada hora cheia, 5 min de brilho cintilante.</span></td>
+        </tr>
+        <tr>
+          <td class="time">19h30</td>
+          <td class="what"><b>Passeio pelo Sena</b><span class="note">Jantar no bairro e primeira noite parisiense.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Definir hostel</span>
+        <span class="cost">≈ €30 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="paris-d1">
+      <div class="day-head">
+        <div><span class="day-name">Louvre + Champs-Élysées</span> <span class="day-tag">dia cheio</span></div>
+        <span class="day-date">Dom 3/1</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">09h00</td>
+          <td class="what"><b>Museu do Louvre</b><span class="note">Reserve horário. Mona Lisa, Vênus de Milo — foque no essencial.</span></td>
+        </tr>
+        <tr>
+          <td class="time">12h30</td>
+          <td class="what"><b>Jardim das Tulherias + Concorde</b><span class="note">Caminhada até a grande praça.</span></td>
+        </tr>
+        <tr>
+          <td class="time">14h00</td>
+          <td class="what"><b>Champs-Élysées</b><span class="note">A avenida das compras e cafés.</span></td>
+        </tr>
+        <tr>
+          <td class="time">16h00</td>
+          <td class="what"><b>Arco do Triunfo</b><span class="note">Suba ao topo para a vista das 12 avenidas (pendência).</span></td>
+        </tr>
+        <tr>
+          <td class="time">18h30</td>
+          <td class="what"><b>Cruzeiro pelo Sena</b><span class="note">Bateaux ao anoitecer (pendência). Monumentos iluminados.</span></td>
+        </tr>
+        <tr>
+          <td class="time">20h30</td>
+          <td class="what"><b>Jantar no Quartier Latin</b><span class="note">Bistrô clássico + crème brûlée.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Reservar Louvre + cruzeiro</span>
+        <span class="cost">≈ €65 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="paris-d2">
+      <div class="day-head">
+        <div><span class="day-name">Montmartre + Orsay</span> <span class="day-tag">dia cheio</span></div>
+        <span class="day-date">Seg 4/1</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">09h30</td>
+          <td class="what"><b>Sacré-Cœur + Montmartre</b><span class="note">A basílica branca no ponto mais alto; Place du Tertre dos artistas.</span></td>
+        </tr>
+        <tr>
+          <td class="time">12h00</td>
+          <td class="what"><b>Almoço em Montmartre</b><span class="note">Crêpe e vinho num café de esquina.</span></td>
+        </tr>
+        <tr>
+          <td class="time">14h00</td>
+          <td class="what"><b>Notre-Dame + Île de la Cité</b><span class="note">Reaberta em dez/2024 — visite o interior restaurado.</span></td>
+        </tr>
+        <tr>
+          <td class="time">15h30</td>
+          <td class="what"><b>Museu d'Orsay</b><span class="note">Os impressionistas na antiga estação de trem: Monet, Van Gogh, Renoir.</span></td>
+        </tr>
+        <tr>
+          <td class="time">19h00</td>
+          <td class="what"><b>Jantar + Saint-Germain</b><span class="note">Passeio pela margem esquerda.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Reservar Orsay</span>
+        <span class="cost">≈ €55 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="paris-d3">
+      <div class="day-head">
+        <div><span class="day-name">Disney ou Versalhes</span> <span class="day-tag">dia inteiro</span></div>
+        <span class="day-date">Ter 5/1</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">08h30</td>
+          <td class="what"><b>Escolha do dia</b><span class="note">RER A até Disneyland (~45 min) OU RER C até Versalhes (~1h).</span></td>
+        </tr>
+        <tr>
+          <td class="time">09h30</td>
+          <td class="what"><b>Disneyland Paris</b><span class="note">Dia inteiro nos dois parques (pendência de ingresso). Chegue na abertura.</span></td>
+        </tr>
+        <tr>
+          <td class="time">—</td>
+          <td class="what"><b>Alternativa: Palácio de Versalhes</b><span class="note">Salão dos Espelhos e jardins (pendência). Reserve horário; feche mais cedo no inverno.</span></td>
+        </tr>
+        <tr>
+          <td class="time">20h00</td>
+          <td class="what"><b>Volta a Paris + última noite</b><span class="note">Prepare a mala — voo cedo para Barcelona.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Ingresso Disney/Versalhes + voo 08h20</span>
+        <span class="cost">≈ €70–110 pp</span>
+      </div>
+    </article></div>
+
+      <h3 class="sec">Pontos imperdíveis <span class="sec-sub">10 lugares</span></h3>
+      <div class="gallery">
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1280px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg" data-cap="O símbolo de Paris, cintilante a cada hora à noite." data-title="Eiffel Tower">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1280px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg" alt="Eiffel Tower"></div>
+        <figcaption><span class="gname">Eiffel Tower</span><span class="gcap">O símbolo de Paris, cintilante a cada hora à noite.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Louvre_Museum_Wikimedia_Commons.jpg/1280px-Louvre_Museum_Wikimedia_Commons.jpg" data-cap="O maior museu do mundo, da Mona Lisa às antiguidades." data-title="Louvre">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Louvre_Museum_Wikimedia_Commons.jpg/1280px-Louvre_Museum_Wikimedia_Commons.jpg" alt="Louvre"></div>
+        <figcaption><span class="gname">Louvre</span><span class="gcap">O maior museu do mundo, da Mona Lisa às antiguidades.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Arc_de_Triomphe%2C_Paris_21_October_2010.jpg/1280px-Arc_de_Triomphe%2C_Paris_21_October_2010.jpg" data-cap="O arco no topo dos Champs-Élysées." data-title="Arc de Triomphe">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Arc_de_Triomphe%2C_Paris_21_October_2010.jpg/1280px-Arc_de_Triomphe%2C_Paris_21_October_2010.jpg" alt="Arc de Triomphe"></div>
+        <figcaption><span class="gname">Arc de Triomphe</span><span class="gcap">O arco no topo dos Champs-Élysées.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Notre-Dame_de_Paris%2C_4_October_2017.jpg/1280px-Notre-Dame_de_Paris%2C_4_October_2017.jpg" data-cap="A catedral gótica reaberta em dez/2024." data-title="Notre-Dame de Paris">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Notre-Dame_de_Paris%2C_4_October_2017.jpg/1280px-Notre-Dame_de_Paris%2C_4_October_2017.jpg" alt="Notre-Dame de Paris"></div>
+        <figcaption><span class="gname">Notre-Dame de Paris</span><span class="gcap">A catedral gótica reaberta em dez/2024.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Le_sacre_coeur.jpg/1280px-Le_sacre_coeur.jpg" data-cap="A basílica branca no alto de Montmartre." data-title="Sacré-Cœur, Paris">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Le_sacre_coeur.jpg/1280px-Le_sacre_coeur.jpg" alt="Sacré-Cœur, Paris"></div>
+        <figcaption><span class="gname">Sacré-Cœur, Paris</span><span class="gcap">A basílica branca no alto de Montmartre.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue_a%C3%A9rienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_081_%28cropped%29.jpg/1280px-Vue_a%C3%A9rienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_081_%28cropped%29.jpg" data-cap="O palácio real e seus jardins monumentais." data-title="Palace of Versailles">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue_a%C3%A9rienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_081_%28cropped%29.jpg/1280px-Vue_a%C3%A9rienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_081_%28cropped%29.jpg" alt="Palace of Versailles"></div>
+        <figcaption><span class="gname">Palace of Versailles</span><span class="gcap">O palácio real e seus jardins monumentais.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Avenue_des_Champs-%C3%89lys%C3%A9es_July_24%2C_2009_N1.jpg/1280px-Avenue_des_Champs-%C3%89lys%C3%A9es_July_24%2C_2009_N1.jpg" data-cap="A avenida mais famosa do mundo." data-title="Champs-Élysées">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Avenue_des_Champs-%C3%89lys%C3%A9es_July_24%2C_2009_N1.jpg/1280px-Avenue_des_Champs-%C3%89lys%C3%A9es_July_24%2C_2009_N1.jpg" alt="Champs-Élysées"></div>
+        <figcaption><span class="gname">Champs-Élysées</span><span class="gcap">A avenida mais famosa do mundo.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/View_from_Notre-Dame_de_Paris%2C_24_June_2014_004.jpg/1280px-View_from_Notre-Dame_de_Paris%2C_24_June_2014_004.jpg" data-cap="O bairro dos artistas e das ruelas em ladeira." data-title="Montmartre">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/View_from_Notre-Dame_de_Paris%2C_24_June_2014_004.jpg/1280px-View_from_Notre-Dame_de_Paris%2C_24_June_2014_004.jpg" alt="Montmartre"></div>
+        <figcaption><span class="gname">Montmartre</span><span class="gcap">O bairro dos artistas e das ruelas em ladeira.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://www.tiqets.com/blog/wp-content/uploads/2023/06/musee-dorsay-17.jpeg" data-cap="Os impressionistas numa antiga estação de trem." data-title="Musée d'Orsay">
+        <div class="gcard-img"><img loading="lazy" src="https://www.tiqets.com/blog/wp-content/uploads/2023/06/musee-dorsay-17.jpeg" alt="Musée d'Orsay"></div>
+        <figcaption><span class="gname">Musée d'Orsay</span><span class="gcap">Os impressionistas numa antiga estação de trem.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://disneyinsights.com/wp-content/uploads/2023/09/IMG_3969-scaled.jpeg" data-cap="O parque temático, opção de dia inteiro." data-title="Disneyland Park (Paris)">
+        <div class="gcard-img"><img loading="lazy" src="https://disneyinsights.com/wp-content/uploads/2023/09/IMG_3969-scaled.jpeg" alt="Disneyland Park (Paris)"></div>
+        <figcaption><span class="gname">Disneyland Park (Paris)</span><span class="gcap">O parque temático, opção de dia inteiro.</span></figcaption>
+      </figure></div>
+
+      <h3 class="sec">Prático <span class="sec-sub">antes de ir</span></h3>
+      <div class="iboxes">
+      <div class="ibox">
+        <h4>Transporte</h4>
+        <ul><li>Metrô denso — carnet de 10 tickets ou Navigo.</li><li>RER A p/ Disney; RER C p/ Versalhes.</li><li>Do aeroporto (CDG/ORY) ao centro: RER B ou Roissybus.</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Reservas</h4>
+        <ul><li>Louvre e Orsay: horário marcado.</li><li>Disneyland e Versalhes: ingressos antecipados (pendências).</li><li>Arco do Triunfo e cruzeiro no Sena (pendências).</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Dicas</h4>
+        <ul><li>Torre Eiffel cintila 5 min a cada hora após o anoitecer.</li><li>Cuidado com carteiristas no metrô e nos pontos turísticos.</li><li>Notre-Dame reaberta: entrada gratuita, mas com fila — chegue cedo.</li></ul>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="city" id="city-barcelona" role="tabpanel" aria-labelledby="tab-barcelona" hidden>
+    <div class="hero">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1739532827391-45e14eed59c3?w=1600&amp;q=80&amp;fm=jpg" alt="Barcelona" fetchpriority="low">
+      <div class="hero-grad"></div>
+      <div class="hero-text">
+        <span class="hero-eyebrow">🇪🇸 Espanha · 6–8 jan</span>
+        <h2>Barcelona</h2>
+        <div class="hero-chips">
+          <span class="chip"><span class="chip-k">Estadia</span> 2 noites</span>
+          <span class="chip"><span class="chip-k">Base</span> Hostel a definir</span>
+          <span class="chip"><span class="chip-k">Custo</span> ≈ €130–180 pp</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="citybody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">6/1 · 10h00 (voo)</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">AVE → Madri (8/1, ~06h)</span></div>
+      </div>
+
+      <p class="intro">Dois dias de Gaudí, mar e tapas. Chegam às 10h, então dá para render bastante. Reserve Sagrada Família e Park Güell com antecedência — são os únicos gargalos.</p>
+
+      <h3 class="sec">Roteiro <span class="sec-sub">dia a dia</span></h3>
+      <div class="days">
+    <article class="day" data-eid="barcelona-d0">
+      <div class="day-head">
+        <div><span class="day-name">Gaudí + Cidade Velha</span> <span class="day-tag">chegada</span></div>
+        <span class="day-date">Ter 6/1</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">10h00</td>
+          <td class="what"><b>Chegada + check-in</b><span class="note">Largue as malas e comece o dia.</span></td>
+        </tr>
+        <tr>
+          <td class="time">11h30</td>
+          <td class="what"><b>Sagrada Família</b><span class="note">Reserve com hora marcada (essencial). Interior de tirar o fôlego.</span></td>
+        </tr>
+        <tr>
+          <td class="time">13h30</td>
+          <td class="what"><b>Passeig de Gràcia — Casa Batlló + Casa Milà</b><span class="note">As fachadas onduladas de Gaudí; almoço no caminho.</span></td>
+        </tr>
+        <tr>
+          <td class="time">16h00</td>
+          <td class="what"><b>Bairro Gótico + Catedral</b><span class="note">Ruelas medievais e praças escondidas.</span></td>
+        </tr>
+        <tr>
+          <td class="time">17h30</td>
+          <td class="what"><b>La Rambla + La Boqueria</b><span class="note">O bulevar e o mercado colorido (feche antes que baixe as portas).</span></td>
+        </tr>
+        <tr>
+          <td class="time">20h00</td>
+          <td class="what"><b>Jantar de tapas</b><span class="note">Patatas bravas, jamón e vermut no El Born.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Reservar Sagrada Família</span>
+        <span class="cost">≈ €55 pp</span>
+      </div>
+    </article>
+    <article class="day" data-eid="barcelona-d1">
+      <div class="day-head">
+        <div><span class="day-name">Park Güell + mar</span> <span class="day-tag">dia cheio</span></div>
+        <span class="day-date">Qua 7/1</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">09h30</td>
+          <td class="what"><b>Park Güell</b><span class="note">Reserve horário. Mosaicos de Gaudí e vista da cidade.</span></td>
+        </tr>
+        <tr>
+          <td class="time">11h30</td>
+          <td class="what"><b>Bairro de Gràcia</b><span class="note">Praças descoladas e cafés locais.</span></td>
+        </tr>
+        <tr>
+          <td class="time">13h00</td>
+          <td class="what"><b>Almoço + Barceloneta</b><span class="note">Paella e frutos do mar à beira-mar.</span></td>
+        </tr>
+        <tr>
+          <td class="time">15h00</td>
+          <td class="what"><b>Praia de Barceloneta + orla</b><span class="note">Caminhada pela praia, mesmo no inverno.</span></td>
+        </tr>
+        <tr>
+          <td class="time">16h30</td>
+          <td class="what"><b>Montjuïc</b><span class="note">Teleférico, castelo e vista do porto; Fonte Mágica (se estiver funcionando).</span></td>
+        </tr>
+        <tr>
+          <td class="time">20h00</td>
+          <td class="what"><b>Última noite de tapas</b><span class="note">Feche a Europa com vermut e bravas.</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Reservar Park Güell · AVE cedo amanhã</span>
+        <span class="cost">≈ €55 pp</span>
+      </div>
+    </article></div>
+
+      <h3 class="sec">Pontos imperdíveis <span class="sec-sub">9 lugares</span></h3>
+      <div class="gallery">
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/e/ef/SF_maig_2_cropped.jpg" data-cap="A basílica inacabada de Gaudí, obra de uma vida." data-title="Sagrada Família">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/SF_maig_2_cropped.jpg" alt="Sagrada Família"></div>
+        <figcaption><span class="gname">Sagrada Família</span><span class="gcap">A basílica inacabada de Gaudí, obra de uma vida.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Parc_guell_-_panoramio.jpg/1280px-Parc_guell_-_panoramio.jpg" data-cap="O parque de mosaicos coloridos com vista da cidade." data-title="Park Güell">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Parc_guell_-_panoramio.jpg/1280px-Parc_guell_-_panoramio.jpg" alt="Park Güell"></div>
+        <figcaption><span class="gname">Park Güell</span><span class="gcap">O parque de mosaicos coloridos com vista da cidade.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Casa_Batllo_Overview_Barcelona_Spain_cut.jpg/1280px-Casa_Batllo_Overview_Barcelona_Spain_cut.jpg" data-cap="A fachada ondulada e escamosa de Gaudí." data-title="Casa Batlló">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Casa_Batllo_Overview_Barcelona_Spain_cut.jpg/1280px-Casa_Batllo_Overview_Barcelona_Spain_cut.jpg" alt="Casa Batlló"></div>
+        <figcaption><span class="gname">Casa Batlló</span><span class="gcap">A fachada ondulada e escamosa de Gaudí.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://imgs.search.brave.com/9c05myEOVnrjFPVKMcJu_mhlNLp6BcaWgsDleQrZFZk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly91cy4x/MjNyZi5jb20vNDUw/d20vZWthdGVyaW5h/YmVsb3ZhL2VrYXRl/cmluYWJlbG92YTIx/MTAvZWthdGVyaW5h/YmVsb3ZhMjExMDAw/MjM4LzE3NjQzNDMw/MS1sYS1yYW1ibGEt/c3RyZWV0LWluLWJh/cmNlbG9uYS1jYXRh/bG9uaWEtc3BhaW4t/YXJjaGl0ZWN0dXJl/LWFuZC1sYW5kbWFy/ay1vZi1iYXJjZWxv/bmEtY2l0eXNjYXBl/LmpwZz92ZXI9Ng" data-cap="O bulevar mais movimentado da cidade." data-title="La Rambla">
+        <div class="gcard-img"><img loading="lazy" src="https://imgs.search.brave.com/9c05myEOVnrjFPVKMcJu_mhlNLp6BcaWgsDleQrZFZk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly91cy4x/MjNyZi5jb20vNDUw/d20vZWthdGVyaW5h/YmVsb3ZhL2VrYXRl/cmluYWJlbG92YTIx/MTAvZWthdGVyaW5h/YmVsb3ZhMjExMDAw/MjM4LzE3NjQzNDMw/MS1sYS1yYW1ibGEt/c3RyZWV0LWluLWJh/cmNlbG9uYS1jYXRh/bG9uaWEtc3BhaW4t/YXJjaGl0ZWN0dXJl/LWFuZC1sYW5kbWFy/ay1vZi1iYXJjZWxv/bmEtY2l0eXNjYXBl/LmpwZz92ZXI9Ng" alt="La Rambla"></div>
+        <figcaption><span class="gname">La Rambla</span><span class="gcap">O bulevar mais movimentado da cidade.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/6/6d/Barcelona_-_Carrer_del_Bisbe.jpg" data-cap="O labirinto medieval no coração antigo." data-title="Gothic Quarter, Barcelona">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Barcelona_-_Carrer_del_Bisbe.jpg" alt="Gothic Quarter, Barcelona"></div>
+        <figcaption><span class="gname">Gothic Quarter, Barcelona</span><span class="gcap">O labirinto medieval no coração antigo.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Casa_Mil%C3%A0%2C_general_view.jpg/1280px-Casa_Mil%C3%A0%2C_general_view.jpg" data-cap="A 'pedreira' de Gaudí, com terraço ondulado." data-title="Casa Milà">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Casa_Mil%C3%A0%2C_general_view.jpg/1280px-Casa_Mil%C3%A0%2C_general_view.jpg" alt="Casa Milà"></div>
+        <figcaption><span class="gname">Casa Milà</span><span class="gcap">A 'pedreira' de Gaudí, com terraço ondulado.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://travel2next.com/wp-content/uploads/Barcelona-Landmarks2-630x1024.jpg" data-cap="O bairro de praia e frutos do mar." data-title="Barceloneta">
+        <div class="gcard-img"><img loading="lazy" src="https://travel2next.com/wp-content/uploads/Barcelona-Landmarks2-630x1024.jpg" alt="Barceloneta"></div>
+        <figcaption><span class="gname">Barceloneta</span><span class="gcap">O bairro de praia e frutos do mar.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Barcelona_-_Mercat_de_Sant_Josep_%28la_Boqueria%29_-_Entrance.jpg/1280px-Barcelona_-_Mercat_de_Sant_Josep_%28la_Boqueria%29_-_Entrance.jpg" data-cap="O mercado colorido junto à Rambla." data-title="La Boqueria">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Barcelona_-_Mercat_de_Sant_Josep_%28la_Boqueria%29_-_Entrance.jpg/1280px-Barcelona_-_Mercat_de_Sant_Josep_%28la_Boqueria%29_-_Entrance.jpg" alt="La Boqueria"></div>
+        <figcaption><span class="gname">La Boqueria</span><span class="gcap">O mercado colorido junto à Rambla.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Fale_-_Spain_-_Barcelona_-_8.jpg/1280px-Fale_-_Spain_-_Barcelona_-_8.jpg" data-cap="A colina com castelo, jardins e vista do porto." data-title="Montjuïc">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Fale_-_Spain_-_Barcelona_-_8.jpg/1280px-Fale_-_Spain_-_Barcelona_-_8.jpg" alt="Montjuïc"></div>
+        <figcaption><span class="gname">Montjuïc</span><span class="gcap">A colina com castelo, jardins e vista do porto.</span></figcaption>
+      </figure></div>
+
+      <h3 class="sec">Prático <span class="sec-sub">antes de ir</span></h3>
+      <div class="iboxes">
+      <div class="ibox">
+        <h4>Transporte</h4>
+        <ul><li>Metrô eficiente — bilhete T-casual (10 viagens).</li><li>Do aeroporto: Aerobús ou metrô L9 Sud.</li><li>Centro caminhável; Montjuïc de teleférico.</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Reservas</h4>
+        <ul><li>Sagrada Família: hora marcada, essencial.</li><li>Park Güell: zona monumental exige ingresso com horário.</li><li>AVE Barcelona→Madri (pendência) — compre já.</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Dicas</h4>
+        <ul><li>La Rambla é foco de carteiristas — atenção redobrada.</li><li>AVE do dia 8 é ~06h, sem margem para pernoite — durma perto da estação Sants.</li><li>Confirme o tempo Atocha→aeroporto de Madri ao comprar o AVE.</li></ul>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="city" id="city-madri" role="tabpanel" aria-labelledby="tab-madri" hidden>
+    <div class="hero">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1725112675082-5fc786ea4269?w=1600&amp;q=80&amp;fm=jpg" alt="Madri" fetchpriority="low">
+      <div class="hero-grad"></div>
+      <div class="hero-text">
+        <span class="hero-eyebrow">🇪🇸 Espanha · 8 jan</span>
+        <h2>Madri</h2>
+        <div class="hero-chips">
+          <span class="chip"><span class="chip-k">Estadia</span> conexão</span>
+          <span class="chip"><span class="chip-k">Base</span> —</span>
+          <span class="chip"><span class="chip-k">Custo</span> ≈ €10–20 pp</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="citybody">
+      <div class="facts">
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">8/1 · manhã (AVE de Barcelona)</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Voo Madri → Rio (8/1, 12h30)</span></div>
+      </div>
+
+      <p class="intro">Não é um dia de turismo: é a conexão final. O AVE de Barcelona chega em Atocha de manhã e o voo para o Rio sai às 12h30. Toda a logística gira em torno de chegar ao aeroporto de Barajas com folga.</p>
+
+      <h3 class="sec">Roteiro <span class="sec-sub">dia a dia</span></h3>
+      <div class="days">
+    <article class="day" data-eid="madri-d0">
+      <div class="day-head">
+        <div><span class="day-name">Conexão para o voo de volta</span> <span class="day-tag">logística</span></div>
+        <span class="day-date">Sex 8/1</span>
+      </div>
+      <table class="sched"><tbody>
+        <tr>
+          <td class="time">~06h00</td>
+          <td class="what"><b>AVE Barcelona Sants → Madri</b><span class="note">~2h30–3h. Compre com antecedência (pendência). Chega a Atocha ~08h45.</span></td>
+        </tr>
+        <tr>
+          <td class="time">09h00</td>
+          <td class="what"><b>Atocha → Aeroporto de Barajas</b><span class="note">Cercanías C-1 direto até T4 (~25 min) ou metrô/táxi (~30 min). Confirme o tempo ao comprar o AVE.</span></td>
+        </tr>
+        <tr>
+          <td class="time">09h30</td>
+          <td class="what"><b>Se sobrar ~1h perto de Atocha</b><span class="note">Jardim tropical da estação, café e churros com chocolate. Sem se afastar.</span></td>
+        </tr>
+        <tr>
+          <td class="time">10h30</td>
+          <td class="what"><b>Check-in em Barajas</b><span class="note">Voo internacional: esteja no aeroporto ~2h antes.</span></td>
+        </tr>
+        <tr>
+          <td class="time">12h30</td>
+          <td class="what"><b>Voo Madri → Rio (GIG)</b><span class="note">IB0269, direto. Chega ao Rio 18h50. Fim da eurotrip!</span></td>
+        </tr></tbody></table>
+      <div class="day-foot">
+        <span class="warn">⚑ Margem apertada — priorize o aeroporto</span>
+        <span class="cost">≈ €15 pp</span>
+      </div>
+    </article></div>
+
+      <h3 class="sec">Pontos imperdíveis <span class="sec-sub">3 lugares</span></h3>
+      <div class="gallery">
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Puerta_del_Sol_%28Madrid%29_10.jpg/1280px-Puerta_del_Sol_%28Madrid%29_10.jpg" data-cap="O marco zero da Espanha, se der um pulo rápido." data-title="Puerta del Sol">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Puerta_del_Sol_%28Madrid%29_10.jpg/1280px-Puerta_del_Sol_%28Madrid%29_10.jpg" alt="Puerta del Sol"></div>
+        <figcaption><span class="gname">Puerta del Sol</span><span class="gcap">O marco zero da Espanha, se der um pulo rápido.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Madrid_Plaza_Mayor_%2848733706273%29.jpg/1280px-Madrid_Plaza_Mayor_%2848733706273%29.jpg" data-cap="A grande praça porticada do centro histórico." data-title="Plaza Mayor, Madrid">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Madrid_Plaza_Mayor_%2848733706273%29.jpg/1280px-Madrid_Plaza_Mayor_%2848733706273%29.jpg" alt="Plaza Mayor, Madrid"></div>
+        <figcaption><span class="gname">Plaza Mayor, Madrid</span><span class="gcap">A grande praça porticada do centro histórico.</span></figcaption>
+      </figure>
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Atocha_railway_station_5.JPG/1280px-Atocha_railway_station_5.JPG" data-cap="A estação com jardim tropical onde chega o AVE." data-title="Madrid Atocha railway station">
+        <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Atocha_railway_station_5.JPG/1280px-Atocha_railway_station_5.JPG" alt="Madrid Atocha railway station"></div>
+        <figcaption><span class="gname">Madrid Atocha railway station</span><span class="gcap">A estação com jardim tropical onde chega o AVE.</span></figcaption>
+      </figure></div>
+
+      <h3 class="sec">Prático <span class="sec-sub">antes de ir</span></h3>
+      <div class="iboxes">
+      <div class="ibox">
+        <h4>Transporte</h4>
+        <ul><li>Cercanías C-1 liga Atocha ao Terminal 4 de Barajas em ~25 min.</li><li>Alternativa: metrô Línea 8 (com baldeação) ou táxi (~30 min, tarifa fixa ao aeroporto).</li><li>Guarde bagagem só se for realmente sair — o tempo é curto.</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Reservas</h4>
+        <ul><li>AVE Barcelona→Madri (pendência) — compre já e escolha horário com folga.</li><li>Não há pernoite: trem ~06h, voo 12h30.</li><li>Confirme terminal do voo (Barajas T4).</li></ul>
+      </div>
+      <div class="ibox">
+        <h4>Dicas</h4>
+        <ul><li>Foque em chegar a Barajas com 2h de antecedência.</li><li>Se der tempo, a própria estação de Atocha vale a visita (jardim tropical).</li><li>Deixe lembranças e compras para o free-shop — bagagem já fechada.</li></ul>
+      </div></div>
+    </div>
+  </section>
+  
+  <section class="city overview" id="city-visao" role="tabpanel" aria-labelledby="tab-visao" hidden>
+    <div class="ov-head">
+      <span class="hero-eyebrow">14 dez 2026 — 8 jan 2027</span>
+      <h2>A viagem inteira</h2>
+      <p class="intro">Dez viajantes, saindo do Rio, cruzando oito países da Europa entre o Natal e o Réveillon. Abaixo, o cronograma completo trecho a trecho e as pendências que ainda faltam fechar (meta: até out/nov de 2026).</p>
+    </div>
+    <div class="stats"><div class="stat"><span class="stat-n">26</span><span class="stat-l">dias</span></div><div class="stat"><span class="stat-n">9</span><span class="stat-l">cidades</span></div><div class="stat"><span class="stat-n">8</span><span class="stat-l">países</span></div><div class="stat"><span class="stat-n">10</span><span class="stat-l">viajantes</span></div><div class="stat"><span class="stat-n">7</span><span class="stat-l">voos + trens</span></div><div class="stat"><span class="stat-n">5</span><span class="stat-l">reservas pagas</span></div></div>
+    <div class="ov-grid">
+      <div>
+        <h3 class="sec">Cronograma <span class="sec-sub">trecho a trecho</span></h3>
+        <table class="timeline"><tbody>
+        <tr class="tl-flight">
+          <td class="tl-icon"><span>✈</span></td>
+          <td class="tl-date">14 dez</td>
+          <td class="tl-main"><b>Rio de Janeiro → Londres</b><span>Voo BA direto, 11h20 · saída 18h (GIG)</span></td>
+        </tr>
+        <tr class="tl-city">
+          <td class="tl-icon"><span>◆</span></td>
+          <td class="tl-date">15–18 dez</td>
+          <td class="tl-main"><b>Londres</b><span>Generator London · 3 noites</span></td>
+        </tr>
+        <tr class="tl-train">
+          <td class="tl-icon"><span>🚄</span></td>
+          <td class="tl-date">18 dez</td>
+          <td class="tl-main"><b>Londres → Amsterdã</b><span>Eurostar 06h16 (chega 11h20)</span></td>
+        </tr>
+        <tr class="tl-city">
+          <td class="tl-icon"><span>◆</span></td>
+          <td class="tl-date">18–21 dez</td>
+          <td class="tl-main"><b>Amsterdã</b><span>Stayokay Vondelpark · 3 noites</span></td>
+        </tr>
+        <tr class="tl-flight">
+          <td class="tl-icon"><span>✈</span></td>
+          <td class="tl-date">21 dez</td>
+          <td class="tl-main"><b>Amsterdã → Praga</b><span>Voo KL1351 06h55 (chega 08h25)</span></td>
+        </tr>
+        <tr class="tl-city">
+          <td class="tl-icon"><span>◆</span></td>
+          <td class="tl-date">21–22 dez</td>
+          <td class="tl-main"><b>Praga</b><span>Safestay Charles Bridge · 1 noite</span></td>
+        </tr>
+        <tr class="tl-train">
+          <td class="tl-icon"><span>🚄</span></td>
+          <td class="tl-date">22 dez</td>
+          <td class="tl-main"><b>Praga → Bratislava</b><span>Trem noturno (~23h → 06h)</span></td>
+        </tr>
+        <tr class="tl-city">
+          <td class="tl-icon"><span>◆</span></td>
+          <td class="tl-date">23–25 dez</td>
+          <td class="tl-main"><b>Chalé de Natal — Lago Orava</b><span>Chata u Džonyho · 4x4 · 2 noites</span></td>
+        </tr>
+        <tr class="tl-ski">
+          <td class="tl-icon"><span>⛷</span></td>
+          <td class="tl-date">25 dez</td>
+          <td class="tl-main"><b>Dia de ski (Jasná)</b><span>Volta a Bratislava · OldTown Hostel</span></td>
+        </tr>
+        <tr class="tl-train">
+          <td class="tl-icon"><span>🚄</span></td>
+          <td class="tl-date">26 dez</td>
+          <td class="tl-main"><b>Bratislava → Viena</b><span>Turismo + transporte fim do dia</span></td>
+        </tr>
+        <tr class="tl-city">
+          <td class="tl-icon"><span>◆</span></td>
+          <td class="tl-date">26–29 dez</td>
+          <td class="tl-main"><b>Viena</b><span>JO&amp;JOE Vienna · bate-volta Hallstatt · 3 noites</span></td>
+        </tr>
+        <tr class="tl-train">
+          <td class="tl-icon"><span>🚄</span></td>
+          <td class="tl-date">29 dez</td>
+          <td class="tl-main"><b>Viena → Budapeste</b><span>Trem ~2h40</span></td>
+        </tr>
+        <tr class="tl-city">
+          <td class="tl-icon"><span>◆</span></td>
+          <td class="tl-date">29 dez – 1/2 jan</td>
+          <td class="tl-main"><b>Budapeste — Réveillon</b><span>Sweet16 Apartment · Party District</span></td>
+        </tr>
+        <tr class="tl-flight">
+          <td class="tl-icon"><span>✈</span></td>
+          <td class="tl-date">1 ou 2 jan</td>
+          <td class="tl-main"><b>Budapeste → Paris</b><span>Voo (sem Ryanair/Beauvais)</span></td>
+        </tr>
+        <tr class="tl-city">
+          <td class="tl-icon"><span>◆</span></td>
+          <td class="tl-date">2–6 jan</td>
+          <td class="tl-main"><b>Paris</b><span>4 noites</span></td>
+        </tr>
+        <tr class="tl-flight">
+          <td class="tl-icon"><span>✈</span></td>
+          <td class="tl-date">6 jan</td>
+          <td class="tl-main"><b>Paris → Barcelona</b><span>Voo IB5427 08h20 (chega 10h)</span></td>
+        </tr>
+        <tr class="tl-city">
+          <td class="tl-icon"><span>◆</span></td>
+          <td class="tl-date">6–8 jan</td>
+          <td class="tl-main"><b>Barcelona</b><span>2 noites</span></td>
+        </tr>
+        <tr class="tl-train">
+          <td class="tl-icon"><span>🚄</span></td>
+          <td class="tl-date">8 jan</td>
+          <td class="tl-main"><b>Barcelona → Madri</b><span>AVE ~06h</span></td>
+        </tr>
+        <tr class="tl-flight">
+          <td class="tl-icon"><span>✈</span></td>
+          <td class="tl-date">8 jan</td>
+          <td class="tl-main"><b>Madri → Rio de Janeiro</b><span>Voo IB0269 12h30 (chega 18h50)</span></td>
+        </tr></tbody></table>
+      </div>
+      <div>
+        <h3 class="sec">Pendências <span class="sec-sub">a fechar</span><span class="todo-prog" id="todoProg"></span></h3>
+        <ul class="todos" id="todoList"><li><label><input type="checkbox" class="tchk"><span class="tx">Trem noturno Praga → Bratislava</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Aluguel de carro 4x4/AWD (Bratislava, 23–25 dez)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Definir estação de ski (ex: Jasná)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Confirmar OldTown Hostel p/ 10 (25–26 dez)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Transporte Bratislava → Viena</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Confirmar JO&amp;JOE Vienna p/ 10 (26–29 dez)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Definir dia do bate-volta Hallstatt</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Horário do trem Viena → Budapeste</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Data + voo Budapeste → Paris</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Hostel Paris</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Hostel Barcelona</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">AVE Barcelona → Madri</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Van Gogh Museum (Amsterdã)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Disney Paris</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Torre Eiffel</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Palácio de Versalhes</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Arco do Triunfo</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Passeio de barco no Sena</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Passeio de barco no Danúbio</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Passe de ski (Eslováquia)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Casa de Anne Frank</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">ETIAS (todos os 10 viajantes)</span></label><button class="tdel" aria-label="Remover item">×</button></li></ul>
+        <div class="todo-add">
+          <input id="todoNew" placeholder="Nova pendência…" maxlength="120" aria-label="Nova pendência">
+          <button id="todoAddBtn">+ adicionar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="city mapsec" id="city-mapa" role="tabpanel" aria-labelledby="tab-mapa" hidden>
+    <div class="map-head">
+      <span class="hero-eyebrow">Rota · 9 cidades · 8 países</span>
+      <h2>O mapa da viagem</h2>
+      <p class="intro">Clique numa cidade (no mapa ou nos botões) para dar zoom e ver os pontos que você vai visitar — cada marcador abre uma foto e a descrição. Toque em “Europa” para voltar à rota completa.</p>
+    </div>
+    <div class="map-toolbar"><button class="mbtn active" data-focus="all">🌍 Europa</button><button class="mbtn" data-focus="londres">1. Londres</button><button class="mbtn" data-focus="amsterda">2. Amsterdã</button><button class="mbtn" data-focus="praga">3. Praga</button><button class="mbtn" data-focus="bratislava">4. Bratislava &amp; Orava</button><button class="mbtn" data-focus="viena">5. Viena</button><button class="mbtn" data-focus="budapeste">6. Budapeste</button><button class="mbtn" data-focus="paris">7. Paris</button><button class="mbtn" data-focus="barcelona">8. Barcelona</button><button class="mbtn" data-focus="madri">9. Madri</button></div>
+    <div id="leafmap" aria-label="Mapa interativo da viagem"></div>
+    <p class="map-note">Mapa: Leaflet + OpenStreetMap · marcadores numerados na ordem da viagem, ligados pela rota tracejada.</p>
+  </section>
+</main>
+
+<footer>
+  Roteiro montado combinando os planos existentes de <b>Londres</b> e <b>Viena</b> com itinerários completos para as demais cidades.<br>
+  Fotos: heros via <b>Unsplash</b> · pontos turísticos via <b>Wikimedia Commons</b> e <b>Brave</b>. Verifique horários e reservas antes de viajar.<br>
+  Edições e checklist ficam salvos neste navegador · <a href="#" class="reset-link" id="resetBtn">↺ restaurar conteúdo original</a>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="lb-close" id="lbClose" aria-label="Fechar">×</button>
+  <div class="lb-inner">
+    <img id="lbImg" src="" alt="">
+    <div class="lb-cap"><b id="lbTitle"></b><span id="lbCap"></span></div>
+  </div>
+</div>
+
+<script>
+var MAP_DATA=[{"key":"londres","name":"Londres","order":1,"dates":"15–18 dez","country":"Reino Unido","center":[51.5074,-0.1278],"points":[{"name":"Big Ben","cap":"O relógio mais famoso do mundo, ao lado do Parlamento.","ll":[51.5007,-0.1245],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Elizabeth_Tower%2C_June_2022.jpg/1280px-Elizabeth_Tower%2C_June_2022.jpg"},{"name":"London Eye","cap":"Roda-gigante às margens do Tâmisa, vista de toda a cidade.","ll":[51.5033,-0.1194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/London-Eye-2009.JPG/1280px-London-Eye-2009.JPG"},{"name":"Tower Bridge","cap":"A ponte levadiça vitoriana, cartão-postal de Londres.","ll":[51.5056,-0.0753],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Tower_Bridge_at_Dawn.jpg/1280px-Tower_Bridge_at_Dawn.jpg"},{"name":"Tower of London","cap":"Fortaleza milenar que guarda as joias da coroa.","ll":[51.50806,-0.07611],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Tower_of_London_from_the_Shard_%288515883950%29.jpg/1280px-Tower_of_London_from_the_Shard_%288515883950%29.jpg"},{"name":"British Museum","cap":"Acervo colossal e gratuito — da Pedra de Roseta às múmias.","ll":[51.5194,-0.1269],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/British_Museum_%28aerial%29.jpg/1280px-British_Museum_%28aerial%29.jpg"},{"name":"Buckingham Palace","cap":"Residência real e a clássica troca da guarda.","ll":[51.50083,-0.14194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Buckingham_Palace_London_Morning_2020_01_%28cropped%29.jpg/1280px-Buckingham_Palace_London_Morning_2020_01_%28cropped%29.jpg"},{"name":"St Paul's Cathedral","cap":"A cúpula barroca que domina a City.","ll":[51.5138,-0.0983],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/St_Pauls_aerial_%28cropped%29.jpg/1280px-St_Pauls_aerial_%28cropped%29.jpg"},{"name":"Covent Garden","cap":"Mercado coberto com artistas de rua e cafés.","ll":[51.5125,-0.1225],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Covent_Garden_Interior_May_2006_crop.jpg/1280px-Covent_Garden_Interior_May_2006_crop.jpg"},{"name":"Borough Market","cap":"O melhor mercado gastronômico da cidade.","ll":[51.50556,-0.09083],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/London_2018_March_IMG_0663.jpg/1280px-London_2018_March_IMG_0663.jpg"},{"name":"Warner Bros. Studio Tour London","cap":"Os sets reais dos filmes de Harry Potter.","ll":[51.69333,-0.41972],"img":"https://cdn-imgix.headout.com/media/images/7293c27a7d36116240336326429daac7-27495-london-from-london--harry-potter-warner-bros.-studio-semi-private-experience-with-champagne-03.jpg?auto=compress,format&w=695.0400000000001&h=434.4&q=96&crop=faces&fit=crop"},{"name":"Piccadilly Circus","cap":"O cruzamento elétrico com os letreiros luminosos.","ll":[51.51,-0.13444],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Open_Happiness_Piccadilly_Circus_Blue-Pink_Hour_120917-1126-jikatu.jpg/1280px-Open_Happiness_Piccadilly_Circus_Blue-Pink_Hour_120917-1126-jikatu.jpg"},{"name":"Camden Town","cap":"Bairro boêmio de mercados e música.","ll":[51.541,-0.1433],"img":"https://upload.wikimedia.org/wikipedia/commons/6/6c/Camden_Town_9.jpg"}]},{"key":"amsterda","name":"Amsterdã","order":2,"dates":"18–21 dez","country":"Holanda","center":[52.3676,4.9041],"points":[{"name":"Rijksmuseum","cap":"O grande museu nacional holandês — Rembrandt e Vermeer.","ll":[52.36,4.8853],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg/1280px-South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg"},{"name":"Van Gogh Museum","cap":"A maior coleção do mundo do pintor.","ll":[52.3583,4.8811],"img":"https://imgs.search.brave.com/PD5Q6dt7pXPzrxMDjUnId3DOoBgm8zduLAui0ceIUjo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly8yZ2J6/enhwN21rcnFwZ3B6/LnB1YmxpYy5ibG9i/LnZlcmNlbC1zdG9y/YWdlLmNvbS9hbXN0/ZXJkYW0tdmFuLWdv/Z2gvd2lkZV9leHRl/cmlvcl92aWV3XzAw/LndlYnA"},{"name":"Anne Frank House","cap":"O anexo secreto onde a família se escondeu.","ll":[52.37525,4.88432],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Amsterdam_%28NL%29%2C_Anne-Frank-Huis_--_2015_--_7185.jpg/1280px-Amsterdam_%28NL%29%2C_Anne-Frank-Huis_--_2015_--_7185.jpg"},{"name":"Canals of Amsterdam","cap":"Anéis de canais do séc. XVII, Patrimônio da Humanidade.","ll":[52.365,4.88778],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Imagen_de_los_canales_conc%C3%A9ntricos_en_%C3%81msterdam.png/1280px-Imagen_de_los_canales_conc%C3%A9ntricos_en_%C3%81msterdam.png"},{"name":"Vondelpark","cap":"O parque mais querido da cidade, ao lado do hostel.","ll":[52.358,4.868],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Amsterdam%2C_Vondelpark%2C_at_the_pond-2.jpg/1280px-Amsterdam%2C_Vondelpark%2C_at_the_pond-2.jpg"},{"name":"Dam Square","cap":"Praça central com o Palácio Real.","ll":[52.3731,4.8928],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Dam_Square_2024.jpg/1280px-Dam_Square_2024.jpg"},{"name":"Jordaan","cap":"Bairro charmoso de ruelas, brechós e cafés.","ll":[52.37639,4.88167],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Eerste_Leliedwarsstraat.jpg/1280px-Eerste_Leliedwarsstraat.jpg"},{"name":"Bloemenmarkt","cap":"O mercado de flores flutuante.","ll":[52.36667,4.89194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/SingelBloemenmarkt.jpg/1280px-SingelBloemenmarkt.jpg"},{"name":"Heineken Experience","cap":"A antiga cervejaria transformada em tour.","ll":[52.35778,4.89139],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Former_Heineken_Brewery_in_Amsterdam.jpg/1280px-Former_Heineken_Brewery_in_Amsterdam.jpg"},{"name":"A'DAM Lookout","cap":"Mirante com balanço sobre a cidade.","ll":[52.38306,4.89972],"img":"https://vonortzuort.reisen/wp-content/uploads/2019/03/lookout-foto-eingang.jpg"},{"name":"De Wallen","cap":"O famoso Red Light District — vielas medievais e néon.","ll":[52.37333,4.89806],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Oudezijds_Achterburgwal.jpg/1280px-Oudezijds_Achterburgwal.jpg"},{"name":"Dampkring","cap":"Coffeeshop lendário, cenário de 'Ocean's Twelve'.","ll":[52.36864,4.88976],"img":"https://imgs.search.brave.com/_1hHRR6NcQSTBAhoEoFHi_zqn30Fgl5evOV7yCQB-jQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5jbnRyYXZlbGVy/LmNvbS9waG90b3Mv/NTVlMGE3YjJjZGQx/NzYxMzQ4YmRhYjk2/LzE2Ojkvd18yNTYw/LGNfbGltaXQvZGUt/ZGFtcGtyaW5nLWFt/c3RlcmRhbS1jci1h/bGFteS5qcGc"}]},{"key":"praga","name":"Praga","order":3,"dates":"21–22 dez","country":"Tchéquia","center":[50.0755,14.4378],"points":[{"name":"Charles Bridge","cap":"A ponte gótica de estátuas sobre o Vltava.","ll":[50.08639,14.41194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg/1280px-Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg"},{"name":"Prague Castle","cap":"O maior complexo de castelo do mundo.","ll":[50.09,14.4],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Karl%C5%AFv_most_Praha%2C_Star%C3%A9_M%C4%9Bsto_20170810_007.jpg/1280px-Karl%C5%AFv_most_Praha%2C_Star%C3%A9_M%C4%9Bsto_20170810_007.jpg"},{"name":"Old Town Square (Prague)","cap":"Coração medieval, palco do mercado de Natal.","ll":[50.0875,14.4214],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Prague_07-2016_View_from_Old_Town_Hall_Tower_img3.jpg/1280px-Prague_07-2016_View_from_Old_Town_Hall_Tower_img3.jpg"},{"name":"Prague astronomical clock","cap":"O relógio astronômico de 1410, com o desfile dos apóstolos.","ll":[50.08701,14.42092],"img":"https://upload.wikimedia.org/wikipedia/commons/3/37/Astronomical_Clock_%288341899828%29.jpg"},{"name":"St. Vitus Cathedral","cap":"A catedral gótica dentro do castelo.","ll":[50.09083,14.40056],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/PragueCathedral03.jpg/1280px-PragueCathedral03.jpg"},{"name":"Wenceslas Square","cap":"O grande bulevar da Cidade Nova.","ll":[50.08139,14.4275],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Prague_Praha_2014_Holmstad_Vaclavplassen_i_nybyen_Nove_Mesto_flott.jpg/1280px-Prague_Praha_2014_Holmstad_Vaclavplassen_i_nybyen_Nove_Mesto_flott.jpg"},{"name":"Lennon Wall","cap":"Muro de grafites em homenagem à liberdade.","ll":[50.08624,14.40695],"img":"https://upload.wikimedia.org/wikipedia/commons/a/a5/Lennon_Wall%2C_August_2014.jpg"},{"name":"Dancing House","cap":"O prédio 'dançante' desconstruído à beira-rio.","ll":[50.07556,14.41417],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Tanzendes_Haus_2023.jpg/1280px-Tanzendes_Haus_2023.jpg"}]},{"key":"bratislava","name":"Bratislava & Orava","order":4,"dates":"23–26 dez","country":"Eslováquia","center":[48.1486,17.1077],"points":[{"name":"Bratislava Castle","cap":"O castelo branco de quatro torres sobre o Danúbio.","ll":[48.14222,17.1],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Bratislava_-_Burg_%28b%29.JPG/1280px-Bratislava_-_Burg_%28b%29.JPG"},{"name":"Old Town (Bratislava)","cap":"Cidade velha compacta de ruas de pedra e cafés.","ll":[48.144,17.108],"img":"https://www.roadsanddestinations.com/wp-content/uploads/2021/12/Two-sides-of-Bratislava-Old-and-New-Town-Roads-and-Destinations-3.jpg"},{"name":"Michael's Gate","cap":"A última torre-portão medieval da cidade.","ll":[48.14515,17.10667],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Slovakia-03123_-_Inside_of_St._Michael%27s_Gate_%2832286853995%29.jpg/1280px-Slovakia-03123_-_Inside_of_St._Michael%27s_Gate_%2832286853995%29.jpg"},{"name":"Orava Castle","cap":"Fortaleza dramática sobre um penhasco, perto do chalé.","ll":[49.26167,19.35806],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Oravsk%C3%BD_hrad_%28celkov%C3%BD_pohled%29.jpg/1280px-Oravsk%C3%BD_hrad_%28celkov%C3%BD_pohled%29.jpg"},{"name":"Jasná","cap":"A maior estação de ski da Eslováquia, nas Baixas Tatras.","ll":[48.97165,19.58485],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Jasn%C3%A1_Ski_Resort_-_gondola_lift_Kosodrevina_-_Chopok_%284%29.jpg/1280px-Jasn%C3%A1_Ski_Resort_-_gondola_lift_Kosodrevina_-_Chopok_%284%29.jpg"},{"name":"St Martin's Cathedral, Bratislava","cap":"Catedral gótica de coroações reais.","ll":[48.14214,17.10478],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Catedral_de_San_Mart%C3%ADn%2C_Bratislava%2C_Eslovaquia%2C_2020-02-01%2C_DD_48.jpg/1280px-Catedral_de_San_Mart%C3%ADn%2C_Bratislava%2C_Eslovaquia%2C_2020-02-01%2C_DD_48.jpg"},{"name":"UFO (bridge)","cap":"A ponte com mirante em forma de disco voador.","ll":[48.1383,17.1044],"img":"https://imgs.search.brave.com/LuCDW7QXYFZIxu9K67pKwaQFrCYnDlwSsiueol9-eNM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9pY29u/aWMtdWZvLWJ1aWxk/aW5nLWxhbmRtYXJr/LWJyYXRpc2xhdmEt/Y2l0eS1jYXBpdGFs/LXNsb3Zha2lhLWV1/cm9wZS0xNjExNjMw/MjQuanBn"}]},{"key":"viena","name":"Viena","order":5,"dates":"26–29 dez","country":"Áustria","center":[48.2082,16.3738],"points":[{"name":"Schönbrunn Palace","cap":"O Versalhes austríaco, com jardins imensos.","ll":[48.18452,16.31187],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Wien_-_Schloss_Sch%C3%B6nbrunn.JPG/1280px-Wien_-_Schloss_Sch%C3%B6nbrunn.JPG"},{"name":"St. Stephen's Cathedral, Vienna","cap":"A catedral gótica de telhado colorido, no coração da cidade.","ll":[48.2085,16.373],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Wien_-_Stephansdom_%281%29.JPG/1280px-Wien_-_Stephansdom_%281%29.JPG"},{"name":"Hofburg","cap":"O palácio de inverno dos Habsburgo.","ll":[48.20639,16.36528],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Wien_-_Neue_Hofburg.JPG/1280px-Wien_-_Neue_Hofburg.JPG"},{"name":"Belvedere, Vienna","cap":"Palácio barroco que guarda 'O Beijo', de Klimt.","ll":[48.19417,16.38028],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg/1280px-Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg"},{"name":"Kunsthistorisches Museum","cap":"Um dos maiores museus de arte do mundo.","ll":[48.20388,16.3616],"img":"https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/Kunsthistorisches_Museum_logo.svg/1280px-Kunsthistorisches_Museum_logo.svg.png"},{"name":"Hallstatt","cap":"A vila alpina de cartão-postal, no bate-volta.","ll":[47.562,13.649],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Hallstatt_-_Zentrum_.JPG/1280px-Hallstatt_-_Zentrum_.JPG"},{"name":"Vienna State Opera","cap":"A ópera mais célebre da Europa.","ll":[48.2029,16.369],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Wiener_Staatsoper_Front.jpg/1280px-Wiener_Staatsoper_Front.jpg"},{"name":"Naschmarkt","cap":"O mercado gastronômico mais famoso de Viena.","ll":[48.19889,16.36361],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Wien_-_Naschmarkt.JPG/1280px-Wien_-_Naschmarkt.JPG"},{"name":"Hundertwasser House","cap":"Prédio residencial colorido e sem linhas retas.","ll":[48.2075,16.3939],"img":"https://imgs.search.brave.com/ZuxzY1jXpfSO-oKuSHU0sJWd1MKp03XvTHQ6_uyyRf4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9odW5k/ZXJ0d2Fzc2VyLWhv/dXNlLXNjdWxwdHVy/ZS1saW9uLWZvcmVn/cm91bmQtdmllbm5h/LWF1c3RyaWEtbWFy/Y2gtaHVuZGVydHdh/c3NlcmhhdXMtZXhw/cmVzc2lvbmlzdC1s/YW5kbWFyay01MzM3/NTkwNS5qcGc"},{"name":"Wiener Prater","cap":"O parque com a roda-gigante histórica.","ll":[48.21611,16.39556],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Wien_02_Prater_a.jpg/1280px-Wien_02_Prater_a.jpg"}]},{"key":"budapeste","name":"Budapeste","order":6,"dates":"29 dez – 1/2 jan","country":"Hungria","center":[47.4979,19.0402],"points":[{"name":"Hungarian Parliament Building","cap":"O parlamento neogótico à beira do Danúbio.","ll":[47.50694,19.04556],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg/1280px-Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg"},{"name":"Fisherman's Bastion","cap":"Terraço de torres brancas com vista de Peste.","ll":[47.5027,19.0344],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Hal%C3%A1szb%C3%A1stya_2017.jpg/1280px-Hal%C3%A1szb%C3%A1stya_2017.jpg"},{"name":"Buda Castle","cap":"O palácio real sobre a colina de Buda.","ll":[47.49611,19.03972],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Budav%C3%A1ri_Palota%2C_ABCDEF_%C3%A9p%C3%BClet.jpg/1280px-Budav%C3%A1ri_Palota%2C_ABCDEF_%C3%A9p%C3%BClet.jpg"},{"name":"Széchenyi Medicinal Bath","cap":"As termas ao ar livre em prédio neobarroco.","ll":[47.51861,19.08194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Budapest_Sz%C3%A9chenyi_Baths_R02.jpg/1280px-Budapest_Sz%C3%A9chenyi_Baths_R02.jpg"},{"name":"Széchenyi Chain Bridge","cap":"A ponte-símbolo que uniu Buda e Peste.","ll":[47.49889,19.04361],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Sz%C3%A9chenyi_Chain_Bridge_in_Budapest_at_night.jpg/1280px-Sz%C3%A9chenyi_Chain_Bridge_in_Budapest_at_night.jpg"},{"name":"St. Stephen's Basilica","cap":"A basílica com o mirante da cúpula.","ll":[47.50083,19.05389],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Budapest_Szent_Istvan_Bazilika_R01.jpg/1280px-Budapest_Szent_Istvan_Bazilika_R01.jpg"},{"name":"Heroes' Square, Budapest","cap":"A grande praça monumental.","ll":[47.515,19.07778],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/HUN-2015-Budapest-Heroes%E2%80%99_Square.jpg/1280px-HUN-2015-Budapest-Heroes%E2%80%99_Square.jpg"},{"name":"Szimpla Kert","cap":"O ruin bar pioneiro do bairro judeu.","ll":[47.497,19.0634],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Szimpla_Kert_Trabant.jpg/1280px-Szimpla_Kert_Trabant.jpg"},{"name":"Great Market Hall, Budapest","cap":"O mercado central de lángos e páprica.","ll":[47.48667,19.05889],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/VasarcsarnokFotoThalerTamas.JPG/1280px-VasarcsarnokFotoThalerTamas.JPG"}]},{"key":"paris","name":"Paris","order":7,"dates":"2–6 jan","country":"França","center":[48.8566,2.3522],"points":[{"name":"Eiffel Tower","cap":"O símbolo de Paris, cintilante a cada hora à noite.","ll":[48.85822,2.2945],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1280px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg"},{"name":"Louvre","cap":"O maior museu do mundo, da Mona Lisa às antiguidades.","ll":[48.8611,2.3358],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Louvre_Museum_Wikimedia_Commons.jpg/1280px-Louvre_Museum_Wikimedia_Commons.jpg"},{"name":"Arc de Triomphe","cap":"O arco no topo dos Champs-Élysées.","ll":[48.87378,2.29503],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Arc_de_Triomphe%2C_Paris_21_October_2010.jpg/1280px-Arc_de_Triomphe%2C_Paris_21_October_2010.jpg"},{"name":"Notre-Dame de Paris","cap":"A catedral gótica reaberta em dez/2024.","ll":[48.85306,2.35],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Notre-Dame_de_Paris%2C_4_October_2017.jpg/1280px-Notre-Dame_de_Paris%2C_4_October_2017.jpg"},{"name":"Sacré-Cœur, Paris","cap":"A basílica branca no alto de Montmartre.","ll":[48.8867,2.3431],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Le_sacre_coeur.jpg/1280px-Le_sacre_coeur.jpg"},{"name":"Palace of Versailles","cap":"O palácio real e seus jardins monumentais.","ll":[48.8047,2.1203],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue_a%C3%A9rienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_081_%28cropped%29.jpg/1280px-Vue_a%C3%A9rienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_081_%28cropped%29.jpg"},{"name":"Champs-Élysées","cap":"A avenida mais famosa do mundo.","ll":[48.8698,2.3078],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Avenue_des_Champs-%C3%89lys%C3%A9es_July_24%2C_2009_N1.jpg/1280px-Avenue_des_Champs-%C3%89lys%C3%A9es_July_24%2C_2009_N1.jpg"},{"name":"Montmartre","cap":"O bairro dos artistas e das ruelas em ladeira.","ll":[48.88694,2.34111],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/View_from_Notre-Dame_de_Paris%2C_24_June_2014_004.jpg/1280px-View_from_Notre-Dame_de_Paris%2C_24_June_2014_004.jpg"},{"name":"Musée d'Orsay","cap":"Os impressionistas numa antiga estação de trem.","ll":[48.85997,2.32653],"img":"https://www.tiqets.com/blog/wp-content/uploads/2023/06/musee-dorsay-17.jpeg"},{"name":"Disneyland Park (Paris)","cap":"O parque temático, opção de dia inteiro.","ll":[48.87261,2.77675],"img":"https://disneyinsights.com/wp-content/uploads/2023/09/IMG_3969-scaled.jpeg"}]},{"key":"barcelona","name":"Barcelona","order":8,"dates":"6–8 jan","country":"Espanha","center":[41.3874,2.1686],"points":[{"name":"Sagrada Família","cap":"A basílica inacabada de Gaudí, obra de uma vida.","ll":[41.40369,2.17433],"img":"https://upload.wikimedia.org/wikipedia/commons/e/ef/SF_maig_2_cropped.jpg"},{"name":"Park Güell","cap":"O parque de mosaicos coloridos com vista da cidade.","ll":[41.41361,2.15278],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Parc_guell_-_panoramio.jpg/1280px-Parc_guell_-_panoramio.jpg"},{"name":"Casa Batlló","cap":"A fachada ondulada e escamosa de Gaudí.","ll":[41.39158,2.16492],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Casa_Batllo_Overview_Barcelona_Spain_cut.jpg/1280px-Casa_Batllo_Overview_Barcelona_Spain_cut.jpg"},{"name":"La Rambla","cap":"O bulevar mais movimentado da cidade.","ll":[41.3809,2.173],"img":"https://imgs.search.brave.com/9c05myEOVnrjFPVKMcJu_mhlNLp6BcaWgsDleQrZFZk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly91cy4x/MjNyZi5jb20vNDUw/d20vZWthdGVyaW5h/YmVsb3ZhL2VrYXRl/cmluYWJlbG92YTIx/MTAvZWthdGVyaW5h/YmVsb3ZhMjExMDAw/MjM4LzE3NjQzNDMw/MS1sYS1yYW1ibGEt/c3RyZWV0LWluLWJh/cmNlbG9uYS1jYXRh/bG9uaWEtc3BhaW4t/YXJjaGl0ZWN0dXJl/LWFuZC1sYW5kbWFy/ay1vZi1iYXJjZWxv/bmEtY2l0eXNjYXBl/LmpwZz92ZXI9Ng"},{"name":"Gothic Quarter, Barcelona","cap":"O labirinto medieval no coração antigo.","ll":[41.38278,2.17694],"img":"https://upload.wikimedia.org/wikipedia/commons/6/6d/Barcelona_-_Carrer_del_Bisbe.jpg"},{"name":"Casa Milà","cap":"A 'pedreira' de Gaudí, com terraço ondulado.","ll":[41.39528,2.16167],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Casa_Mil%C3%A0%2C_general_view.jpg/1280px-Casa_Mil%C3%A0%2C_general_view.jpg"},{"name":"Barceloneta","cap":"O bairro de praia e frutos do mar.","ll":[41.3797,2.1892],"img":"https://travel2next.com/wp-content/uploads/Barcelona-Landmarks2-630x1024.jpg"},{"name":"La Boqueria","cap":"O mercado colorido junto à Rambla.","ll":[41.38194,2.17194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Barcelona_-_Mercat_de_Sant_Josep_%28la_Boqueria%29_-_Entrance.jpg/1280px-Barcelona_-_Mercat_de_Sant_Josep_%28la_Boqueria%29_-_Entrance.jpg"},{"name":"Montjuïc","cap":"A colina com castelo, jardins e vista do porto.","ll":[41.36417,2.16083],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Fale_-_Spain_-_Barcelona_-_8.jpg/1280px-Fale_-_Spain_-_Barcelona_-_8.jpg"}]},{"key":"madri","name":"Madri","order":9,"dates":"8 jan","country":"Espanha","center":[40.4168,-3.7038],"points":[{"name":"Puerta del Sol","cap":"O marco zero da Espanha, se der um pulo rápido.","ll":[40.41694,-3.70361],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Puerta_del_Sol_%28Madrid%29_10.jpg/1280px-Puerta_del_Sol_%28Madrid%29_10.jpg"},{"name":"Plaza Mayor, Madrid","cap":"A grande praça porticada do centro histórico.","ll":[40.41536,-3.70739],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Madrid_Plaza_Mayor_%2848733706273%29.jpg/1280px-Madrid_Plaza_Mayor_%2848733706273%29.jpg"},{"name":"Madrid Atocha railway station","cap":"A estação com jardim tropical onde chega o AVE.","ll":[40.4065,-3.6893],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Atocha_railway_station_5.JPG/1280px-Atocha_railway_station_5.JPG"}]}];
+(function(){
+  // Tabs
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var panels=[].slice.call(document.querySelectorAll('.city'));
+  function show(key){
+    tabs.forEach(function(t){var on=t.dataset.city===key;t.classList.toggle('active',on);
+      if(on){t.setAttribute('aria-selected','true')}else{t.removeAttribute('aria-selected')}});
+    panels.forEach(function(p){p.hidden=(p.id!=='city-'+key)});
+    if(location.hash!=='#'+key){history.replaceState(null,'','#'+key)}
+    window.scrollTo({top:0,behavior:'smooth'});
+    if(key==='mapa'){setTimeout(showMap,60)}
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.city)})});
+  var start=(location.hash||'').replace('#','');
+  if(start&&document.getElementById('city-'+start)){show(start)}
+
+  // Theme
+  var root=document.documentElement, tb=document.getElementById('themeBtn');
+  var mc=document.querySelector('meta[name="theme-color"]');
+  function syncMC(){if(mc){mc.setAttribute('content',root.getAttribute('data-theme')==='dark'?'#12151d':'#f4efe6')}}
+  var saved=localStorage.getItem('eurotrip-theme');
+  if(saved){root.setAttribute('data-theme',saved)}
+  syncMC();
+  tb.addEventListener('click',function(){
+    var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);localStorage.setItem('eurotrip-theme',next);syncMC();
+  });
+
+  // Lightbox
+  var lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),
+      lbCap=document.getElementById('lbCap'),lbTitle=document.getElementById('lbTitle');
+  function openLb(el){lbImg.src=el.dataset.full;lbImg.alt=el.dataset.title;
+    lbTitle.textContent=el.dataset.title;lbCap.textContent=el.dataset.cap;lb.classList.add('open')}
+  function closeLb(){lb.classList.remove('open');lbImg.src=''}
+  document.querySelectorAll('.gcard').forEach(function(c){
+    c.addEventListener('click',function(){openLb(c)});
+    c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(c)}});
+  });
+  document.getElementById('lbClose').addEventListener('click',closeLb);
+  lb.addEventListener('click',function(e){if(e.target===lb)closeLb()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb()});
+
+  // Checklist de pendências (persistente)
+  var TKEY='eurotrip-todos-v1';
+  function tstate(){try{return JSON.parse(localStorage.getItem(TKEY)||'{}')}catch(e){return{}}}
+  function tsave(s){try{localStorage.setItem(TKEY,JSON.stringify(s))}catch(e){}}
+  var tlist=document.getElementById('todoList');
+  function tprog(){if(!tlist)return;
+    var tot=tlist.querySelectorAll('li').length,d=tlist.querySelectorAll('input:checked').length;
+    var p=document.getElementById('todoProg');if(p){p.textContent=d+' de '+tot+' resolvidas'}}
+  function bindTodo(li){
+    var chk=li.querySelector('input'),tx=li.querySelector('.tx').textContent;
+    chk.addEventListener('change',function(){var s=tstate();s.done=s.done||{};
+      if(chk.checked){s.done[tx]=1}else{delete s.done[tx]}
+      tsave(s);li.classList.toggle('done',chk.checked);tprog()});
+    li.querySelector('.tdel').addEventListener('click',function(){
+      if(!confirm('Remover esta pendência da lista?'))return;
+      var s=tstate();s.removed=s.removed||[];
+      if(s.removed.indexOf(tx)<0){s.removed.push(tx)}
+      s.added=(s.added||[]).filter(function(a){return a!==tx});
+      tsave(s);li.remove();tprog()});
+  }
+  function addTodoLi(text,checked){var li=document.createElement('li');
+    li.innerHTML='<label><input type="checkbox" class="tchk"><span class="tx"></span></label><button class="tdel" aria-label="Remover item">×</button>';
+    li.querySelector('.tx').textContent=text;
+    li.querySelector('input').checked=!!checked;
+    li.classList.toggle('done',!!checked);
+    tlist.appendChild(li);bindTodo(li);return li}
+  if(tlist){
+    var s0=tstate(),rem=s0.removed||[],done=s0.done||{};
+    [].slice.call(tlist.querySelectorAll('li')).forEach(function(li){
+      var tx=li.querySelector('.tx').textContent;
+      if(rem.indexOf(tx)>=0){li.remove();return}
+      if(done[tx]){li.querySelector('input').checked=true;li.classList.add('done')}
+      bindTodo(li)});
+    (s0.added||[]).forEach(function(t){if(rem.indexOf(t)<0){addTodoLi(t,done[t])}});
+    document.getElementById('todoAddBtn').addEventListener('click',function(){
+      var inp=document.getElementById('todoNew'),v=inp.value.trim();if(!v)return;
+      var s=tstate();s.added=s.added||[];
+      if(s.added.indexOf(v)<0){s.added.push(v)}
+      tsave(s);addTodoLi(v,false);inp.value='';tprog()});
+    document.getElementById('todoNew').addEventListener('keydown',function(e){
+      if(e.key==='Enter'){document.getElementById('todoAddBtn').click()}});
+    tprog();
+  }
+
+  // Modo de edição dos roteiros (persistente)
+  var EKEY='eurotrip-edits-v1', isEditing=false, saveT=null;
+  function eget(){try{return JSON.parse(localStorage.getItem(EKEY)||'{}')}catch(e){return{}}}
+  function cleanHTML(day){var c=day.cloneNode(true);
+    [].slice.call(c.querySelectorAll('.rowdel,.addrow')).forEach(function(n){n.remove()});
+    [].slice.call(c.querySelectorAll('[contenteditable]')).forEach(function(n){n.removeAttribute('contenteditable')});
+    return c.innerHTML}
+  function saveAllEdits(){var e=eget();
+    [].slice.call(document.querySelectorAll('.day[data-eid]')).forEach(function(d){e[d.dataset.eid]=cleanHTML(d)});
+    try{localStorage.setItem(EKEY,JSON.stringify(e))}catch(err){}}
+  function scheduleSave(){clearTimeout(saveT);saveT=setTimeout(saveAllEdits,700)}
+  (function restore(){var e=eget();
+    [].slice.call(document.querySelectorAll('.day[data-eid]')).forEach(function(d){
+      if(e[d.dataset.eid]){d.innerHTML=e[d.dataset.eid]}})})();
+  function decorateRow(tr){var t=tr.querySelector('.time');
+    if(!t||t.querySelector('.rowdel'))return;
+    var x=document.createElement('span');x.className='rowdel';x.textContent='×';
+    x.title='Remover linha';x.setAttribute('contenteditable','false');
+    x.addEventListener('click',function(){if(confirm('Remover esta linha do roteiro?')){tr.remove();scheduleSave()}});
+    t.appendChild(x)}
+  function setEditing(on){isEditing=on;document.body.classList.toggle('editing',on);
+    var eb=document.getElementById('editBtn');
+    eb.textContent=on?'✓ Concluir':'✎ Editar';eb.classList.toggle('on',on);
+    [].slice.call(document.querySelectorAll('.day[data-eid]')).forEach(function(day){
+      ['.day-name','.day-date','.day-tag','.time','.what','.warn','.cost'].forEach(function(sel){
+        [].slice.call(day.querySelectorAll(sel)).forEach(function(n){
+          if(on){n.setAttribute('contenteditable','true')}else{n.removeAttribute('contenteditable')}})});
+      if(on){
+        [].slice.call(day.querySelectorAll('.sched tr')).forEach(decorateRow);
+        if(!day.querySelector('.addrow')){
+          var b=document.createElement('button');b.className='addrow';b.textContent='+ adicionar linha';
+          b.addEventListener('click',function(){
+            var tb2=day.querySelector('.sched tbody')||day.querySelector('.sched');
+            var tr=document.createElement('tr');
+            tr.innerHTML='<td class="time">—</td><td class="what"><b>Nova atividade</b><span class="note">detalhes…</span></td>';
+            tb2.appendChild(tr);decorateRow(tr);
+            [].slice.call(tr.querySelectorAll('.time,.what')).forEach(function(n){n.setAttribute('contenteditable','true')});
+            scheduleSave()});
+          var tbl=day.querySelector('.sched');tbl.parentNode.insertBefore(b,tbl.nextSibling)}
+      }else{
+        [].slice.call(day.querySelectorAll('.rowdel,.addrow')).forEach(function(n){n.remove()});
+      }});
+    if(!on){saveAllEdits()}}
+  document.getElementById('editBtn').addEventListener('click',function(){setEditing(!isEditing)});
+  document.addEventListener('input',function(e){
+    if(isEditing&&e.target&&e.target.closest&&e.target.closest('.day[data-eid]')){scheduleSave()}});
+  window.addEventListener('beforeunload',function(){if(isEditing){saveAllEdits()}});
+  var rb=document.getElementById('resetBtn');
+  if(rb){rb.addEventListener('click',function(e){e.preventDefault();
+    if(confirm('Restaurar roteiros e checklist originais? Suas edições serão apagadas.')){
+      localStorage.removeItem(EKEY);localStorage.removeItem(TKEY);location.reload()}})}
+
+  // Map (Leaflet)
+  var MAP=null, routeLine=null, cityLayers={}, mapReady=false;
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  function setBtn(focus){document.querySelectorAll('.mbtn').forEach(function(b){b.classList.toggle('active',b.dataset.focus===focus)})}
+  function initMap(){
+    if(MAP||typeof L==='undefined')return MAP;
+    MAP=L.map('leafmap',{scrollWheelZoom:true,zoomControl:true}).setView([48.5,10],4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap'}).addTo(MAP);
+    routeLine=L.polyline(MAP_DATA.map(function(c){return c.center}),{color:'#e0a94e',weight:3,opacity:.75,dashArray:'2,9'}).addTo(MAP);
+    MAP_DATA.forEach(function(c){
+      var icon=L.divIcon({className:'citypin',html:'<span>'+c.order+'</span>',iconSize:[30,30],iconAnchor:[15,15]});
+      L.marker(c.center,{icon:icon,title:c.name}).addTo(MAP)
+        .bindPopup('<div class="city-pop"><b>'+esc(c.name)+'</b><br>'+esc(c.country)+' &middot; '+esc(c.dates)+'<br><a href="#" data-fc="'+c.key+'">ver '+c.points.length+' pontos &rarr;</a></div>');
+      var grp=L.layerGroup();
+      c.points.forEach(function(p){
+        var img=p.img?'<img src="'+p.img+'" alt="">':'';
+        L.marker(p.ll).bindPopup('<div class="poi-pop">'+img+'<b>'+esc(p.name)+'</b><span>'+esc(p.cap)+'</span></div>').addTo(grp);
+      });
+      cityLayers[c.key]=grp;
+    });
+    // popup "ver pontos" link
+    MAP.on('popupopen',function(e){
+      var a=e.popup._contentNode&&e.popup._contentNode.querySelector('[data-fc]');
+      if(a){a.addEventListener('click',function(ev){ev.preventDefault();MAP.closePopup();focusCity(a.dataset.fc)})}
+    });
+    return MAP;
+  }
+  function focusAll(){if(!initMap())return;for(var k in cityLayers){MAP.removeLayer(cityLayers[k])}MAP.fitBounds(routeLine.getBounds().pad(0.12));setBtn('all')}
+  function focusCity(key){if(!initMap())return;for(var k in cityLayers){if(k===key){cityLayers[k].addTo(MAP)}else{MAP.removeLayer(cityLayers[k])}}
+    var c=MAP_DATA.filter(function(x){return x.key===key})[0];if(!c)return;
+    if(c.points.length){MAP.fitBounds(L.latLngBounds(c.points.map(function(p){return p.ll})).pad(0.3))}else{MAP.setView(c.center,13)}
+    setBtn(key)}
+  function showMap(){if(!initMap())return;MAP.invalidateSize();if(!mapReady){focusAll();mapReady=true}}
+  document.querySelectorAll('.mbtn').forEach(function(b){b.addEventListener('click',function(){var f=b.dataset.focus;f==='all'?focusAll():focusCity(f)})});
+  if((location.hash||'').replace('#','')==='mapa'){setTimeout(showMap,60)}
+})();
+</script>
+</body>
+</html>
