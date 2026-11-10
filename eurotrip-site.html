@@ -116,6 +116,13 @@ h2,h3,h4{font-family:"Fraunces",Georgia,serif;font-weight:600;text-wrap:balance;
 .day-foot{display:flex;justify-content:space-between;align-items:center;gap:.8rem;flex-wrap:wrap;
   padding:.6rem 1.1rem;background:var(--raised2)}
 .day-foot .warn{font-size:.76rem;color:var(--berry);font-weight:600}
+.what .ok{display:inline-block;margin-left:.4rem;padding:0 .45rem;border-radius:999px;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;vertical-align:.12em;color:var(--teal);border:1px solid color-mix(in srgb,var(--teal) 50%,transparent);white-space:nowrap}
+.day-foot .okfoot{color:var(--teal)}
+.bookings{list-style:none;margin:0 0 1.6rem;padding:0;display:grid;gap:.5rem}
+.bookings li{border:1px solid var(--line);border-radius:10px;padding:.55rem .75rem;background:var(--raised);font-size:.86rem;line-height:1.45}
+.bookings li b{display:block;font-size:.9rem}
+.bookings li span{color:var(--ink-soft)}
+.bookings .bk-pay{border-color:color-mix(in srgb,var(--berry) 45%,var(--line))}
 .day-foot .cost{font-size:.8rem;color:var(--teal);font-weight:700;font-variant-numeric:tabular-nums}
 
 /* ---- Gallery ---- */
@@ -318,7 +325,7 @@ footer b{color:var(--ink-soft)}
     <div class="citybody">
       <div class="facts">
         <div class="fact"><span class="fk">Chegada</span><span class="fv">15/12 · 08h35 (LHR)</span></div>
-        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Eurostar → Amsterdã (18/12, 06h16)</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Eurostar → Amsterdã (18/12, 06h16) ✓</span></div>
       </div>
 
       <p class="intro">Três dias intensos cobrindo o coração histórico, os grandes museus e o obrigatório dos Estúdios Harry Potter. Ritmo puxado — comece cedo, use o metrô e reserve os ingressos com hora marcada com antecedência.</p>
@@ -333,15 +340,15 @@ footer b{color:var(--ink-soft)}
       <table class="sched"><tbody>
         <tr>
           <td class="time">08h35</td>
-          <td class="what"><b>Chegada em Heathrow</b><span class="note">Elizabeth Line até o centro (~35 min). Ative o contactless/Oyster.</span></td>
+          <td class="what"><b>Chegada em Heathrow (voo BA, saiu do GIG 14/12 18h)</b> <span class="ok">✓ pago</span><span class="note">Elizabeth Line até o centro (~35 min). Ative o contactless/Oyster.</span></td>
         </tr>
         <tr>
-          <td class="time">10h30</td>
-          <td class="what"><b>Malas no Generator London</b><span class="note">Deixe as malas e saia leve.</span></td>
+          <td class="time">12h00</td>
+          <td class="what"><b>Check-in antecipado no Generator London</b> <span class="ok">✓ pago</span><span class="note">37 Tavistock Pl. Early check-in às 12h já pago. Mostre o cartão usado no pagamento. Quarto privativo de 8 camas.</span></td>
         </tr>
         <tr>
           <td class="time">13h45</td>
-          <td class="what"><b>Museu de História Natural</b><span class="note">Horário marcado às 13h45. Entrada gratuita — dinossauros e o Hintze Hall.</span></td>
+          <td class="what"><b>Museu de História Natural</b> <span class="ok">✓ reservado</span><span class="note">Entrada com horário às 13h45 (ingressos comprados pela Mariana).</span></td>
         </tr>
         <tr>
           <td class="time">16h30</td>
@@ -360,7 +367,7 @@ footer b{color:var(--ink-soft)}
           <td class="what"><b>Jantar em Chinatown</b><span class="note">Barato e bem localizado.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Natural History 13h45</span>
+        <span class="warn okfoot">✓ Hostel + Natural History</span>
         <span class="cost">≈ £35 pp</span>
       </div>
     </article>
@@ -430,8 +437,8 @@ footer b{color:var(--ink-soft)}
           <td class="what"><b>Sair rumo a Leavesden</b><span class="note">Trem de Euston até Watford Junction + ônibus dos estúdios.</span></td>
         </tr>
         <tr>
-          <td class="time">09h00</td>
-          <td class="what"><b>Warner Bros. Studio — The Making of Harry Potter</b><span class="note">Das 9h às 12h30. £58, já pago.</span></td>
+          <td class="time">09h30</td>
+          <td class="what"><b>Warner Bros. Studio — The Making of Harry Potter</b> <span class="ok">✓ pago</span><span class="note">Entrada às 9h30 (£58,50). Chegue no máximo 20 min antes. E-ticket no celular ou impresso.</span></td>
         </tr>
         <tr>
           <td class="time">13h30</td>
@@ -455,10 +462,10 @@ footer b{color:var(--ink-soft)}
         </tr>
         <tr>
           <td class="time">21h30</td>
-          <td class="what"><b>Recolher cedo</b><span class="note">Eurostar 06h16 em St Pancras — chegue ~1h antes.</span></td>
+          <td class="what"><b>Recolher cedo</b><span class="note">Eurostar 06h16 em St Pancras (10 min a pé do hostel) — chegue ~1h antes.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Estúdio já pago · Eurostar cedo</span>
+        <span class="warn okfoot">✓ Estúdio pago · Eurostar cedo</span>
         <span class="cost">≈ £25 pp (extra)</span>
       </div>
     </article></div>
@@ -548,8 +555,8 @@ footer b{color:var(--ink-soft)}
 
     <div class="citybody">
       <div class="facts">
-        <div class="fact"><span class="fk">Chegada</span><span class="fv">18/12 · 11h20 (Eurostar)</span></div>
-        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Voo → Praga (21/12, 06h55)</span></div>
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">18/12 · 11h20 (Eurostar) ✓</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Voo KL1351 → Praga (21/12, 06h55) ✓</span></div>
       </div>
 
       <p class="intro">Canais, museus de mundo, coffeeshops lendários e o Red Light District. Base no Vondelpark, a poucos minutos do Museumplein. Reserve Anne Frank e Van Gogh com semanas de antecedência — esgotam rápido.</p>
@@ -563,8 +570,12 @@ footer b{color:var(--ink-soft)}
       </div>
       <table class="sched"><tbody>
         <tr>
+          <td class="time">06h16</td>
+          <td class="what"><b>Eurostar St Pancras → Amsterdam Centraal</b> <span class="ok">✓ pago</span><span class="note">Direto, 4h04. Preencha o API (dados do passaporte) no site da Eurostar para liberar o bilhete.</span></td>
+        </tr>
+        <tr>
           <td class="time">11h20</td>
-          <td class="what"><b>Chegada de Eurostar (Amsterdam Centraal)</b><span class="note">Deixe as malas no Stayokay Vondelpark (tram) ou nos lockers da estação.</span></td>
+          <td class="what"><b>Chegada em Amsterdam Centraal</b><span class="note">Deixe as malas no Stayokay Vondelpark (Zandpad 5, tram) ou nos lockers da estação.</span></td>
         </tr>
         <tr>
           <td class="time">12h00</td>
@@ -600,10 +611,10 @@ footer b{color:var(--ink-soft)}
         </tr>
         <tr>
           <td class="time">20h30</td>
-          <td class="what"><b>Lourens</b><span class="note">Cookie croissant — confira o horário, padaria fecha cedo.</span></td>
+          <td class="what"><b>Lourens + check-in no Stayokay</b><span class="note">Cookie croissant (confira o horário). No check-in: taxa turística de €107,40 do grupo.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Reservar passeio de barco</span>
+        <span class="warn">⚑ Taxa turística €107,40 no check-in</span>
         <span class="cost">≈ €45 pp</span>
       </div>
     </article>
@@ -615,7 +626,7 @@ footer b{color:var(--ink-soft)}
       <table class="sched"><tbody>
         <tr>
           <td class="time">10h15</td>
-          <td class="what"><b>Museu Van Gogh</b><span class="note">Horário marcado às 10h15 (€25).</span></td>
+          <td class="what"><b>Museu Van Gogh</b> <span class="ok">✓ pago</span><span class="note">Entrada de vidro, Museumplein 6. Dá para entrar até 30 min depois do horário. PDF no celular.</span></td>
         </tr>
         <tr>
           <td class="time">12h30</td>
@@ -627,15 +638,15 @@ footer b{color:var(--ink-soft)}
         </tr>
         <tr>
           <td class="time">15h15</td>
-          <td class="what"><b>Heineken Experience</b><span class="note">Horário marcado às 15h15 (€29,95). Tour com degustação.</span></td>
+          <td class="what"><b>Heineken Experience</b> <span class="ok">✓ pago</span><span class="note">Tour com degustação. E-ticket no celular, não precisa imprimir.</span></td>
         </tr>
         <tr>
           <td class="time">18h00</td>
           <td class="what"><b>Leidseplein</b><span class="note">Jantar e noite na praça; o Bulldog Palace (coffeeshop) fica ali.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Van Gogh 10h15 · Heineken 15h15</span>
-        <span class="cost">≈ €75 pp</span>
+        <span class="warn okfoot">✓ Van Gogh + Heineken pagos</span>
+        <span class="cost">≈ €20 pp (extra)</span>
       </div>
     </article>
     <article class="day" data-eid="amsterda-d2">
@@ -646,7 +657,7 @@ footer b{color:var(--ink-soft)}
       <table class="sched"><tbody>
         <tr>
           <td class="time">09h15</td>
-          <td class="what"><b>Casa de Anne Frank</b><span class="note">Das 9h15 às 10h. Ingressos só online, liberados ~6 semanas antes.</span></td>
+          <td class="what"><b>Casa de Anne Frank</b> <span class="ok">✓ pago</span><span class="note">Ingressos comprados (pedido N2645037428) — escaneados no celular. Confira o horário no PDF.</span></td>
         </tr>
         <tr>
           <td class="time">10h30</td>
@@ -666,11 +677,11 @@ footer b{color:var(--ink-soft)}
         </tr>
         <tr>
           <td class="time">21h30</td>
-          <td class="what"><b>Recolher cedo</b><span class="note">Voo 06h55 — saída do hostel ~04h30.</span></td>
+          <td class="what"><b>Recolher cedo</b><span class="note">Voo KL1351 06h55 em Schiphol — saída do hostel ~04h30.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Reservar Anne Frank · voo cedo amanhã</span>
-        <span class="cost">≈ €40 pp</span>
+        <span class="warn okfoot">✓ Anne Frank pago · voo cedo amanhã</span>
+        <span class="cost">≈ €25 pp (extra)</span>
       </div>
     </article></div>
 
@@ -763,8 +774,8 @@ footer b{color:var(--ink-soft)}
 
     <div class="citybody">
       <div class="facts">
-        <div class="fact"><span class="fk">Chegada</span><span class="fv">21/12 · 08h25 (voo)</span></div>
-        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Trem noturno → Bratislava (~23h de 22/12)</span></div>
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">21/12 · 08h25 (voo KL1351) ✓</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">FlixBus → Bratislava (23/12, 01h45) ✓</span></div>
       </div>
 
       <p class="intro">Só um dia e meio, então vai concentrado no essencial: a Cidade Velha, a Ponte Carlos e o Castelo. A cidade fica mágica com os mercados de Natal e a neblina do inverno.</p>
@@ -778,12 +789,16 @@ footer b{color:var(--ink-soft)}
       </div>
       <table class="sched"><tbody>
         <tr>
+          <td class="time">06h55</td>
+          <td class="what"><b>Voo KL1351 Amsterdã → Praga</b> <span class="ok">✓ pago</span><span class="note">Operado pela German Airways (parceira da KLM). Chega 08h25.</span></td>
+        </tr>
+        <tr>
           <td class="time">08h25</td>
           <td class="what"><b>Chegada no Aeroporto de Praga</b><span class="note">Ônibus + metrô até o centro.</span></td>
         </tr>
         <tr>
           <td class="time">10h00</td>
-          <td class="what"><b>Malas no Safestay Charles Bridge</b><span class="note">Na Ostrovní, em Nové Město.</span></td>
+          <td class="what"><b>Malas no Safestay Charles Bridge</b> <span class="ok">✓ pago</span><span class="note">Ostrovní 131/15. 2 quartos privativos de 8 camas, com café da manhã.</span></td>
         </tr>
         <tr>
           <td class="time">10h30</td>
@@ -825,6 +840,10 @@ footer b{color:var(--ink-soft)}
       </div>
       <table class="sched"><tbody>
         <tr>
+          <td class="time">08h00</td>
+          <td class="what"><b>Café da manhã + check-out</b><span class="note">Café incluído. Peça para guardar as malas até a noite.</span></td>
+        </tr>
+        <tr>
           <td class="time">09h00</td>
           <td class="what"><b>Biblioteca Municipal</b><span class="note">A torre de livros infinita (Idiom), logo na entrada.</span></td>
         </tr>
@@ -845,11 +864,15 @@ footer b{color:var(--ink-soft)}
           <td class="what"><b>Praça Venceslau</b><span class="note">Mercado de Natal, compras e jantar.</span></td>
         </tr>
         <tr>
-          <td class="time">23h00</td>
-          <td class="what"><b>Trem noturno → Bratislava</b><span class="note">Reserve com antecedência (pendência). Chega ~06h.</span></td>
+          <td class="time">00h45</td>
+          <td class="what"><b>Pegar as malas + ir para a Hlavní nádraží</b><span class="note">Estação central de Praga — o ponto do FlixBus fica perto do estacionamento.</span></td>
+        </tr>
+        <tr>
+          <td class="time">01h45</td>
+          <td class="what"><b>FlixBus Praga → Bratislava</b> <span class="ok">✓ pago</span><span class="note">Já é 23/12. Chega 06h00 na rodoviária Mlynské Nivy (Bratislava).</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Comprar trem noturno</span>
+        <span class="warn okfoot">✓ FlixBus pago · noite sem hospedagem</span>
         <span class="cost">≈ €35 pp</span>
       </div>
     </article></div>
@@ -897,7 +920,7 @@ footer b{color:var(--ink-soft)}
       </div>
       <div class="ibox">
         <h4>Reservas</h4>
-        <ul><li>Trem noturno Praga→Bratislava: comprar (pendência).</li><li>Ingresso do castelo pode ser comprado na hora.</li><li>Guarde bagagem no hostel após o checkout.</li></ul>
+        <ul><li>✓ FlixBus Praga→Bratislava pago: sai 01h45 de 23/12 da estação central (Hlavní nádraží).</li><li>Ingresso do castelo pode ser comprado na hora.</li><li>Guarde bagagem no hostel após o checkout.</li></ul>
       </div>
       <div class="ibox">
         <h4>Dicas</h4>
@@ -915,7 +938,7 @@ footer b{color:var(--ink-soft)}
         <h2>Bratislava &amp; Orava</h2>
         <div class="hero-chips">
           <span class="chip"><span class="chip-k">Estadia</span> 3 noites</span>
-          <span class="chip"><span class="chip-k">Base</span> Chalé 'Chata u Džonyho' (Lago Orava) + OldTown Hostel (Bratislava)</span>
+          <span class="chip"><span class="chip-k">Base</span> Chalé 'Chata u Džonyho' (Trstená) + Metropolitan Star (Bratislava)</span>
           <span class="chip"><span class="chip-k">Custo</span> ≈ €120–180 pp (+ carro e ski)</span>
         </div>
       </div>
@@ -923,35 +946,35 @@ footer b{color:var(--ink-soft)}
 
     <div class="citybody">
       <div class="facts">
-        <div class="fact"><span class="fk">Chegada</span><span class="fv">23/12 · 06h00 (trem)</span></div>
-        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Bratislava → Viena (26/12, fim do dia)</span></div>
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">23/12 · 06h00 (FlixBus, Mlynské Nivy) ✓</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Trem → Viena (26/12, 17h50) ✓</span></div>
       </div>
 
-      <p class="intro">O trecho mais aventureiro: chega de trem noturno, pega um 4x4 e sobe para um chalé de Natal no Lago Orava, nas montanhas nevadas. Dia de ski no Natal e, na volta, um dia para conhecer a charmosa Bratislava antes de seguir para Viena.</p>
+      <p class="intro">O trecho mais aventureiro: chega de FlixBus de madrugada, pega dois carros e sobe para um chalé de Natal no Lago Orava, nas montanhas nevadas. Dia de ski no Natal e, na volta, um dia para conhecer a charmosa Bratislava antes de seguir para Viena.</p>
 
       <h3 class="sec">Roteiro <span class="sec-sub">dia a dia</span></h3>
       <div class="days">
     <article class="day" data-eid="bratislava-d0">
       <div class="day-head">
-        <div><span class="day-name">Chegada + subida ao chalé</span> <span class="day-tag">estrada</span></div>
+        <div><span class="day-name">Carros + subida ao chalé</span> <span class="day-tag">estrada</span></div>
         <span class="day-date">Qua 23/12</span>
       </div>
       <table class="sched"><tbody>
         <tr>
           <td class="time">06h00</td>
-          <td class="what"><b>Chegada em Bratislava (estação central)</b><span class="note">Café da manhã na estação enquanto o dia clareia.</span></td>
+          <td class="what"><b>Chegada do FlixBus na Mlynské Nivy</b> <span class="ok">✓ pago</span><span class="note">A rodoviária fica dentro do shopping Nivy. Café enquanto espera.</span></td>
+        </tr>
+        <tr>
+          <td class="time">07h30</td>
+          <td class="what"><b>Retirada dos carros (humlet)</b> <span class="ok">✓ pago</span><span class="note">Nível -1 do Nivy, em frente à loja ALZA, ao lado da entrada da rodoviária. Renault Trafic 9 lugares + Kia Ceed SW, seguro MAXI. Caução €500 por carro no cartão. Levem a PID.</span></td>
         </tr>
         <tr>
           <td class="time">08h30</td>
-          <td class="what"><b>Retirada do carro alugado</b><span class="note">Precisa ser 4x4/AWD (pendência) — terreno de montanha nevado.</span></td>
-        </tr>
-        <tr>
-          <td class="time">09h00</td>
-          <td class="what"><b>Estrada rumo ao Lago Orava</b><span class="note">~3h30 de viagem para o norte. Pare para mercado e suprimentos.</span></td>
+          <td class="what"><b>Mercado + estrada rumo a Trstená (Lago Orava)</b><span class="note">~3h para o norte. Compre comida para o Natal — o comércio fecha nos dias 24 e 25.</span></td>
         </tr>
         <tr>
           <td class="time">13h00</td>
-          <td class="what"><b>Check-in no chalé 'Chata u Džonyho'</b><span class="note">Slanická Osada, à beira do lago. Acomode-se.</span></td>
+          <td class="what"><b>Check-in no chalé 'Chata u Džonyho'</b> <span class="ok">✓ pago</span><span class="note">Trstená, GPS 49.385100, 19.531599. Chalé inteiro: 8 quartos, sauna e hidro. Pagar saldo de €680 + caução de €500 ao Ján.</span></td>
         </tr>
         <tr>
           <td class="time">15h00</td>
@@ -962,7 +985,7 @@ footer b{color:var(--ink-soft)}
           <td class="what"><b>Jantar no chalé</b><span class="note">Cozinhem juntos — clima de véspera de Natal.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Reservar 4x4/AWD</span>
+        <span class="warn">⚑ Avisar o Ján do horário de chegada</span>
         <span class="cost">≈ €40 pp</span>
       </div>
     </article>
@@ -982,7 +1005,7 @@ footer b{color:var(--ink-soft)}
         </tr>
         <tr>
           <td class="time">15h30</td>
-          <td class="what"><b>Volta ao chalé + descanso</b><span class="note">Neve, lareira e preparo da ceia.</span></td>
+          <td class="what"><b>Volta ao chalé + sauna e hidro</b><span class="note">Neve, lareira e preparo da ceia.</span></td>
         </tr>
         <tr>
           <td class="time">19h00</td>
@@ -1001,23 +1024,23 @@ footer b{color:var(--ink-soft)}
       <table class="sched"><tbody>
         <tr>
           <td class="time">08h00</td>
-          <td class="what"><b>Café + estrada até Jasná</b><span class="note">Resort nas Baixas Tatras (~1h do lago). Confirme o local do ski (pendência).</span></td>
+          <td class="what"><b>Check-out + estrada até a estação de ski</b><span class="note">Kubínska hoľa é a preferida (mais perto, dá para voltar a Bratislava no mesmo dia). Local ainda a definir.</span></td>
         </tr>
         <tr>
           <td class="time">09h30</td>
-          <td class="what"><b>Ski em Jasná (Chopok)</b><span class="note">Maior estação da Eslováquia. Compre o passe (pendência); alugue equipamento.</span></td>
+          <td class="what"><b>Dia de ski</b><span class="note">Compre o passe e alugue equipamento (pendência).</span></td>
         </tr>
         <tr>
           <td class="time">16h00</td>
-          <td class="what"><b>Fim do ski + estrada para Bratislava</b><span class="note">~3h de descida. Dirija com atenção — estrada de neve.</span></td>
-        </tr>
-        <tr>
-          <td class="time">19h30</td>
-          <td class="what"><b>Devolução do carro + check-in no OldTown Hostel</b><span class="note">No coração da Cidade Velha — bares e restaurantes na porta.</span></td>
+          <td class="what"><b>Fim do ski + estrada para Bratislava</b><span class="note">~3h30 de descida. Dirija com atenção — estrada de neve.</span></td>
         </tr>
         <tr>
           <td class="time">20h30</td>
-          <td class="what"><b>Jantar leve no centro</b><span class="note">Descanso após o dia na montanha.</span></td>
+          <td class="what"><b>Check-in no Metropolitan Star Apart Hotel</b> <span class="ok">✓ pago</span><span class="note">Námestie 1. mája 9. 2 estúdios + 1 apartamento (10 pessoas). Pagar imposto municipal de €35 + caução de €100 no cartão.</span></td>
+        </tr>
+        <tr>
+          <td class="time">21h30</td>
+          <td class="what"><b>Devolução dos carros (humlet)</b> <span class="ok">✓ pago</span><span class="note">Confirmada por escrito mesmo sendo feriado. Contato: +421 904 039 039.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
         <span class="warn">⚑ Passe de ski + equipamento</span>
@@ -1039,6 +1062,10 @@ footer b{color:var(--ink-soft)}
           <td class="what"><b>Castelo de Bratislava</b><span class="note">O 'castelo de quatro torres' sobre o Danúbio; vista da cidade e da Áustria.</span></td>
         </tr>
         <tr>
+          <td class="time">11h00</td>
+          <td class="what"><b>Check-out do hotel</b><span class="note">Até as 11h — deixe as malas na recepção.</span></td>
+        </tr>
+        <tr>
           <td class="time">12h30</td>
           <td class="what"><b>Almoço + Catedral de São Martinho</b><span class="note">Onde reis húngaros eram coroados.</span></td>
         </tr>
@@ -1051,11 +1078,11 @@ footer b{color:var(--ink-soft)}
           <td class="what"><b>Praça Central + estátuas curiosas</b><span class="note">Procure o 'Čumil', o homem saindo do bueiro.</span></td>
         </tr>
         <tr>
-          <td class="time">17h30</td>
-          <td class="what"><b>Transporte para Viena</b><span class="note">Trem ou ônibus (~1h). Chega a Viena no fim do dia (pendência).</span></td>
+          <td class="time">17h50</td>
+          <td class="what"><b>Trem Bratislava hl. st. → Viena</b> <span class="ok">✓ pago</span><span class="note">REX 8 até Wien Hbf (18h46), troca para o EC 148 às 19h30 e chega na Westbahnhof às 20h00. Viagem internacional da ÖBB: imprima o PDF.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Definir transporte p/ Viena</span>
+        <span class="warn okfoot">✓ Trem pago — imprimir o bilhete</span>
         <span class="cost">≈ €30 pp</span>
       </div>
     </article></div>
@@ -1095,15 +1122,15 @@ footer b{color:var(--ink-soft)}
       <div class="iboxes">
       <div class="ibox">
         <h4>Transporte</h4>
-        <ul><li>Carro 4x4/AWD é obrigatório — estrada de montanha nevada (pendência).</li><li>Do chalé a Jasná é ~1h; a Bratislava, ~3h30.</li><li>Bratislava→Viena: trem ou ônibus, ~1h, várias saídas por dia.</li></ul>
+        <ul><li>Carros da humlet (reservas 9035 + 9037): Renault Trafic 9 lugares + Kia Ceed SW, automáticos, pneus de inverno, km livre e vinheta eslovaca inclusos. Correntes: €3/dia.</li><li>Retirada 23/12 às 7h30 no Nivy (nível -1, frente à ALZA); devolução 25/12 às 21h30. Lembrete com foto chega dia 22.</li><li>Bratislava→Viena: trem 17h50 já comprado (imprimir o PDF).</li></ul>
       </div>
       <div class="ibox">
         <h4>Reservas</h4>
-        <ul><li>Aluguel do carro AWD (pendência).</li><li>Passe de ski e aluguel de equipamento em Jasná (pendência).</li><li>OldTown Hostel definido para a noite 25→26 — confirmar reserva para 10 pessoas.</li></ul>
+        <ul><li>✓ Chalé, carros, hotel em Bratislava e trem para Viena já pagos.</li><li>Pagar no chalé: saldo de €680 + caução de €500. No hotel: imposto de €35 + caução de €100.</li><li>Pendente: definir a estação de ski (Kubínska hoľa?) e comprar o passe.</li></ul>
       </div>
       <div class="ibox">
         <h4>Dicas</h4>
-        <ul><li>Comércio fecha nos dias 24–25: compre comida antes.</li><li>Leve correntes/experiência de direção na neve.</li><li>Na Eslováquia a ceia é dia 24 à noite — planeje o mercado para o dia 23.</li></ul>
+        <ul><li>Comércio fecha nos dias 24–25: compre comida antes.</li><li>Levem a PID (permissão internacional) junto com a CNH.</li><li>Na Eslováquia a ceia é dia 24 à noite — planeje o mercado para o dia 23.</li></ul>
       </div></div>
     </div>
   </section>
@@ -1117,7 +1144,7 @@ footer b{color:var(--ink-soft)}
         <h2>Viena</h2>
         <div class="hero-chips">
           <span class="chip"><span class="chip-k">Estadia</span> 3 noites</span>
-          <span class="chip"><span class="chip-k">Base</span> JO&amp;JOE Vienna (Europaplatz, em frente à Westbahnhof)</span>
+          <span class="chip"><span class="chip-k">Base</span> BeFree Hostel (Beingasse 13, perto da Westbahnhof)</span>
           <span class="chip"><span class="chip-k">Custo</span> ≈ €160–210 pp</span>
         </div>
       </div>
@@ -1125,7 +1152,7 @@ footer b{color:var(--ink-soft)}
 
     <div class="citybody">
       <div class="facts">
-        <div class="fact"><span class="fk">Chegada</span><span class="fv">26/12 · fim do dia (de Bratislava)</span></div>
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">26/12 · 20h00 (Westbahnhof) ✓</span></div>
         <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Viena → Budapeste (29/12)</span></div>
       </div>
 
@@ -1140,19 +1167,19 @@ footer b{color:var(--ink-soft)}
       </div>
       <table class="sched"><tbody>
         <tr>
-          <td class="time">fim do dia</td>
-          <td class="what"><b>Chegada de Bratislava + check-in no JO&amp;JOE Vienna</b><span class="note">Em frente à Westbahnhof — U3/U6 no mesmo prédio.</span></td>
+          <td class="time">20h00</td>
+          <td class="what"><b>Chegada na Westbahnhof</b> <span class="ok">✓ pago</span><span class="note">De Bratislava, via Wien Hbf.</span></td>
         </tr>
         <tr>
-          <td class="time">19h00</td>
-          <td class="what"><b>Naschmarkt ou jantar no centro</b><span class="note">Primeiro contato com a cidade; comida no NENI ou Umarfisch.</span></td>
+          <td class="time">20h15</td>
+          <td class="what"><b>Check-in no BeFree Hostel</b> <span class="ok">✓ pago</span><span class="note">Beingasse 13 (esq. Goldschlagstraße), 15º distrito, perto da Westbahnhof. Self check-in até 0h. 2 quartos de 4 camas, banheiro compartilhado.</span></td>
         </tr>
         <tr>
-          <td class="time">20h30</td>
-          <td class="what"><b>Volta tranquila</b><span class="note">Descanse — amanhã é dia cheio.</span></td>
+          <td class="time">21h00</td>
+          <td class="what"><b>Jantar perto do hostel</b><span class="note">Algo rápido no bairro — amanhã é dia cheio.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span></span>
+        <span class="warn">⚑ Banheiro compartilhado (avisar o grupo)</span>
         <span class="cost">≈ €25 pp</span>
       </div>
     </article>
@@ -1313,7 +1340,7 @@ footer b{color:var(--ink-soft)}
       <div class="iboxes">
       <div class="ibox">
         <h4>Transporte</h4>
-        <ul><li>24h-Pass (€10,20) compensa nos dias cheios.</li><li>O JO&amp;JOE fica em frente à Westbahnhof — U3/U6 na porta.</li><li>Hallstatt: trem via Attnang-Puchheim; último de volta 17h03.</li></ul>
+        <ul><li>24h-Pass (€10,20) compensa nos dias cheios.</li><li>O BeFree Hostel fica a poucos minutos da Westbahnhof (U3/U6). Check-in self-service até 0h.</li><li>Hallstatt: trem via Attnang-Puchheim; último de volta 17h03.</li></ul>
       </div>
       <div class="ibox">
         <h4>Reservas</h4>
@@ -1321,7 +1348,7 @@ footer b{color:var(--ink-soft)}
       </div>
       <div class="ibox">
         <h4>Dicas</h4>
-        <ul><li>Sol põe ~16h05 — atrações externas até 15h30.</li><li>Se o tempo virar, troque Spittelberg pela Albertina (indoor).</li><li>Cafés históricos: peça um melange e não tenha pressa.</li></ul>
+        <ul><li>Hostel com banheiro compartilhado (2 quartos de 4 camas, 8 pessoas). Não reembolsável.</li><li>Sol põe ~16h05 — atrações externas até 15h30.</li><li>Se o tempo virar, troque Spittelberg pela Albertina (indoor).</li><li>Cafés históricos: peça um melange e não tenha pressa.</li></ul>
       </div></div>
     </div>
   </section>
@@ -1335,7 +1362,7 @@ footer b{color:var(--ink-soft)}
         <h2>Budapeste</h2>
         <div class="hero-chips">
           <span class="chip"><span class="chip-k">Estadia</span> 3 noites</span>
-          <span class="chip"><span class="chip-k">Base</span> Klauzál u. 21 (Party District)</span>
+          <span class="chip"><span class="chip-k">Base</span> Sweet 16 Apartment (Klauzál u. 21)</span>
           <span class="chip"><span class="chip-k">Custo</span> ≈ €180–260 pp</span>
         </div>
       </div>
@@ -1344,7 +1371,7 @@ footer b{color:var(--ink-soft)}
     <div class="citybody">
       <div class="facts">
         <div class="fact"><span class="fk">Chegada</span><span class="fv">29/12 (de Viena)</span></div>
-        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Voo → Paris (1/1, chega ~23h)</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Voo LOT → Paris (1/1, 18h00) ✓</span></div>
       </div>
 
       <p class="intro">O Réveillon da viagem, na cidade das termas e dos ruin bars. Base no Party District, a poucos passos da vida noturna. Buda e Peste divididas pelo Danúbio, com uma virada de ano à beira do rio.</p>
@@ -1359,7 +1386,7 @@ footer b{color:var(--ink-soft)}
       <table class="sched"><tbody>
         <tr>
           <td class="time">tarde</td>
-          <td class="what"><b>Chegada de Viena + check-in</b><span class="note">Klauzál u. 21, no coração do Party District.</span></td>
+          <td class="what"><b>Chegada de Viena + check-in</b> <span class="ok">✓ pago</span><span class="note">Sweet 16 Apartment, Klauzál u. 21 (Party District), a partir das 14h. Código da porta chega pelo chat do Booking 1 dia antes — informe o horário de chegada.</span></td>
         </tr>
         <tr>
           <td class="time">15h00</td>
@@ -1379,7 +1406,7 @@ footer b{color:var(--ink-soft)}
         </tr>
         <tr>
           <td class="time">18h00</td>
-          <td class="what"><b>Cruzeiro pelo Danúbio — Legenda</b><span class="note">Embarque no cais Jane Haining rkp. 7. Parlamento iluminado da água (reservar).</span></td>
+          <td class="what"><b>Cruzeiro pelo Danúbio — Legenda</b><span class="note">Embarque no cais Jane Haining rkp. 7. Parlamento iluminado da água (ainda não reservado).</span></td>
         </tr>
         <tr>
           <td class="time">19h30</td>
@@ -1390,7 +1417,7 @@ footer b{color:var(--ink-soft)}
           <td class="what"><b>Szimpla Kert</b><span class="note">Ou outro ruin bar que o pessoal quiser.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Reservar cruzeiro</span>
+        <span class="warn">⚑ Reservar cruzeiro + transporte de Viena</span>
         <span class="cost">≈ €55 pp</span>
       </div>
     </article>
@@ -1434,10 +1461,10 @@ footer b{color:var(--ink-soft)}
         </tr>
         <tr>
           <td class="time">20h00</td>
-          <td class="what"><b>Leo Rooftop</b><span class="note">Na Clark Ádám tér, com vista da Ponte das Correntes e do Parlamento.</span></td>
+          <td class="what"><b>LEO Rooftop</b> <span class="ok">✓ reservado</span><span class="note">Clark Ádám tér 1. Mesa para 2 confirmada (OpenTable), pedido de janela com vista da Ponte das Correntes. Tolerância de 15 min.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Leo Rooftop 20h</span>
+        <span class="warn okfoot">✓ LEO Rooftop (mesa p/ 2)</span>
         <span class="cost">≈ €60 pp</span>
       </div>
     </article>
@@ -1487,15 +1514,19 @@ footer b{color:var(--ink-soft)}
           <td class="what"><b>Café New York</b><span class="note">O café mais bonito da cidade — costuma ter fila.</span></td>
         </tr>
         <tr>
-          <td class="time">13h00</td>
-          <td class="what"><b>Check-out</b><span class="note">Klauzál u. 21.</span></td>
+          <td class="time">14h30</td>
+          <td class="what"><b>Saída para o aeroporto</b><span class="note">Ônibus 100E (Deák tér) até o terminal 2A, ~40 min. O apê fica reservado até 2/1, então dá para sair sem pressa.</span></td>
         </tr>
         <tr>
-          <td class="time">noite</td>
-          <td class="what"><b>Voo Budapeste → Paris</b><span class="note">Chegada em Charles de Gaulle ~23h (pendência: comprar voo).</span></td>
+          <td class="time">18h00</td>
+          <td class="what"><b>Voo LOT Budapeste → Varsóvia</b> <span class="ok">✓ pago</span><span class="note">LO538 do terminal 2A (horário mudou de 17h50 para 18h00). Chega 19h15.</span></td>
+        </tr>
+        <tr>
+          <td class="time">20h15</td>
+          <td class="what"><b>Voo LOT Varsóvia → Paris CDG</b> <span class="ok">✓ pago</span><span class="note">LO333, chega 22h45.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Comprar voo p/ Paris</span>
+        <span class="warn okfoot">✓ Voo LOT pago</span>
         <span class="cost">≈ €30 pp</span>
       </div>
     </article></div>
@@ -1547,11 +1578,11 @@ footer b{color:var(--ink-soft)}
       </div>
       <div class="ibox">
         <h4>Reservas</h4>
-        <ul><li>Cruzeiro no Danúbio (pendência).</li><li>Parlamento: tour interno esgota; reserve online.</li><li>Voo Budapeste→Paris: sem Ryanair, sem Beauvais (pendência).</li></ul>
+        <ul><li>Cruzeiro no Danúbio (pendência).</li><li>Parlamento: tour interno esgota; reserve online.</li><li>✓ Voo LOT via Varsóvia (1/1, 18h00 → CDG 22h45) e LEO Rooftop (30/12, 20h, mesa p/ 2).</li></ul>
       </div>
       <div class="ibox">
         <h4>Dicas</h4>
-        <ul><li>Termas no inverno são imperdíveis — leve chinelo, toalha e touca.</li><li>No Réveillon combine ponto de encontro; cuidado com carteiras na multidão.</li><li>Ruin bars ficam no Party District, ao lado do apê.</li></ul>
+        <ul><li>Termas no inverno são imperdíveis — leve chinelo, toalha e touca.</li><li>No Réveillon combine ponto de encontro; cuidado com carteiras na multidão.</li><li>Ruin bars ficam no Party District, ao lado do apê — que fica em cima de um bar (barulho). Apê inteiro, 4 quartos, 3 banheiros.</li></ul>
       </div></div>
     </div>
   </section>
@@ -1573,8 +1604,8 @@ footer b{color:var(--ink-soft)}
 
     <div class="citybody">
       <div class="facts">
-        <div class="fact"><span class="fk">Chegada</span><span class="fv">1/1 · ~23h (CDG)</span></div>
-        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Voo → Barcelona (6/1, 08h20)</span></div>
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">1/1 · 22h45 (CDG, voo LOT) ✓</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Voo → Barcelona (6/1, 08h20, ORLY) ✓</span></div>
       </div>
 
       <p class="intro">Cinco noites na capital da luz, com base na Bastilha: os grandes monumentos, os museus lendários e um dia inteiro na Disney. A Notre-Dame reabriu em dezembro de 2024 — dá para visitar de novo.</p>
@@ -1588,15 +1619,15 @@ footer b{color:var(--ink-soft)}
       </div>
       <table class="sched"><tbody>
         <tr>
-          <td class="time">23h00</td>
-          <td class="what"><b>Chegada em Charles de Gaulle</b><span class="note">RER B até o centro e linha 1 até Bastille — ou táxi de tarifa fixa, que compensa à noite em grupo.</span></td>
+          <td class="time">22h45</td>
+          <td class="what"><b>Chegada em Charles de Gaulle</b> <span class="ok">✓ pago</span><span class="note">Voo LO333 de Varsóvia. RER B até o centro e linha 1 até Bastille — ou táxi de tarifa fixa, que compensa à noite em grupo.</span></td>
         </tr>
         <tr>
           <td class="time">00h30</td>
-          <td class="what"><b>Check-in no Hôtel Bastille Secret</b><span class="note">24 Rue de la Roquette (11e). Avise o hotel da chegada tarde.</span></td>
+          <td class="what"><b>Check-in no Hôtel Bastille Secret</b> <span class="ok">✓ pago</span><span class="note">24 rue de la Roquette (11e). Late check-in confirmado pelo hotel — reforce perto da data. Quarto duplo standard.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Avisar hotel: chegada tarde</span>
+        <span class="warn">⚑ Reforçar late check-in</span>
         <span class="cost">≈ €15 pp</span>
       </div>
     </article>
@@ -1608,7 +1639,7 @@ footer b{color:var(--ink-soft)}
       <table class="sched"><tbody>
         <tr>
           <td class="time">09h00</td>
-          <td class="what"><b>Museu do Louvre</b><span class="note">Das 9h às 11h30 (€32). Mona Lisa, Vênus de Milo — foque no essencial.</span></td>
+          <td class="what"><b>Museu do Louvre</b> <span class="ok">✓ pago</span><span class="note">Até 11h30. Ingresso nominal: leve documento. Mona Lisa, Vênus de Milo — foque no essencial.</span></td>
         </tr>
         <tr>
           <td class="time">11h45</td>
@@ -1643,8 +1674,8 @@ footer b{color:var(--ink-soft)}
           <td class="what"><b>Jantar no Marcello</b><span class="note">Italiano em Montmartre (Rue la Vieuville).</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Louvre 09h</span>
-        <span class="cost">≈ €70 pp</span>
+        <span class="warn okfoot">✓ Louvre pago</span>
+        <span class="cost">≈ €40 pp (extra)</span>
       </div>
     </article>
     <article class="day" data-eid="paris-d2">
@@ -1671,7 +1702,7 @@ footer b{color:var(--ink-soft)}
         </tr>
         <tr>
           <td class="time">15h30</td>
-          <td class="what"><b>Torre Eiffel</b><span class="note">Subida (€36,70).</span></td>
+          <td class="what"><b>Torre Eiffel — topo de elevador</b> <span class="ok">✓ pago</span><span class="note">4 bilhetes às 15h30 (3 adultos + 1 jovem). Imprima em A4 ou leve o PDF no celular — não use wallet.</span></td>
         </tr>
         <tr>
           <td class="time">16h45</td>
@@ -1679,7 +1710,7 @@ footer b{color:var(--ink-soft)}
         </tr>
         <tr>
           <td class="time">17h30</td>
-          <td class="what"><b>Arco do Triunfo</b><span class="note">Fila para subir; vista das 12 avenidas.</span></td>
+          <td class="what"><b>Arco do Triunfo</b> <span class="ok">✓ reservado</span><span class="note">Subida; vista das 12 avenidas.</span></td>
         </tr>
         <tr>
           <td class="time">18h30</td>
@@ -1687,11 +1718,11 @@ footer b{color:var(--ink-soft)}
         </tr>
         <tr>
           <td class="time">21h30</td>
-          <td class="what"><b>Cruzeiro Bateaux Parisiens</b><span class="note">Embarque no Port de la Bourdonnais, ao pé da Torre (€18).</span></td>
+          <td class="what"><b>Cruzeiro Bateaux Parisiens</b> <span class="ok">✓ pago</span><span class="note">Bilhete vale o dia todo (saídas de hora em hora, 10h–22h). Embarque no pontão nº 3, ao pé da Torre. 1h de passeio.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Orsay: reservas abrem 7/12</span>
-        <span class="cost">≈ €120 pp</span>
+        <span class="warn okfoot">✓ Torre + barco pagos · reservar Orsay</span>
+        <span class="cost">≈ €45 pp (extra)</span>
       </div>
     </article>
     <article class="day" data-eid="paris-d3">
@@ -1706,15 +1737,15 @@ footer b{color:var(--ink-soft)}
         </tr>
         <tr>
           <td class="time">09h30</td>
-          <td class="what"><b>Disneyland Paris</b><span class="note">Dia inteiro nos parques (pendência de ingresso). Chegue na abertura.</span></td>
+          <td class="what"><b>Disneyland Paris</b> <span class="ok">✓ pago</span><span class="note">Ingresso com data, 1 dia / 2 parques (Decolar). Vá direto às catracas com o e-ticket no celular. Reembolsável até 3 dias antes.</span></td>
         </tr>
         <tr>
           <td class="time">21h00</td>
           <td class="what"><b>Volta ao Hôtel Bastille Secret</b></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Comprar ingresso Disney</span>
-        <span class="cost">≈ €90–110 pp</span>
+        <span class="warn okfoot">✓ Disney pago</span>
+        <span class="cost">≈ €40 pp (extra)</span>
       </div>
     </article>
     <article class="day" data-eid="paris-d4">
@@ -1749,10 +1780,10 @@ footer b{color:var(--ink-soft)}
         </tr>
         <tr>
           <td class="time">22h30</td>
-          <td class="what"><b>Mala pronta</b><span class="note">Voo 08h20 para Barcelona amanhã.</span></td>
+          <td class="what"><b>Mala pronta</b><span class="note">O voo de amanhã sai de ORLY às 08h20 — saída do hotel ~05h30 (linha 1 até Gare de Lyon + linha 14 até Orly).</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Reservar Maison de la Truffe · voo 08h20</span>
+        <span class="warn">⚑ Reservar Maison de la Truffe</span>
         <span class="cost">≈ €80 pp</span>
       </div>
     </article></div>
@@ -1804,11 +1835,11 @@ footer b{color:var(--ink-soft)}
       <div class="iboxes">
       <div class="ibox">
         <h4>Transporte</h4>
-        <ul><li>Metrô denso — carnet de 10 tickets ou Navigo.</li><li>RER A p/ Disney; RER C p/ Versalhes.</li><li>Do aeroporto (CDG/ORY) ao centro: RER B ou Roissybus.</li></ul>
+        <ul><li>Metrô denso — carnet de 10 tickets ou Navigo.</li><li>RER A p/ Disney; RER C p/ Versalhes.</li><li>Chegada em CDG (RER B); saída para Barcelona por ORLY (linha 14 do metrô).</li></ul>
       </div>
       <div class="ibox">
         <h4>Reservas</h4>
-        <ul><li>Louvre e Orsay: horário marcado.</li><li>Disneyland e Versalhes: ingressos antecipados (pendências).</li><li>Arco do Triunfo e cruzeiro no Sena (pendências).</li></ul>
+        <ul><li>✓ Louvre (2/1), Torre Eiffel 15h30 + Bateaux Parisiens (3/1), Arco do Triunfo e Disney (4/1).</li><li>Pendente: Orsay (reservas abrem 7/12 às 7h), Notre-Dame (resgatar 2 dias antes) e Maison de la Truffe.</li><li>Torre: limite de 9 bilhetes por pedido.</li></ul>
       </div>
       <div class="ibox">
         <h4>Dicas</h4>
@@ -1826,7 +1857,7 @@ footer b{color:var(--ink-soft)}
         <h2>Barcelona</h2>
         <div class="hero-chips">
           <span class="chip"><span class="chip-k">Estadia</span> 2 noites</span>
-          <span class="chip"><span class="chip-k">Base</span> Hostel a definir</span>
+          <span class="chip"><span class="chip-k">Base</span> Casa de amigo (4 pessoas)</span>
           <span class="chip"><span class="chip-k">Custo</span> ≈ €130–180 pp</span>
         </div>
       </div>
@@ -1834,8 +1865,8 @@ footer b{color:var(--ink-soft)}
 
     <div class="citybody">
       <div class="facts">
-        <div class="fact"><span class="fk">Chegada</span><span class="fv">6/1 · 10h00 (voo)</span></div>
-        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">AVE → Madri (8/1, ~06h)</span></div>
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">6/1 · 10h00 (voo IB5427) ✓</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Voo IB426 → Madri (8/1, 07h00) ✓</span></div>
       </div>
 
       <p class="intro">Dois dias de Gaudí, mar e tapas. Chegam às 10h, então dá para render bastante. Reserve Sagrada Família e Park Güell com antecedência — são os únicos gargalos.</p>
@@ -1845,12 +1876,16 @@ footer b{color:var(--ink-soft)}
     <article class="day" data-eid="barcelona-d0">
       <div class="day-head">
         <div><span class="day-name">Gaudí + Cidade Velha</span> <span class="day-tag">chegada</span></div>
-        <span class="day-date">Ter 6/1</span>
+        <span class="day-date">Qua 6/1</span>
       </div>
       <table class="sched"><tbody>
         <tr>
+          <td class="time">08h20</td>
+          <td class="what"><b>Voo Paris Orly → Barcelona</b> <span class="ok">✓ pago</span><span class="note">IB5427, operado pela Vueling. Chega 10h00.</span></td>
+        </tr>
+        <tr>
           <td class="time">10h00</td>
-          <td class="what"><b>Chegada + check-in</b><span class="note">Largue as malas e comece o dia.</span></td>
+          <td class="what"><b>Chegada + casa do amigo</b><span class="note">Largue as malas e comece o dia.</span></td>
         </tr>
         <tr>
           <td class="time">11h30</td>
@@ -1884,7 +1919,7 @@ footer b{color:var(--ink-soft)}
     <article class="day" data-eid="barcelona-d1">
       <div class="day-head">
         <div><span class="day-name">Park Güell + mar</span> <span class="day-tag">dia cheio</span></div>
-        <span class="day-date">Qua 7/1</span>
+        <span class="day-date">Qui 7/1</span>
       </div>
       <table class="sched"><tbody>
         <tr>
@@ -1909,10 +1944,10 @@ footer b{color:var(--ink-soft)}
         </tr>
         <tr>
           <td class="time">20h00</td>
-          <td class="what"><b>Última noite de tapas</b><span class="note">Feche a Europa com vermut e bravas.</span></td>
+          <td class="what"><b>Última noite de tapas</b><span class="note">Feche a Europa com vermut e bravas — e durma cedo: voo às 07h00.</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Reservar Park Güell · AVE cedo amanhã</span>
+        <span class="warn">⚑ Reservar Park Güell · voo 07h00 amanhã</span>
         <span class="cost">≈ €55 pp</span>
       </div>
     </article></div>
@@ -1964,11 +1999,11 @@ footer b{color:var(--ink-soft)}
       </div>
       <div class="ibox">
         <h4>Reservas</h4>
-        <ul><li>Sagrada Família: hora marcada, essencial.</li><li>Park Güell: zona monumental exige ingresso com horário.</li><li>AVE Barcelona→Madri (pendência) — compre já.</li></ul>
+        <ul><li>Sagrada Família: hora marcada, essencial.</li><li>Park Güell: zona monumental exige ingresso com horário.</li><li>✓ Voo Barcelona→Madri IB426 (8/1, 07h00) já comprado — substitui o AVE.</li></ul>
       </div>
       <div class="ibox">
         <h4>Dicas</h4>
-        <ul><li>La Rambla é foco de carteiristas — atenção redobrada.</li><li>AVE do dia 8 é ~06h, sem margem para pernoite — durma perto da estação Sants.</li><li>Confirme o tempo Atocha→aeroporto de Madri ao comprar o AVE.</li></ul>
+        <ul><li>La Rambla é foco de carteiristas — atenção redobrada.</li><li>Voo do dia 8 sai 07h00 do El Prat — saída de casa ~05h.</li><li>Hospedagem na casa de um amigo para 4 pessoas — o resto do grupo precisa de lugar.</li></ul>
       </div></div>
     </div>
   </section>
@@ -1990,11 +2025,11 @@ footer b{color:var(--ink-soft)}
 
     <div class="citybody">
       <div class="facts">
-        <div class="fact"><span class="fk">Chegada</span><span class="fv">8/1 · manhã (AVE de Barcelona)</span></div>
-        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Voo Madri → Rio (8/1, 12h30)</span></div>
+        <div class="fact"><span class="fk">Chegada</span><span class="fv">8/1 · 08h25 (voo IB426, Barajas) ✓</span></div>
+        <div class="fact"><span class="fk">Próximo trecho</span><span class="fv">Voo IB0269 → Rio (8/1, 12h30) ✓</span></div>
       </div>
 
-      <p class="intro">Não é um dia de turismo: é a conexão final. O AVE de Barcelona chega em Atocha de manhã e o voo para o Rio sai às 12h30. Toda a logística gira em torno de chegar ao aeroporto de Barajas com folga.</p>
+      <p class="intro">Não é um dia de turismo: é a conexão final, toda dentro do aeroporto de Barajas. O voo de Barcelona chega às 08h25 e o voo para o Rio sai às 12h30 — como são reservas separadas, é preciso pegar a mala e despachar de novo.</p>
 
       <h3 class="sec">Roteiro <span class="sec-sub">dia a dia</span></h3>
       <div class="days">
@@ -2005,27 +2040,27 @@ footer b{color:var(--ink-soft)}
       </div>
       <table class="sched"><tbody>
         <tr>
-          <td class="time">~06h00</td>
-          <td class="what"><b>AVE Barcelona Sants → Madri</b><span class="note">~2h30–3h. Compre com antecedência (pendência). Chega a Atocha ~08h45.</span></td>
+          <td class="time">05h00</td>
+          <td class="what"><b>Saída para o aeroporto El Prat</b><span class="note">Táxi ou Aerobús. Voo doméstico: chegue ~1h30 antes.</span></td>
         </tr>
         <tr>
-          <td class="time">09h00</td>
-          <td class="what"><b>Atocha → Aeroporto de Barajas</b><span class="note">Cercanías C-1 direto até T4 (~25 min) ou metrô/táxi (~30 min). Confirme o tempo ao comprar o AVE.</span></td>
+          <td class="time">07h00</td>
+          <td class="what"><b>Voo Barcelona → Madri</b> <span class="ok">✓ pago</span><span class="note">IB426 (Iberia), chega 08h25 em Barajas. Bagagem de 23 kg incluída.</span></td>
+        </tr>
+        <tr>
+          <td class="time">08h25</td>
+          <td class="what"><b>Chegada em Barajas — pegar a bagagem</b><span class="note">Os dois voos são reservas separadas: retire a mala na esteira e despache de novo para o Rio.</span></td>
         </tr>
         <tr>
           <td class="time">09h30</td>
-          <td class="what"><b>Se sobrar ~1h perto de Atocha</b><span class="note">Jardim tropical da estação, café e churros com chocolate. Sem se afastar.</span></td>
-        </tr>
-        <tr>
-          <td class="time">10h30</td>
-          <td class="what"><b>Check-in em Barajas</b><span class="note">Voo internacional: esteja no aeroporto ~2h antes.</span></td>
+          <td class="what"><b>Check-in do voo internacional</b><span class="note">Iberia no T4 — o embarque internacional fica no T4S (trem interno + controle de passaporte).</span></td>
         </tr>
         <tr>
           <td class="time">12h30</td>
-          <td class="what"><b>Voo Madri → Rio (GIG)</b><span class="note">IB0269, direto. Chega ao Rio 18h50. Fim da eurotrip!</span></td>
+          <td class="what"><b>Voo Madri → Rio (GIG)</b> <span class="ok">✓ pago</span><span class="note">IB0269, direto. Chega ao Rio 18h50. Fim da eurotrip!</span></td>
         </tr></tbody></table>
       <div class="day-foot">
-        <span class="warn">⚑ Margem apertada — priorize o aeroporto</span>
+        <span class="warn okfoot">✓ Os dois voos pagos</span>
         <span class="cost">≈ €15 pp</span>
       </div>
     </article></div>
@@ -2040,24 +2075,24 @@ footer b{color:var(--ink-soft)}
         <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Madrid_Plaza_Mayor_%2848733706273%29.jpg/1280px-Madrid_Plaza_Mayor_%2848733706273%29.jpg" alt="Plaza Mayor, Madrid"></div>
         <figcaption><span class="gname">Plaza Mayor, Madrid</span><span class="gcap">A grande praça porticada do centro histórico.</span></figcaption>
       </figure>
-      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Atocha_railway_station_5.JPG/1280px-Atocha_railway_station_5.JPG" data-cap="A estação com jardim tropical onde chega o AVE." data-title="Madrid Atocha railway station">
+      <figure class="gcard" tabindex="0" data-full="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Atocha_railway_station_5.JPG/1280px-Atocha_railway_station_5.JPG" data-cap="A estação com jardim tropical — fica para uma próxima vez (o grupo chega de avião)." data-title="Madrid Atocha railway station">
         <div class="gcard-img"><img loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Atocha_railway_station_5.JPG/1280px-Atocha_railway_station_5.JPG" alt="Madrid Atocha railway station"></div>
-        <figcaption><span class="gname">Madrid Atocha railway station</span><span class="gcap">A estação com jardim tropical onde chega o AVE.</span></figcaption>
+        <figcaption><span class="gname">Madrid Atocha railway station</span><span class="gcap">A estação com jardim tropical — fica para uma próxima vez (o grupo chega de avião).</span></figcaption>
       </figure></div>
 
       <h3 class="sec">Prático <span class="sec-sub">antes de ir</span></h3>
       <div class="iboxes">
       <div class="ibox">
         <h4>Transporte</h4>
-        <ul><li>Cercanías C-1 liga Atocha ao Terminal 4 de Barajas em ~25 min.</li><li>Alternativa: metrô Línea 8 (com baldeação) ou táxi (~30 min, tarifa fixa ao aeroporto).</li><li>Guarde bagagem só se for realmente sair — o tempo é curto.</li></ul>
+        <ul><li>Chegada e saída no mesmo aeroporto — sem traslado pela cidade.</li><li>Do T4 ao T4S (internacional) há um trem interno gratuito.</li><li>Reserve tempo para o controle de passaporte na saída do Espaço Schengen.</li></ul>
       </div>
       <div class="ibox">
         <h4>Reservas</h4>
-        <ul><li>AVE Barcelona→Madri (pendência) — compre já e escolha horário com folga.</li><li>Não há pernoite: trem ~06h, voo 12h30.</li><li>Confirme terminal do voo (Barajas T4).</li></ul>
+        <ul><li>✓ IB426 Barcelona→Madri (07h00) e IB0269 Madri→Rio (12h30) pagos.</li><li>Reservas separadas: a mala não segue direto.</li><li>Bagagem incluída: 1 peça de 23 kg.</li></ul>
       </div>
       <div class="ibox">
         <h4>Dicas</h4>
-        <ul><li>Foque em chegar a Barajas com 2h de antecedência.</li><li>Se der tempo, a própria estação de Atocha vale a visita (jardim tropical).</li><li>Deixe lembranças e compras para o free-shop — bagagem já fechada.</li></ul>
+        <ul><li>Foque em chegar a Barajas com 2h de antecedência.</li><li>Sobra ~2h entre o despacho e o embarque — almoce no T4S.</li><li>Deixe lembranças e compras para o free-shop — bagagem já fechada.</li></ul>
       </div></div>
     </div>
   </section>
@@ -2076,102 +2111,108 @@ footer b{color:var(--ink-soft)}
         <tr class="tl-flight">
           <td class="tl-icon"><span>✈</span></td>
           <td class="tl-date">14 dez</td>
-          <td class="tl-main"><b>Rio de Janeiro → Londres</b><span>Voo BA direto, 11h20 · saída 18h (GIG)</span></td>
+          <td class="tl-main"><b>Rio de Janeiro → Londres</b><span>Voo BA direto, saída 18h (GIG) · ✓ pago</span></td>
         </tr>
         <tr class="tl-city">
           <td class="tl-icon"><span>◆</span></td>
           <td class="tl-date">15–18 dez</td>
-          <td class="tl-main"><b>Londres</b><span>Generator London · 3 noites</span></td>
+          <td class="tl-main"><b>Londres</b><span>Generator London · 3 noites · ✓ pago</span></td>
         </tr>
         <tr class="tl-train">
           <td class="tl-icon"><span>🚄</span></td>
           <td class="tl-date">18 dez</td>
-          <td class="tl-main"><b>Londres → Amsterdã</b><span>Eurostar 06h16 (chega 11h20)</span></td>
+          <td class="tl-main"><b>Londres → Amsterdã</b><span>Eurostar 06h16 (chega 11h20) · ✓ pago</span></td>
         </tr>
         <tr class="tl-city">
           <td class="tl-icon"><span>◆</span></td>
           <td class="tl-date">18–21 dez</td>
-          <td class="tl-main"><b>Amsterdã</b><span>Stayokay Vondelpark · 3 noites</span></td>
+          <td class="tl-main"><b>Amsterdã</b><span>Stayokay Vondelpark · 3 noites · ✓ pago</span></td>
         </tr>
         <tr class="tl-flight">
           <td class="tl-icon"><span>✈</span></td>
           <td class="tl-date">21 dez</td>
-          <td class="tl-main"><b>Amsterdã → Praga</b><span>Voo KL1351 06h55 (chega 08h25)</span></td>
+          <td class="tl-main"><b>Amsterdã → Praga</b><span>Voo KL1351 06h55 (chega 08h25) · ✓ pago</span></td>
         </tr>
         <tr class="tl-city">
           <td class="tl-icon"><span>◆</span></td>
           <td class="tl-date">21–22 dez</td>
-          <td class="tl-main"><b>Praga</b><span>Safestay Charles Bridge · 1 noite</span></td>
+          <td class="tl-main"><b>Praga</b><span>Safestay Charles Bridge · 1 noite · ✓ pago</span></td>
         </tr>
         <tr class="tl-train">
           <td class="tl-icon"><span>🚄</span></td>
-          <td class="tl-date">22 dez</td>
-          <td class="tl-main"><b>Praga → Bratislava</b><span>Trem noturno (~23h → 06h)</span></td>
+          <td class="tl-date">23 dez</td>
+          <td class="tl-main"><b>Praga → Bratislava</b><span>FlixBus 01h45 → 06h00 · ✓ pago</span></td>
         </tr>
         <tr class="tl-city">
           <td class="tl-icon"><span>◆</span></td>
           <td class="tl-date">23–25 dez</td>
-          <td class="tl-main"><b>Chalé de Natal — Lago Orava</b><span>Chata u Džonyho · 4x4 · 2 noites</span></td>
+          <td class="tl-main"><b>Chalé de Natal — Lago Orava</b><span>Chata u Džonyho · 2 carros humlet · 2 noites · ✓ pago</span></td>
         </tr>
         <tr class="tl-ski">
           <td class="tl-icon"><span>⛷</span></td>
           <td class="tl-date">25 dez</td>
-          <td class="tl-main"><b>Dia de ski (Jasná)</b><span>Volta a Bratislava · OldTown Hostel</span></td>
+          <td class="tl-main"><b>Dia de ski (local a definir)</b><span>Volta a Bratislava · Metropolitan Star · ✓ pago</span></td>
         </tr>
         <tr class="tl-train">
           <td class="tl-icon"><span>🚄</span></td>
           <td class="tl-date">26 dez</td>
-          <td class="tl-main"><b>Bratislava → Viena</b><span>Turismo + transporte fim do dia</span></td>
+          <td class="tl-main"><b>Bratislava → Viena</b><span>Trem 17h50 → Westbahnhof 20h · ✓ pago</span></td>
         </tr>
         <tr class="tl-city">
           <td class="tl-icon"><span>◆</span></td>
           <td class="tl-date">26–29 dez</td>
-          <td class="tl-main"><b>Viena</b><span>JO&amp;JOE Vienna · bate-volta Hallstatt · 3 noites</span></td>
+          <td class="tl-main"><b>Viena</b><span>BeFree Hostel · bate-volta Hallstatt · 3 noites · ✓ pago</span></td>
         </tr>
         <tr class="tl-train">
           <td class="tl-icon"><span>🚄</span></td>
           <td class="tl-date">29 dez</td>
-          <td class="tl-main"><b>Viena → Budapeste</b><span>Trem ~2h40</span></td>
+          <td class="tl-main"><b>Viena → Budapeste</b><span>Trem ~2h40 · ⏳ comprar</span></td>
         </tr>
         <tr class="tl-city">
           <td class="tl-icon"><span>◆</span></td>
           <td class="tl-date">29 dez – 1 jan</td>
-          <td class="tl-main"><b>Budapeste — Réveillon</b><span>Klauzál u. 21 · Party District</span></td>
+          <td class="tl-main"><b>Budapeste — Réveillon</b><span>Sweet 16 Apartment · Klauzál u. 21 · ✓ pago</span></td>
         </tr>
         <tr class="tl-flight">
           <td class="tl-icon"><span>✈</span></td>
           <td class="tl-date">1 jan</td>
-          <td class="tl-main"><b>Budapeste → Paris</b><span>Voo, chega CDG ~23h (sem Ryanair/Beauvais)</span></td>
+          <td class="tl-main"><b>Budapeste → Paris</b><span>LOT 18h00 via Varsóvia, chega CDG 22h45 · ✓ pago</span></td>
         </tr>
         <tr class="tl-city">
           <td class="tl-icon"><span>◆</span></td>
           <td class="tl-date">1–6 jan</td>
-          <td class="tl-main"><b>Paris</b><span>Hôtel Bastille Secret · 5 noites</span></td>
+          <td class="tl-main"><b>Paris</b><span>Hôtel Bastille Secret · 5 noites · ✓ pago</span></td>
         </tr>
         <tr class="tl-flight">
           <td class="tl-icon"><span>✈</span></td>
           <td class="tl-date">6 jan</td>
-          <td class="tl-main"><b>Paris → Barcelona</b><span>Voo IB5427 08h20 (chega 10h)</span></td>
+          <td class="tl-main"><b>Paris → Barcelona</b><span>Voo IB5427 08h20 de Orly (chega 10h) · ✓ pago</span></td>
         </tr>
         <tr class="tl-city">
           <td class="tl-icon"><span>◆</span></td>
           <td class="tl-date">6–8 jan</td>
-          <td class="tl-main"><b>Barcelona</b><span>2 noites</span></td>
-        </tr>
-        <tr class="tl-train">
-          <td class="tl-icon"><span>🚄</span></td>
-          <td class="tl-date">8 jan</td>
-          <td class="tl-main"><b>Barcelona → Madri</b><span>AVE ~06h</span></td>
+          <td class="tl-main"><b>Barcelona</b><span>Casa de amigo · 2 noites</span></td>
         </tr>
         <tr class="tl-flight">
           <td class="tl-icon"><span>✈</span></td>
           <td class="tl-date">8 jan</td>
-          <td class="tl-main"><b>Madri → Rio de Janeiro</b><span>Voo IB0269 12h30 (chega 18h50)</span></td>
+          <td class="tl-main"><b>Barcelona → Madri</b><span>Voo IB426 07h00 (chega 08h25) · ✓ pago</span></td>
+        </tr>
+        <tr class="tl-flight">
+          <td class="tl-icon"><span>✈</span></td>
+          <td class="tl-date">8 jan</td>
+          <td class="tl-main"><b>Madri → Rio de Janeiro</b><span>Voo IB0269 12h30 (chega 18h50) · ✓ pago</span></td>
         </tr></tbody></table>
+        <h3 class="sec">Hospedagens <span class="sec-sub">todas pagas ✓</span></h3>
+        <ul class="bookings"><li><b>Londres · 15–18/12 — Generator London</b><span>37 Tavistock Pl. Quarto privativo de 8 camas, banheiro privativo. Early check-in 12h pago; mostrar o cartão do pagamento.</span></li><li><b>Amsterdã · 18–21/12 — Stayokay Vondelpark</b><span>Zandpad 5. Quarto de 6 + quarto de 4, banheiro privativo.</span></li><li><b>Praga · 21–22/12 — Safestay Charles Bridge</b><span>Ostrovní 131/15. 2 quartos privativos de 8 camas, com café da manhã.</span></li><li><b>Lago Orava · 23–25/12 — Chata u Džonyho (Trstená)</b><span>Chalé inteiro: 8 quartos, sauna e hidro, 5 banheiros. Reserva direta com o Ján.</span></li><li><b>Bratislava · 25–26/12 — Metropolitan Star Apart Hotel</b><span>Námestie 1. mája 9. 2 estúdios + 1 apartamento.</span></li><li><b>Viena · 26–29/12 — BeFree Hostel</b><span>Beingasse 13. 2 quartos de 4 camas, banheiro compartilhado.</span></li><li><b>Budapeste · 29/12–2/1 — Sweet 16 Apartment</b><span>Klauzál u. 21. Apê inteiro, 4 quartos, 3 banheiros. Código da porta pelo Booking 1 dia antes.</span></li><li><b>Paris · 1–6/1 — Hôtel Bastille Secret</b><span>24 rue de la Roquette. Quarto duplo standard. Late check-in confirmado.</span></li><li><b>Barcelona · 6–8/1 — Casa de amigo</b><span>4 pessoas.</span></li></ul>
+        <h3 class="sec">Ingressos e reservas <span class="sec-sub">já comprados ✓</span></h3>
+        <ul class="bookings"><li><b>Natural History Museum (Londres)</b><span>15/12 13h45</span></li><li><b>Warner Bros. Studio Tour — Harry Potter</b><span>17/12 09h30</span></li><li><b>Museu Van Gogh</b><span>19/12 10h15</span></li><li><b>Heineken Experience</b><span>19/12 15h15</span></li><li><b>Casa de Anne Frank</b><span>20/12</span></li><li><b>2 carros humlet (Bratislava ↔ Orava)</b><span>23–25/12</span></li><li><b>LEO Rooftop (mesa p/ 2)</b><span>30/12 20h00</span></li><li><b>Museu do Louvre</b><span>2/1 09h00</span></li><li><b>Torre Eiffel (topo) + Arco do Triunfo</b><span>3/1 15h30</span></li><li><b>Bateaux Parisiens (pontão nº 3)</b><span>3/1 dia todo</span></li><li><b>Disneyland Paris (1 dia / 2 parques)</b><span>4/1</span></li></ul>
+        <h3 class="sec">Pagar no local <span class="sec-sub">levar cartão</span></h3>
+        <ul class="bookings"><li class="bk-pay"><span>Amsterdã: taxa turística de €107,40.</span></li><li class="bk-pay"><span>Orava: saldo de €680 + caução de €500 (reembolsável).</span></li><li class="bk-pay"><span>Carros humlet: caução de €500 por carro, no cartão.</span></li><li class="bk-pay"><span>Bratislava: imposto municipal de €35 + caução de €100 no cartão.</span></li></ul>
       </div>
       <div>
         <h3 class="sec">Pendências <span class="sec-sub">a fechar</span><span class="todo-prog" id="todoProg"></span></h3>
-        <ul class="todos" id="todoList"><li><label><input type="checkbox" class="tchk"><span class="tx">Trem noturno Praga → Bratislava</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Aluguel de carro 4x4/AWD (Bratislava, 23–25 dez)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Definir estação de ski (ex: Jasná)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Confirmar OldTown Hostel p/ 10 (25–26 dez)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Transporte Bratislava → Viena</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Confirmar JO&amp;JOE Vienna p/ 10 (26–29 dez)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Definir dia do bate-volta Hallstatt</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Horário do trem Viena → Budapeste</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Data + voo Budapeste → Paris</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Hostel Paris</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Hostel Barcelona</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">AVE Barcelona → Madri</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Van Gogh Museum (Amsterdã)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Disney Paris</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Torre Eiffel</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Palácio de Versalhes</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Arco do Triunfo</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Passeio de barco no Sena</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Passeio de barco no Danúbio</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Passe de ski (Eslováquia)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Casa de Anne Frank</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">ETIAS (todos os 10 viajantes)</span></label><button class="tdel" aria-label="Remover item">×</button></li></ul>
+        <ul class="todos" id="todoList"><li><label><input type="checkbox" class="tchk"><span class="tx">Safestay Praga: confirmar 14 pessoas + café (e-mail de 09/11)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Eurostar: preencher o API para liberar os bilhetes</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Avisar o Ján (chalé Orava) do horário de chegada em 23/12</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Definir estação de ski (Kubínska hoľa?) + comprar passe</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Bate-volta Hallstatt: comprar trem (último volta 17h03)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Trem Viena → Budapeste (29/12)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Passeio de barco no Danúbio (Legenda)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Reforçar late check-in no Hôtel Bastille Secret (chegada ~0h30)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Museu d'Orsay (reservas abrem 7/12 às 7h)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Notre-Dame: resgatar ingresso 2 dias antes</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Reservar Maison de la Truffe (5/1, 19h)</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">London Eye + Sky Garden</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Sagrada Família + Park Güell</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Hospedagem em Barcelona para quem não fica na casa do amigo</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">Imprimir bilhete ÖBB Bratislava → Viena</span></label><button class="tdel" aria-label="Remover item">×</button></li><li><label><input type="checkbox" class="tchk"><span class="tx">ETIAS (todos os viajantes)</span></label><button class="tdel" aria-label="Remover item">×</button></li></ul>
         <div class="todo-add">
           <input id="todoNew" placeholder="Nova pendência…" maxlength="120" aria-label="Nova pendência">
           <button id="todoAddBtn">+ adicionar</button>
@@ -2207,7 +2248,7 @@ footer b{color:var(--ink-soft)}
 </div>
 
 <script>
-var MAP_DATA=[{"key":"londres","name":"Londres","order":1,"dates":"15–18 dez","country":"Reino Unido","center":[51.5074,-0.1278],"points":[{"name":"Big Ben","cap":"O relógio mais famoso do mundo, ao lado do Parlamento.","ll":[51.5007,-0.1245],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Elizabeth_Tower%2C_June_2022.jpg/1280px-Elizabeth_Tower%2C_June_2022.jpg"},{"name":"London Eye","cap":"Roda-gigante às margens do Tâmisa, vista de toda a cidade.","ll":[51.5033,-0.1194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/London-Eye-2009.JPG/1280px-London-Eye-2009.JPG"},{"name":"Tower Bridge","cap":"A ponte levadiça vitoriana, cartão-postal de Londres.","ll":[51.5056,-0.0753],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Tower_Bridge_at_Dawn.jpg/1280px-Tower_Bridge_at_Dawn.jpg"},{"name":"Tower of London","cap":"Fortaleza milenar que guarda as joias da coroa.","ll":[51.50806,-0.07611],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Tower_of_London_from_the_Shard_%288515883950%29.jpg/1280px-Tower_of_London_from_the_Shard_%288515883950%29.jpg"},{"name":"British Museum","cap":"Acervo colossal e gratuito — da Pedra de Roseta às múmias.","ll":[51.5194,-0.1269],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/British_Museum_%28aerial%29.jpg/1280px-British_Museum_%28aerial%29.jpg"},{"name":"Buckingham Palace","cap":"Residência real e a clássica troca da guarda.","ll":[51.50083,-0.14194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Buckingham_Palace_London_Morning_2020_01_%28cropped%29.jpg/1280px-Buckingham_Palace_London_Morning_2020_01_%28cropped%29.jpg"},{"name":"St Paul's Cathedral","cap":"A cúpula barroca que domina a City.","ll":[51.5138,-0.0983],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/St_Pauls_aerial_%28cropped%29.jpg/1280px-St_Pauls_aerial_%28cropped%29.jpg"},{"name":"Covent Garden","cap":"Mercado coberto com artistas de rua e cafés.","ll":[51.5125,-0.1225],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Covent_Garden_Interior_May_2006_crop.jpg/1280px-Covent_Garden_Interior_May_2006_crop.jpg"},{"name":"Borough Market","cap":"O melhor mercado gastronômico da cidade.","ll":[51.50556,-0.09083],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/London_2018_March_IMG_0663.jpg/1280px-London_2018_March_IMG_0663.jpg"},{"name":"Warner Bros. Studio Tour London","cap":"Os sets reais dos filmes de Harry Potter.","ll":[51.69333,-0.41972],"img":"https://cdn-imgix.headout.com/media/images/7293c27a7d36116240336326429daac7-27495-london-from-london--harry-potter-warner-bros.-studio-semi-private-experience-with-champagne-03.jpg?auto=compress,format&w=695.0400000000001&h=434.4&q=96&crop=faces&fit=crop"},{"name":"Piccadilly Circus","cap":"O cruzamento elétrico com os letreiros luminosos.","ll":[51.51,-0.13444],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Open_Happiness_Piccadilly_Circus_Blue-Pink_Hour_120917-1126-jikatu.jpg/1280px-Open_Happiness_Piccadilly_Circus_Blue-Pink_Hour_120917-1126-jikatu.jpg"},{"name":"Camden Town","cap":"Bairro boêmio de mercados e música.","ll":[51.541,-0.1433],"img":"https://upload.wikimedia.org/wikipedia/commons/6/6c/Camden_Town_9.jpg"}]},{"key":"amsterda","name":"Amsterdã","order":2,"dates":"18–21 dez","country":"Holanda","center":[52.3676,4.9041],"points":[{"name":"Rijksmuseum","cap":"O grande museu nacional holandês — Rembrandt e Vermeer.","ll":[52.36,4.8853],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg/1280px-South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg"},{"name":"Van Gogh Museum","cap":"A maior coleção do mundo do pintor.","ll":[52.3583,4.8811],"img":"https://imgs.search.brave.com/PD5Q6dt7pXPzrxMDjUnId3DOoBgm8zduLAui0ceIUjo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly8yZ2J6/enhwN21rcnFwZ3B6/LnB1YmxpYy5ibG9i/LnZlcmNlbC1zdG9y/YWdlLmNvbS9hbXN0/ZXJkYW0tdmFuLWdv/Z2gvd2lkZV9leHRl/cmlvcl92aWV3XzAw/LndlYnA"},{"name":"Anne Frank House","cap":"O anexo secreto onde a família se escondeu.","ll":[52.37525,4.88432],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Amsterdam_%28NL%29%2C_Anne-Frank-Huis_--_2015_--_7185.jpg/1280px-Amsterdam_%28NL%29%2C_Anne-Frank-Huis_--_2015_--_7185.jpg"},{"name":"Canals of Amsterdam","cap":"Anéis de canais do séc. XVII, Patrimônio da Humanidade.","ll":[52.365,4.88778],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Imagen_de_los_canales_conc%C3%A9ntricos_en_%C3%81msterdam.png/1280px-Imagen_de_los_canales_conc%C3%A9ntricos_en_%C3%81msterdam.png"},{"name":"Vondelpark","cap":"O parque mais querido da cidade, ao lado do hostel.","ll":[52.358,4.868],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Amsterdam%2C_Vondelpark%2C_at_the_pond-2.jpg/1280px-Amsterdam%2C_Vondelpark%2C_at_the_pond-2.jpg"},{"name":"Dam Square","cap":"Praça central com o Palácio Real.","ll":[52.3731,4.8928],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Dam_Square_2024.jpg/1280px-Dam_Square_2024.jpg"},{"name":"Jordaan","cap":"Bairro charmoso de ruelas, brechós e cafés.","ll":[52.37639,4.88167],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Eerste_Leliedwarsstraat.jpg/1280px-Eerste_Leliedwarsstraat.jpg"},{"name":"Bloemenmarkt","cap":"O mercado de flores flutuante.","ll":[52.36667,4.89194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/SingelBloemenmarkt.jpg/1280px-SingelBloemenmarkt.jpg"},{"name":"Heineken Experience","cap":"A antiga cervejaria transformada em tour.","ll":[52.35778,4.89139],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Former_Heineken_Brewery_in_Amsterdam.jpg/1280px-Former_Heineken_Brewery_in_Amsterdam.jpg"},{"name":"A'DAM Lookout","cap":"Mirante com balanço sobre a cidade.","ll":[52.38306,4.89972],"img":"https://vonortzuort.reisen/wp-content/uploads/2019/03/lookout-foto-eingang.jpg"},{"name":"De Wallen","cap":"O famoso Red Light District — vielas medievais e néon.","ll":[52.37333,4.89806],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Oudezijds_Achterburgwal.jpg/1280px-Oudezijds_Achterburgwal.jpg"},{"name":"Dampkring","cap":"Coffeeshop lendário, cenário de 'Ocean's Twelve'.","ll":[52.36864,4.88976],"img":"https://imgs.search.brave.com/_1hHRR6NcQSTBAhoEoFHi_zqn30Fgl5evOV7yCQB-jQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5jbnRyYXZlbGVy/LmNvbS9waG90b3Mv/NTVlMGE3YjJjZGQx/NzYxMzQ4YmRhYjk2/LzE2Ojkvd18yNTYw/LGNfbGltaXQvZGUt/ZGFtcGtyaW5nLWFt/c3RlcmRhbS1jci1h/bGFteS5qcGc"}]},{"key":"praga","name":"Praga","order":3,"dates":"21–22 dez","country":"Tchéquia","center":[50.0755,14.4378],"points":[{"name":"Charles Bridge","cap":"A ponte gótica de estátuas sobre o Vltava.","ll":[50.08639,14.41194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg/1280px-Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg"},{"name":"Prague Castle","cap":"O maior complexo de castelo do mundo.","ll":[50.09,14.4],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Karl%C5%AFv_most_Praha%2C_Star%C3%A9_M%C4%9Bsto_20170810_007.jpg/1280px-Karl%C5%AFv_most_Praha%2C_Star%C3%A9_M%C4%9Bsto_20170810_007.jpg"},{"name":"Old Town Square (Prague)","cap":"Coração medieval, palco do mercado de Natal.","ll":[50.0875,14.4214],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Prague_07-2016_View_from_Old_Town_Hall_Tower_img3.jpg/1280px-Prague_07-2016_View_from_Old_Town_Hall_Tower_img3.jpg"},{"name":"Prague astronomical clock","cap":"O relógio astronômico de 1410, com o desfile dos apóstolos.","ll":[50.08701,14.42092],"img":"https://upload.wikimedia.org/wikipedia/commons/3/37/Astronomical_Clock_%288341899828%29.jpg"},{"name":"St. Vitus Cathedral","cap":"A catedral gótica dentro do castelo.","ll":[50.09083,14.40056],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/PragueCathedral03.jpg/1280px-PragueCathedral03.jpg"},{"name":"Wenceslas Square","cap":"O grande bulevar da Cidade Nova.","ll":[50.08139,14.4275],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Prague_Praha_2014_Holmstad_Vaclavplassen_i_nybyen_Nove_Mesto_flott.jpg/1280px-Prague_Praha_2014_Holmstad_Vaclavplassen_i_nybyen_Nove_Mesto_flott.jpg"},{"name":"Lennon Wall","cap":"Muro de grafites em homenagem à liberdade.","ll":[50.08624,14.40695],"img":"https://upload.wikimedia.org/wikipedia/commons/a/a5/Lennon_Wall%2C_August_2014.jpg"},{"name":"Dancing House","cap":"O prédio 'dançante' desconstruído à beira-rio.","ll":[50.07556,14.41417],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Tanzendes_Haus_2023.jpg/1280px-Tanzendes_Haus_2023.jpg"}]},{"key":"bratislava","name":"Bratislava & Orava","order":4,"dates":"23–26 dez","country":"Eslováquia","center":[48.1486,17.1077],"points":[{"name":"Bratislava Castle","cap":"O castelo branco de quatro torres sobre o Danúbio.","ll":[48.14222,17.1],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Bratislava_-_Burg_%28b%29.JPG/1280px-Bratislava_-_Burg_%28b%29.JPG"},{"name":"Old Town (Bratislava)","cap":"Cidade velha compacta de ruas de pedra e cafés.","ll":[48.144,17.108],"img":"https://www.roadsanddestinations.com/wp-content/uploads/2021/12/Two-sides-of-Bratislava-Old-and-New-Town-Roads-and-Destinations-3.jpg"},{"name":"Michael's Gate","cap":"A última torre-portão medieval da cidade.","ll":[48.14515,17.10667],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Slovakia-03123_-_Inside_of_St._Michael%27s_Gate_%2832286853995%29.jpg/1280px-Slovakia-03123_-_Inside_of_St._Michael%27s_Gate_%2832286853995%29.jpg"},{"name":"Orava Castle","cap":"Fortaleza dramática sobre um penhasco, perto do chalé.","ll":[49.26167,19.35806],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Oravsk%C3%BD_hrad_%28celkov%C3%BD_pohled%29.jpg/1280px-Oravsk%C3%BD_hrad_%28celkov%C3%BD_pohled%29.jpg"},{"name":"Jasná","cap":"A maior estação de ski da Eslováquia, nas Baixas Tatras.","ll":[48.97165,19.58485],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Jasn%C3%A1_Ski_Resort_-_gondola_lift_Kosodrevina_-_Chopok_%284%29.jpg/1280px-Jasn%C3%A1_Ski_Resort_-_gondola_lift_Kosodrevina_-_Chopok_%284%29.jpg"},{"name":"St Martin's Cathedral, Bratislava","cap":"Catedral gótica de coroações reais.","ll":[48.14214,17.10478],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Catedral_de_San_Mart%C3%ADn%2C_Bratislava%2C_Eslovaquia%2C_2020-02-01%2C_DD_48.jpg/1280px-Catedral_de_San_Mart%C3%ADn%2C_Bratislava%2C_Eslovaquia%2C_2020-02-01%2C_DD_48.jpg"},{"name":"UFO (bridge)","cap":"A ponte com mirante em forma de disco voador.","ll":[48.1383,17.1044],"img":"https://imgs.search.brave.com/LuCDW7QXYFZIxu9K67pKwaQFrCYnDlwSsiueol9-eNM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9pY29u/aWMtdWZvLWJ1aWxk/aW5nLWxhbmRtYXJr/LWJyYXRpc2xhdmEt/Y2l0eS1jYXBpdGFs/LXNsb3Zha2lhLWV1/cm9wZS0xNjExNjMw/MjQuanBn"}]},{"key":"viena","name":"Viena","order":5,"dates":"26–29 dez","country":"Áustria","center":[48.2082,16.3738],"points":[{"name":"Schönbrunn Palace","cap":"O Versalhes austríaco, com jardins imensos.","ll":[48.18452,16.31187],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Wien_-_Schloss_Sch%C3%B6nbrunn.JPG/1280px-Wien_-_Schloss_Sch%C3%B6nbrunn.JPG"},{"name":"St. Stephen's Cathedral, Vienna","cap":"A catedral gótica de telhado colorido, no coração da cidade.","ll":[48.2085,16.373],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Wien_-_Stephansdom_%281%29.JPG/1280px-Wien_-_Stephansdom_%281%29.JPG"},{"name":"Hofburg","cap":"O palácio de inverno dos Habsburgo.","ll":[48.20639,16.36528],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Wien_-_Neue_Hofburg.JPG/1280px-Wien_-_Neue_Hofburg.JPG"},{"name":"Belvedere, Vienna","cap":"Palácio barroco que guarda 'O Beijo', de Klimt.","ll":[48.19417,16.38028],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg/1280px-Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg"},{"name":"Kunsthistorisches Museum","cap":"Um dos maiores museus de arte do mundo.","ll":[48.20388,16.3616],"img":"https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/Kunsthistorisches_Museum_logo.svg/1280px-Kunsthistorisches_Museum_logo.svg.png"},{"name":"Hallstatt","cap":"A vila alpina de cartão-postal, no bate-volta.","ll":[47.562,13.649],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Hallstatt_-_Zentrum_.JPG/1280px-Hallstatt_-_Zentrum_.JPG"},{"name":"Vienna State Opera","cap":"A ópera mais célebre da Europa.","ll":[48.2029,16.369],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Wiener_Staatsoper_Front.jpg/1280px-Wiener_Staatsoper_Front.jpg"},{"name":"Naschmarkt","cap":"O mercado gastronômico mais famoso de Viena.","ll":[48.19889,16.36361],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Wien_-_Naschmarkt.JPG/1280px-Wien_-_Naschmarkt.JPG"},{"name":"Hundertwasser House","cap":"Prédio residencial colorido e sem linhas retas.","ll":[48.2075,16.3939],"img":"https://imgs.search.brave.com/ZuxzY1jXpfSO-oKuSHU0sJWd1MKp03XvTHQ6_uyyRf4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9odW5k/ZXJ0d2Fzc2VyLWhv/dXNlLXNjdWxwdHVy/ZS1saW9uLWZvcmVn/cm91bmQtdmllbm5h/LWF1c3RyaWEtbWFy/Y2gtaHVuZGVydHdh/c3NlcmhhdXMtZXhw/cmVzc2lvbmlzdC1s/YW5kbWFyay01MzM3/NTkwNS5qcGc"},{"name":"Wiener Prater","cap":"O parque com a roda-gigante histórica.","ll":[48.21611,16.39556],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Wien_02_Prater_a.jpg/1280px-Wien_02_Prater_a.jpg"}]},{"key":"budapeste","name":"Budapeste","order":6,"dates":"29 dez – 1 jan","country":"Hungria","center":[47.4979,19.0402],"points":[{"name":"Hungarian Parliament Building","cap":"O parlamento neogótico à beira do Danúbio.","ll":[47.50694,19.04556],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg/1280px-Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg"},{"name":"Fisherman's Bastion","cap":"Terraço de torres brancas com vista de Peste.","ll":[47.5027,19.0344],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Hal%C3%A1szb%C3%A1stya_2017.jpg/1280px-Hal%C3%A1szb%C3%A1stya_2017.jpg"},{"name":"Buda Castle","cap":"O palácio real sobre a colina de Buda.","ll":[47.49611,19.03972],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Budav%C3%A1ri_Palota%2C_ABCDEF_%C3%A9p%C3%BClet.jpg/1280px-Budav%C3%A1ri_Palota%2C_ABCDEF_%C3%A9p%C3%BClet.jpg"},{"name":"Széchenyi Medicinal Bath","cap":"As termas ao ar livre em prédio neobarroco.","ll":[47.51861,19.08194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Budapest_Sz%C3%A9chenyi_Baths_R02.jpg/1280px-Budapest_Sz%C3%A9chenyi_Baths_R02.jpg"},{"name":"Széchenyi Chain Bridge","cap":"A ponte-símbolo que uniu Buda e Peste.","ll":[47.49889,19.04361],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Sz%C3%A9chenyi_Chain_Bridge_in_Budapest_at_night.jpg/1280px-Sz%C3%A9chenyi_Chain_Bridge_in_Budapest_at_night.jpg"},{"name":"St. Stephen's Basilica","cap":"A basílica com o mirante da cúpula.","ll":[47.50083,19.05389],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Budapest_Szent_Istvan_Bazilika_R01.jpg/1280px-Budapest_Szent_Istvan_Bazilika_R01.jpg"},{"name":"Heroes' Square, Budapest","cap":"A grande praça monumental.","ll":[47.515,19.07778],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/HUN-2015-Budapest-Heroes%E2%80%99_Square.jpg/1280px-HUN-2015-Budapest-Heroes%E2%80%99_Square.jpg"},{"name":"Szimpla Kert","cap":"O ruin bar pioneiro do bairro judeu.","ll":[47.497,19.0634],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Szimpla_Kert_Trabant.jpg/1280px-Szimpla_Kert_Trabant.jpg"},{"name":"Great Market Hall, Budapest","cap":"O mercado central de lángos e páprica.","ll":[47.48667,19.05889],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/VasarcsarnokFotoThalerTamas.JPG/1280px-VasarcsarnokFotoThalerTamas.JPG"}]},{"key":"paris","name":"Paris","order":7,"dates":"1–6 jan","country":"França","center":[48.8566,2.3522],"points":[{"name":"Eiffel Tower","cap":"O símbolo de Paris, cintilante a cada hora à noite.","ll":[48.85822,2.2945],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1280px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg"},{"name":"Louvre","cap":"O maior museu do mundo, da Mona Lisa às antiguidades.","ll":[48.8611,2.3358],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Louvre_Museum_Wikimedia_Commons.jpg/1280px-Louvre_Museum_Wikimedia_Commons.jpg"},{"name":"Arc de Triomphe","cap":"O arco no topo dos Champs-Élysées.","ll":[48.87378,2.29503],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Arc_de_Triomphe%2C_Paris_21_October_2010.jpg/1280px-Arc_de_Triomphe%2C_Paris_21_October_2010.jpg"},{"name":"Notre-Dame de Paris","cap":"A catedral gótica reaberta em dez/2024.","ll":[48.85306,2.35],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Notre-Dame_de_Paris%2C_4_October_2017.jpg/1280px-Notre-Dame_de_Paris%2C_4_October_2017.jpg"},{"name":"Sacré-Cœur, Paris","cap":"A basílica branca no alto de Montmartre.","ll":[48.8867,2.3431],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Le_sacre_coeur.jpg/1280px-Le_sacre_coeur.jpg"},{"name":"Palace of Versailles","cap":"O palácio real e seus jardins monumentais.","ll":[48.8047,2.1203],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue_a%C3%A9rienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_081_%28cropped%29.jpg/1280px-Vue_a%C3%A9rienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_081_%28cropped%29.jpg"},{"name":"Champs-Élysées","cap":"A avenida mais famosa do mundo.","ll":[48.8698,2.3078],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Avenue_des_Champs-%C3%89lys%C3%A9es_July_24%2C_2009_N1.jpg/1280px-Avenue_des_Champs-%C3%89lys%C3%A9es_July_24%2C_2009_N1.jpg"},{"name":"Montmartre","cap":"O bairro dos artistas e das ruelas em ladeira.","ll":[48.88694,2.34111],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/View_from_Notre-Dame_de_Paris%2C_24_June_2014_004.jpg/1280px-View_from_Notre-Dame_de_Paris%2C_24_June_2014_004.jpg"},{"name":"Musée d'Orsay","cap":"Os impressionistas numa antiga estação de trem.","ll":[48.85997,2.32653],"img":"https://www.tiqets.com/blog/wp-content/uploads/2023/06/musee-dorsay-17.jpeg"},{"name":"Disneyland Park (Paris)","cap":"O parque temático, opção de dia inteiro.","ll":[48.87261,2.77675],"img":"https://disneyinsights.com/wp-content/uploads/2023/09/IMG_3969-scaled.jpeg"}]},{"key":"barcelona","name":"Barcelona","order":8,"dates":"6–8 jan","country":"Espanha","center":[41.3874,2.1686],"points":[{"name":"Sagrada Família","cap":"A basílica inacabada de Gaudí, obra de uma vida.","ll":[41.40369,2.17433],"img":"https://upload.wikimedia.org/wikipedia/commons/e/ef/SF_maig_2_cropped.jpg"},{"name":"Park Güell","cap":"O parque de mosaicos coloridos com vista da cidade.","ll":[41.41361,2.15278],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Parc_guell_-_panoramio.jpg/1280px-Parc_guell_-_panoramio.jpg"},{"name":"Casa Batlló","cap":"A fachada ondulada e escamosa de Gaudí.","ll":[41.39158,2.16492],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Casa_Batllo_Overview_Barcelona_Spain_cut.jpg/1280px-Casa_Batllo_Overview_Barcelona_Spain_cut.jpg"},{"name":"La Rambla","cap":"O bulevar mais movimentado da cidade.","ll":[41.3809,2.173],"img":"https://imgs.search.brave.com/9c05myEOVnrjFPVKMcJu_mhlNLp6BcaWgsDleQrZFZk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly91cy4x/MjNyZi5jb20vNDUw/d20vZWthdGVyaW5h/YmVsb3ZhL2VrYXRl/cmluYWJlbG92YTIx/MTAvZWthdGVyaW5h/YmVsb3ZhMjExMDAw/MjM4LzE3NjQzNDMw/MS1sYS1yYW1ibGEt/c3RyZWV0LWluLWJh/cmNlbG9uYS1jYXRh/bG9uaWEtc3BhaW4t/YXJjaGl0ZWN0dXJl/LWFuZC1sYW5kbWFy/ay1vZi1iYXJjZWxv/bmEtY2l0eXNjYXBl/LmpwZz92ZXI9Ng"},{"name":"Gothic Quarter, Barcelona","cap":"O labirinto medieval no coração antigo.","ll":[41.38278,2.17694],"img":"https://upload.wikimedia.org/wikipedia/commons/6/6d/Barcelona_-_Carrer_del_Bisbe.jpg"},{"name":"Casa Milà","cap":"A 'pedreira' de Gaudí, com terraço ondulado.","ll":[41.39528,2.16167],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Casa_Mil%C3%A0%2C_general_view.jpg/1280px-Casa_Mil%C3%A0%2C_general_view.jpg"},{"name":"Barceloneta","cap":"O bairro de praia e frutos do mar.","ll":[41.3797,2.1892],"img":"https://travel2next.com/wp-content/uploads/Barcelona-Landmarks2-630x1024.jpg"},{"name":"La Boqueria","cap":"O mercado colorido junto à Rambla.","ll":[41.38194,2.17194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Barcelona_-_Mercat_de_Sant_Josep_%28la_Boqueria%29_-_Entrance.jpg/1280px-Barcelona_-_Mercat_de_Sant_Josep_%28la_Boqueria%29_-_Entrance.jpg"},{"name":"Montjuïc","cap":"A colina com castelo, jardins e vista do porto.","ll":[41.36417,2.16083],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Fale_-_Spain_-_Barcelona_-_8.jpg/1280px-Fale_-_Spain_-_Barcelona_-_8.jpg"}]},{"key":"madri","name":"Madri","order":9,"dates":"8 jan","country":"Espanha","center":[40.4168,-3.7038],"points":[{"name":"Puerta del Sol","cap":"O marco zero da Espanha, se der um pulo rápido.","ll":[40.41694,-3.70361],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Puerta_del_Sol_%28Madrid%29_10.jpg/1280px-Puerta_del_Sol_%28Madrid%29_10.jpg"},{"name":"Plaza Mayor, Madrid","cap":"A grande praça porticada do centro histórico.","ll":[40.41536,-3.70739],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Madrid_Plaza_Mayor_%2848733706273%29.jpg/1280px-Madrid_Plaza_Mayor_%2848733706273%29.jpg"},{"name":"Madrid Atocha railway station","cap":"A estação com jardim tropical onde chega o AVE.","ll":[40.4065,-3.6893],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Atocha_railway_station_5.JPG/1280px-Atocha_railway_station_5.JPG"}]}];
+var MAP_DATA=[{"key":"londres","name":"Londres","order":1,"dates":"15–18 dez","country":"Reino Unido","center":[51.5074,-0.1278],"points":[{"name":"Big Ben","cap":"O relógio mais famoso do mundo, ao lado do Parlamento.","ll":[51.5007,-0.1245],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Elizabeth_Tower%2C_June_2022.jpg/1280px-Elizabeth_Tower%2C_June_2022.jpg"},{"name":"London Eye","cap":"Roda-gigante às margens do Tâmisa, vista de toda a cidade.","ll":[51.5033,-0.1194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/London-Eye-2009.JPG/1280px-London-Eye-2009.JPG"},{"name":"Tower Bridge","cap":"A ponte levadiça vitoriana, cartão-postal de Londres.","ll":[51.5056,-0.0753],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Tower_Bridge_at_Dawn.jpg/1280px-Tower_Bridge_at_Dawn.jpg"},{"name":"Tower of London","cap":"Fortaleza milenar que guarda as joias da coroa.","ll":[51.50806,-0.07611],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Tower_of_London_from_the_Shard_%288515883950%29.jpg/1280px-Tower_of_London_from_the_Shard_%288515883950%29.jpg"},{"name":"British Museum","cap":"Acervo colossal e gratuito — da Pedra de Roseta às múmias.","ll":[51.5194,-0.1269],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/British_Museum_%28aerial%29.jpg/1280px-British_Museum_%28aerial%29.jpg"},{"name":"Buckingham Palace","cap":"Residência real e a clássica troca da guarda.","ll":[51.50083,-0.14194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Buckingham_Palace_London_Morning_2020_01_%28cropped%29.jpg/1280px-Buckingham_Palace_London_Morning_2020_01_%28cropped%29.jpg"},{"name":"St Paul's Cathedral","cap":"A cúpula barroca que domina a City.","ll":[51.5138,-0.0983],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/St_Pauls_aerial_%28cropped%29.jpg/1280px-St_Pauls_aerial_%28cropped%29.jpg"},{"name":"Covent Garden","cap":"Mercado coberto com artistas de rua e cafés.","ll":[51.5125,-0.1225],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Covent_Garden_Interior_May_2006_crop.jpg/1280px-Covent_Garden_Interior_May_2006_crop.jpg"},{"name":"Borough Market","cap":"O melhor mercado gastronômico da cidade.","ll":[51.50556,-0.09083],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/London_2018_March_IMG_0663.jpg/1280px-London_2018_March_IMG_0663.jpg"},{"name":"Warner Bros. Studio Tour London","cap":"Os sets reais dos filmes de Harry Potter.","ll":[51.69333,-0.41972],"img":"https://cdn-imgix.headout.com/media/images/7293c27a7d36116240336326429daac7-27495-london-from-london--harry-potter-warner-bros.-studio-semi-private-experience-with-champagne-03.jpg?auto=compress,format&w=695.0400000000001&h=434.4&q=96&crop=faces&fit=crop"},{"name":"Piccadilly Circus","cap":"O cruzamento elétrico com os letreiros luminosos.","ll":[51.51,-0.13444],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Open_Happiness_Piccadilly_Circus_Blue-Pink_Hour_120917-1126-jikatu.jpg/1280px-Open_Happiness_Piccadilly_Circus_Blue-Pink_Hour_120917-1126-jikatu.jpg"},{"name":"Camden Town","cap":"Bairro boêmio de mercados e música.","ll":[51.541,-0.1433],"img":"https://upload.wikimedia.org/wikipedia/commons/6/6c/Camden_Town_9.jpg"}]},{"key":"amsterda","name":"Amsterdã","order":2,"dates":"18–21 dez","country":"Holanda","center":[52.3676,4.9041],"points":[{"name":"Rijksmuseum","cap":"O grande museu nacional holandês — Rembrandt e Vermeer.","ll":[52.36,4.8853],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg/1280px-South_facade_of_the_Rijksmuseum_Amsterdam_%28DSCF0528%29.jpg"},{"name":"Van Gogh Museum","cap":"A maior coleção do mundo do pintor.","ll":[52.3583,4.8811],"img":"https://imgs.search.brave.com/PD5Q6dt7pXPzrxMDjUnId3DOoBgm8zduLAui0ceIUjo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly8yZ2J6/enhwN21rcnFwZ3B6/LnB1YmxpYy5ibG9i/LnZlcmNlbC1zdG9y/YWdlLmNvbS9hbXN0/ZXJkYW0tdmFuLWdv/Z2gvd2lkZV9leHRl/cmlvcl92aWV3XzAw/LndlYnA"},{"name":"Anne Frank House","cap":"O anexo secreto onde a família se escondeu.","ll":[52.37525,4.88432],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Amsterdam_%28NL%29%2C_Anne-Frank-Huis_--_2015_--_7185.jpg/1280px-Amsterdam_%28NL%29%2C_Anne-Frank-Huis_--_2015_--_7185.jpg"},{"name":"Canals of Amsterdam","cap":"Anéis de canais do séc. XVII, Patrimônio da Humanidade.","ll":[52.365,4.88778],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Imagen_de_los_canales_conc%C3%A9ntricos_en_%C3%81msterdam.png/1280px-Imagen_de_los_canales_conc%C3%A9ntricos_en_%C3%81msterdam.png"},{"name":"Vondelpark","cap":"O parque mais querido da cidade, ao lado do hostel.","ll":[52.358,4.868],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Amsterdam%2C_Vondelpark%2C_at_the_pond-2.jpg/1280px-Amsterdam%2C_Vondelpark%2C_at_the_pond-2.jpg"},{"name":"Dam Square","cap":"Praça central com o Palácio Real.","ll":[52.3731,4.8928],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Dam_Square_2024.jpg/1280px-Dam_Square_2024.jpg"},{"name":"Jordaan","cap":"Bairro charmoso de ruelas, brechós e cafés.","ll":[52.37639,4.88167],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Eerste_Leliedwarsstraat.jpg/1280px-Eerste_Leliedwarsstraat.jpg"},{"name":"Bloemenmarkt","cap":"O mercado de flores flutuante.","ll":[52.36667,4.89194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/SingelBloemenmarkt.jpg/1280px-SingelBloemenmarkt.jpg"},{"name":"Heineken Experience","cap":"A antiga cervejaria transformada em tour.","ll":[52.35778,4.89139],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Former_Heineken_Brewery_in_Amsterdam.jpg/1280px-Former_Heineken_Brewery_in_Amsterdam.jpg"},{"name":"A'DAM Lookout","cap":"Mirante com balanço sobre a cidade.","ll":[52.38306,4.89972],"img":"https://vonortzuort.reisen/wp-content/uploads/2019/03/lookout-foto-eingang.jpg"},{"name":"De Wallen","cap":"O famoso Red Light District — vielas medievais e néon.","ll":[52.37333,4.89806],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Oudezijds_Achterburgwal.jpg/1280px-Oudezijds_Achterburgwal.jpg"},{"name":"Dampkring","cap":"Coffeeshop lendário, cenário de 'Ocean's Twelve'.","ll":[52.36864,4.88976],"img":"https://imgs.search.brave.com/_1hHRR6NcQSTBAhoEoFHi_zqn30Fgl5evOV7yCQB-jQ/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5jbnRyYXZlbGVy/LmNvbS9waG90b3Mv/NTVlMGE3YjJjZGQx/NzYxMzQ4YmRhYjk2/LzE2Ojkvd18yNTYw/LGNfbGltaXQvZGUt/ZGFtcGtyaW5nLWFt/c3RlcmRhbS1jci1h/bGFteS5qcGc"}]},{"key":"praga","name":"Praga","order":3,"dates":"21–22 dez","country":"Tchéquia","center":[50.0755,14.4378],"points":[{"name":"Charles Bridge","cap":"A ponte gótica de estátuas sobre o Vltava.","ll":[50.08639,14.41194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg/1280px-Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg"},{"name":"Prague Castle","cap":"O maior complexo de castelo do mundo.","ll":[50.09,14.4],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Karl%C5%AFv_most_Praha%2C_Star%C3%A9_M%C4%9Bsto_20170810_007.jpg/1280px-Karl%C5%AFv_most_Praha%2C_Star%C3%A9_M%C4%9Bsto_20170810_007.jpg"},{"name":"Old Town Square (Prague)","cap":"Coração medieval, palco do mercado de Natal.","ll":[50.0875,14.4214],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Prague_07-2016_View_from_Old_Town_Hall_Tower_img3.jpg/1280px-Prague_07-2016_View_from_Old_Town_Hall_Tower_img3.jpg"},{"name":"Prague astronomical clock","cap":"O relógio astronômico de 1410, com o desfile dos apóstolos.","ll":[50.08701,14.42092],"img":"https://upload.wikimedia.org/wikipedia/commons/3/37/Astronomical_Clock_%288341899828%29.jpg"},{"name":"St. Vitus Cathedral","cap":"A catedral gótica dentro do castelo.","ll":[50.09083,14.40056],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/PragueCathedral03.jpg/1280px-PragueCathedral03.jpg"},{"name":"Wenceslas Square","cap":"O grande bulevar da Cidade Nova.","ll":[50.08139,14.4275],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Prague_Praha_2014_Holmstad_Vaclavplassen_i_nybyen_Nove_Mesto_flott.jpg/1280px-Prague_Praha_2014_Holmstad_Vaclavplassen_i_nybyen_Nove_Mesto_flott.jpg"},{"name":"Lennon Wall","cap":"Muro de grafites em homenagem à liberdade.","ll":[50.08624,14.40695],"img":"https://upload.wikimedia.org/wikipedia/commons/a/a5/Lennon_Wall%2C_August_2014.jpg"},{"name":"Dancing House","cap":"O prédio 'dançante' desconstruído à beira-rio.","ll":[50.07556,14.41417],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Tanzendes_Haus_2023.jpg/1280px-Tanzendes_Haus_2023.jpg"}]},{"key":"bratislava","name":"Bratislava & Orava","order":4,"dates":"23–26 dez","country":"Eslováquia","center":[48.1486,17.1077],"points":[{"name":"Bratislava Castle","cap":"O castelo branco de quatro torres sobre o Danúbio.","ll":[48.14222,17.1],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Bratislava_-_Burg_%28b%29.JPG/1280px-Bratislava_-_Burg_%28b%29.JPG"},{"name":"Old Town (Bratislava)","cap":"Cidade velha compacta de ruas de pedra e cafés.","ll":[48.144,17.108],"img":"https://www.roadsanddestinations.com/wp-content/uploads/2021/12/Two-sides-of-Bratislava-Old-and-New-Town-Roads-and-Destinations-3.jpg"},{"name":"Michael's Gate","cap":"A última torre-portão medieval da cidade.","ll":[48.14515,17.10667],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Slovakia-03123_-_Inside_of_St._Michael%27s_Gate_%2832286853995%29.jpg/1280px-Slovakia-03123_-_Inside_of_St._Michael%27s_Gate_%2832286853995%29.jpg"},{"name":"Orava Castle","cap":"Fortaleza dramática sobre um penhasco, perto do chalé.","ll":[49.26167,19.35806],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Oravsk%C3%BD_hrad_%28celkov%C3%BD_pohled%29.jpg/1280px-Oravsk%C3%BD_hrad_%28celkov%C3%BD_pohled%29.jpg"},{"name":"Jasná","cap":"A maior estação de ski da Eslováquia, nas Baixas Tatras.","ll":[48.97165,19.58485],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Jasn%C3%A1_Ski_Resort_-_gondola_lift_Kosodrevina_-_Chopok_%284%29.jpg/1280px-Jasn%C3%A1_Ski_Resort_-_gondola_lift_Kosodrevina_-_Chopok_%284%29.jpg"},{"name":"St Martin's Cathedral, Bratislava","cap":"Catedral gótica de coroações reais.","ll":[48.14214,17.10478],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Catedral_de_San_Mart%C3%ADn%2C_Bratislava%2C_Eslovaquia%2C_2020-02-01%2C_DD_48.jpg/1280px-Catedral_de_San_Mart%C3%ADn%2C_Bratislava%2C_Eslovaquia%2C_2020-02-01%2C_DD_48.jpg"},{"name":"UFO (bridge)","cap":"A ponte com mirante em forma de disco voador.","ll":[48.1383,17.1044],"img":"https://imgs.search.brave.com/LuCDW7QXYFZIxu9K67pKwaQFrCYnDlwSsiueol9-eNM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9pY29u/aWMtdWZvLWJ1aWxk/aW5nLWxhbmRtYXJr/LWJyYXRpc2xhdmEt/Y2l0eS1jYXBpdGFs/LXNsb3Zha2lhLWV1/cm9wZS0xNjExNjMw/MjQuanBn"}]},{"key":"viena","name":"Viena","order":5,"dates":"26–29 dez","country":"Áustria","center":[48.2082,16.3738],"points":[{"name":"Schönbrunn Palace","cap":"O Versalhes austríaco, com jardins imensos.","ll":[48.18452,16.31187],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Wien_-_Schloss_Sch%C3%B6nbrunn.JPG/1280px-Wien_-_Schloss_Sch%C3%B6nbrunn.JPG"},{"name":"St. Stephen's Cathedral, Vienna","cap":"A catedral gótica de telhado colorido, no coração da cidade.","ll":[48.2085,16.373],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Wien_-_Stephansdom_%281%29.JPG/1280px-Wien_-_Stephansdom_%281%29.JPG"},{"name":"Hofburg","cap":"O palácio de inverno dos Habsburgo.","ll":[48.20639,16.36528],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Wien_-_Neue_Hofburg.JPG/1280px-Wien_-_Neue_Hofburg.JPG"},{"name":"Belvedere, Vienna","cap":"Palácio barroco que guarda 'O Beijo', de Klimt.","ll":[48.19417,16.38028],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg/1280px-Palacio_Belvedere%2C_Viena%2C_Austria%2C_2020-02-01%2C_DD_93-95_HDR.jpg"},{"name":"Kunsthistorisches Museum","cap":"Um dos maiores museus de arte do mundo.","ll":[48.20388,16.3616],"img":"https://upload.wikimedia.org/wikipedia/en/thumb/a/a3/Kunsthistorisches_Museum_logo.svg/1280px-Kunsthistorisches_Museum_logo.svg.png"},{"name":"Hallstatt","cap":"A vila alpina de cartão-postal, no bate-volta.","ll":[47.562,13.649],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Hallstatt_-_Zentrum_.JPG/1280px-Hallstatt_-_Zentrum_.JPG"},{"name":"Vienna State Opera","cap":"A ópera mais célebre da Europa.","ll":[48.2029,16.369],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Wiener_Staatsoper_Front.jpg/1280px-Wiener_Staatsoper_Front.jpg"},{"name":"Naschmarkt","cap":"O mercado gastronômico mais famoso de Viena.","ll":[48.19889,16.36361],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Wien_-_Naschmarkt.JPG/1280px-Wien_-_Naschmarkt.JPG"},{"name":"Hundertwasser House","cap":"Prédio residencial colorido e sem linhas retas.","ll":[48.2075,16.3939],"img":"https://imgs.search.brave.com/ZuxzY1jXpfSO-oKuSHU0sJWd1MKp03XvTHQ6_uyyRf4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9odW5k/ZXJ0d2Fzc2VyLWhv/dXNlLXNjdWxwdHVy/ZS1saW9uLWZvcmVn/cm91bmQtdmllbm5h/LWF1c3RyaWEtbWFy/Y2gtaHVuZGVydHdh/c3NlcmhhdXMtZXhw/cmVzc2lvbmlzdC1s/YW5kbWFyay01MzM3/NTkwNS5qcGc"},{"name":"Wiener Prater","cap":"O parque com a roda-gigante histórica.","ll":[48.21611,16.39556],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Wien_02_Prater_a.jpg/1280px-Wien_02_Prater_a.jpg"}]},{"key":"budapeste","name":"Budapeste","order":6,"dates":"29 dez – 1 jan","country":"Hungria","center":[47.4979,19.0402],"points":[{"name":"Hungarian Parliament Building","cap":"O parlamento neogótico à beira do Danúbio.","ll":[47.50694,19.04556],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg/1280px-Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg"},{"name":"Fisherman's Bastion","cap":"Terraço de torres brancas com vista de Peste.","ll":[47.5027,19.0344],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Hal%C3%A1szb%C3%A1stya_2017.jpg/1280px-Hal%C3%A1szb%C3%A1stya_2017.jpg"},{"name":"Buda Castle","cap":"O palácio real sobre a colina de Buda.","ll":[47.49611,19.03972],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Budav%C3%A1ri_Palota%2C_ABCDEF_%C3%A9p%C3%BClet.jpg/1280px-Budav%C3%A1ri_Palota%2C_ABCDEF_%C3%A9p%C3%BClet.jpg"},{"name":"Széchenyi Medicinal Bath","cap":"As termas ao ar livre em prédio neobarroco.","ll":[47.51861,19.08194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Budapest_Sz%C3%A9chenyi_Baths_R02.jpg/1280px-Budapest_Sz%C3%A9chenyi_Baths_R02.jpg"},{"name":"Széchenyi Chain Bridge","cap":"A ponte-símbolo que uniu Buda e Peste.","ll":[47.49889,19.04361],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Sz%C3%A9chenyi_Chain_Bridge_in_Budapest_at_night.jpg/1280px-Sz%C3%A9chenyi_Chain_Bridge_in_Budapest_at_night.jpg"},{"name":"St. Stephen's Basilica","cap":"A basílica com o mirante da cúpula.","ll":[47.50083,19.05389],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Budapest_Szent_Istvan_Bazilika_R01.jpg/1280px-Budapest_Szent_Istvan_Bazilika_R01.jpg"},{"name":"Heroes' Square, Budapest","cap":"A grande praça monumental.","ll":[47.515,19.07778],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/HUN-2015-Budapest-Heroes%E2%80%99_Square.jpg/1280px-HUN-2015-Budapest-Heroes%E2%80%99_Square.jpg"},{"name":"Szimpla Kert","cap":"O ruin bar pioneiro do bairro judeu.","ll":[47.497,19.0634],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Szimpla_Kert_Trabant.jpg/1280px-Szimpla_Kert_Trabant.jpg"},{"name":"Great Market Hall, Budapest","cap":"O mercado central de lángos e páprica.","ll":[47.48667,19.05889],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/VasarcsarnokFotoThalerTamas.JPG/1280px-VasarcsarnokFotoThalerTamas.JPG"}]},{"key":"paris","name":"Paris","order":7,"dates":"1–6 jan","country":"França","center":[48.8566,2.3522],"points":[{"name":"Eiffel Tower","cap":"O símbolo de Paris, cintilante a cada hora à noite.","ll":[48.85822,2.2945],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1280px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg"},{"name":"Louvre","cap":"O maior museu do mundo, da Mona Lisa às antiguidades.","ll":[48.8611,2.3358],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Louvre_Museum_Wikimedia_Commons.jpg/1280px-Louvre_Museum_Wikimedia_Commons.jpg"},{"name":"Arc de Triomphe","cap":"O arco no topo dos Champs-Élysées.","ll":[48.87378,2.29503],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Arc_de_Triomphe%2C_Paris_21_October_2010.jpg/1280px-Arc_de_Triomphe%2C_Paris_21_October_2010.jpg"},{"name":"Notre-Dame de Paris","cap":"A catedral gótica reaberta em dez/2024.","ll":[48.85306,2.35],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Notre-Dame_de_Paris%2C_4_October_2017.jpg/1280px-Notre-Dame_de_Paris%2C_4_October_2017.jpg"},{"name":"Sacré-Cœur, Paris","cap":"A basílica branca no alto de Montmartre.","ll":[48.8867,2.3431],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Le_sacre_coeur.jpg/1280px-Le_sacre_coeur.jpg"},{"name":"Palace of Versailles","cap":"O palácio real e seus jardins monumentais.","ll":[48.8047,2.1203],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue_a%C3%A9rienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_081_%28cropped%29.jpg/1280px-Vue_a%C3%A9rienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_081_%28cropped%29.jpg"},{"name":"Champs-Élysées","cap":"A avenida mais famosa do mundo.","ll":[48.8698,2.3078],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Avenue_des_Champs-%C3%89lys%C3%A9es_July_24%2C_2009_N1.jpg/1280px-Avenue_des_Champs-%C3%89lys%C3%A9es_July_24%2C_2009_N1.jpg"},{"name":"Montmartre","cap":"O bairro dos artistas e das ruelas em ladeira.","ll":[48.88694,2.34111],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/View_from_Notre-Dame_de_Paris%2C_24_June_2014_004.jpg/1280px-View_from_Notre-Dame_de_Paris%2C_24_June_2014_004.jpg"},{"name":"Musée d'Orsay","cap":"Os impressionistas numa antiga estação de trem.","ll":[48.85997,2.32653],"img":"https://www.tiqets.com/blog/wp-content/uploads/2023/06/musee-dorsay-17.jpeg"},{"name":"Disneyland Park (Paris)","cap":"O parque temático, opção de dia inteiro.","ll":[48.87261,2.77675],"img":"https://disneyinsights.com/wp-content/uploads/2023/09/IMG_3969-scaled.jpeg"}]},{"key":"barcelona","name":"Barcelona","order":8,"dates":"6–8 jan","country":"Espanha","center":[41.3874,2.1686],"points":[{"name":"Sagrada Família","cap":"A basílica inacabada de Gaudí, obra de uma vida.","ll":[41.40369,2.17433],"img":"https://upload.wikimedia.org/wikipedia/commons/e/ef/SF_maig_2_cropped.jpg"},{"name":"Park Güell","cap":"O parque de mosaicos coloridos com vista da cidade.","ll":[41.41361,2.15278],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Parc_guell_-_panoramio.jpg/1280px-Parc_guell_-_panoramio.jpg"},{"name":"Casa Batlló","cap":"A fachada ondulada e escamosa de Gaudí.","ll":[41.39158,2.16492],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Casa_Batllo_Overview_Barcelona_Spain_cut.jpg/1280px-Casa_Batllo_Overview_Barcelona_Spain_cut.jpg"},{"name":"La Rambla","cap":"O bulevar mais movimentado da cidade.","ll":[41.3809,2.173],"img":"https://imgs.search.brave.com/9c05myEOVnrjFPVKMcJu_mhlNLp6BcaWgsDleQrZFZk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly91cy4x/MjNyZi5jb20vNDUw/d20vZWthdGVyaW5h/YmVsb3ZhL2VrYXRl/cmluYWJlbG92YTIx/MTAvZWthdGVyaW5h/YmVsb3ZhMjExMDAw/MjM4LzE3NjQzNDMw/MS1sYS1yYW1ibGEt/c3RyZWV0LWluLWJh/cmNlbG9uYS1jYXRh/bG9uaWEtc3BhaW4t/YXJjaGl0ZWN0dXJl/LWFuZC1sYW5kbWFy/ay1vZi1iYXJjZWxv/bmEtY2l0eXNjYXBl/LmpwZz92ZXI9Ng"},{"name":"Gothic Quarter, Barcelona","cap":"O labirinto medieval no coração antigo.","ll":[41.38278,2.17694],"img":"https://upload.wikimedia.org/wikipedia/commons/6/6d/Barcelona_-_Carrer_del_Bisbe.jpg"},{"name":"Casa Milà","cap":"A 'pedreira' de Gaudí, com terraço ondulado.","ll":[41.39528,2.16167],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Casa_Mil%C3%A0%2C_general_view.jpg/1280px-Casa_Mil%C3%A0%2C_general_view.jpg"},{"name":"Barceloneta","cap":"O bairro de praia e frutos do mar.","ll":[41.3797,2.1892],"img":"https://travel2next.com/wp-content/uploads/Barcelona-Landmarks2-630x1024.jpg"},{"name":"La Boqueria","cap":"O mercado colorido junto à Rambla.","ll":[41.38194,2.17194],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Barcelona_-_Mercat_de_Sant_Josep_%28la_Boqueria%29_-_Entrance.jpg/1280px-Barcelona_-_Mercat_de_Sant_Josep_%28la_Boqueria%29_-_Entrance.jpg"},{"name":"Montjuïc","cap":"A colina com castelo, jardins e vista do porto.","ll":[41.36417,2.16083],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Fale_-_Spain_-_Barcelona_-_8.jpg/1280px-Fale_-_Spain_-_Barcelona_-_8.jpg"}]},{"key":"madri","name":"Madri","order":9,"dates":"8 jan","country":"Espanha","center":[40.4168,-3.7038],"points":[{"name":"Puerta del Sol","cap":"O marco zero da Espanha, se der um pulo rápido.","ll":[40.41694,-3.70361],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Puerta_del_Sol_%28Madrid%29_10.jpg/1280px-Puerta_del_Sol_%28Madrid%29_10.jpg"},{"name":"Plaza Mayor, Madrid","cap":"A grande praça porticada do centro histórico.","ll":[40.41536,-3.70739],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Madrid_Plaza_Mayor_%2848733706273%29.jpg/1280px-Madrid_Plaza_Mayor_%2848733706273%29.jpg"},{"name":"Madrid Atocha railway station","cap":"A estação com jardim tropical — fica para uma próxima vez (o grupo chega de avião).","ll":[40.4065,-3.6893],"img":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Atocha_railway_station_5.JPG/1280px-Atocha_railway_station_5.JPG"}]}];
 (function(){
   // Tabs
   var tabs=[].slice.call(document.querySelectorAll('.tab'));
@@ -2295,7 +2336,7 @@ var MAP_DATA=[{"key":"londres","name":"Londres","order":1,"dates":"15–18 dez",
   }
 
   // Modo de edição dos roteiros (persistente)
-  var EKEY='eurotrip-edits-v2', isEditing=false, saveT=null;
+  var EKEY='eurotrip-edits-v3', isEditing=false, saveT=null;
   function eget(){try{return JSON.parse(localStorage.getItem(EKEY)||'{}')}catch(e){return{}}}
   function cleanHTML(day){var c=day.cloneNode(true);
     [].slice.call(c.querySelectorAll('.rowdel,.addrow')).forEach(function(n){n.remove()});
